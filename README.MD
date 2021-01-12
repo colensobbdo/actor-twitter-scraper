@@ -26,10 +26,11 @@ The actor has the following input options
 ## Migration
 
 Version 0.1 -> 1.0:
-    * Every item on dataset is now a separate tweet. That means that using `unwind` parameter is not necessary anymore (and doesn't work.)
-    * Proxies are required when running on Apify platform
-    * Login isn't required anymore, but some profiles/tweets can only be accessed using this
-    * Some fields were renamed, it matches twitter property names
+
+* Every item on dataset is now a separate tweet. That means that using `unwind` parameter is not necessary anymore (and doesn't work.)
+* Proxies are required when running on Apify platform
+* Login isn't required anymore, but some profiles/tweets can only be accessed using this
+* Some fields were renamed, it matches twitter property names
 
 ## Extend output function
 
