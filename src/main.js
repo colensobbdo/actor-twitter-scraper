@@ -12,9 +12,10 @@ const {
     extendFunction,
     categorizeUrl,
     tweetToUrl,
+    deferred,
 } = require('./helpers');
 const { LABELS, USER_OMIT_FIELDS } = require('./constants');
-const { clearInterval } = require('timers')
+const { reject } = require('lodash')
 
 const { log } = Apify.utils;
 
@@ -29,8 +30,9 @@ Apify.main(async () => {
     }
 
     const {
-        tweetsDesired,
+        tweetsDesired = 100,
         mode = 'replies',
+        addUserInfo = true,
     } = input;
 
     const requestQueue = await Apify.openRequestQueue();
@@ -59,10 +61,10 @@ Apify.main(async () => {
                 ];
 
                 out.push({
-                    user: {
+                    user: addUserInfo ? {
                         ..._.omit(user, USER_OMIT_FIELDS),
                         created_at: new Date(user.created_at).toISOString(),
-                    },
+                    } : undefined,
                     id: tweet.id_str,
                     conversation_id: tweet.conversation_id_str,
                     ..._.pick(tweet, [
@@ -175,6 +177,7 @@ Apify.main(async () => {
             },
         },
         useSessionPool: true,
+        maxRequestRetries: 10,
         persistCookiesPerSession: true,
         gotoFunction: async ({ page, request, puppeteerPool, session }) => {
             await Apify.utils.puppeteer.blockRequests(page, {
@@ -213,10 +216,29 @@ Apify.main(async () => {
             }
         },
         handlePageFunction: async ({ request, page }) => {
+            try {
+                await page.waitForSelector('[name="failedScript"]', { timeout: 15000 });
+                throw new Error('Failed to load page scripts, retrying...');
+            } catch (e) {
+                if (e.message.includes('Failed')) {
+                    throw e;
+                }
+
+                const failedToLoad = await page.$$eval('[data-testid="primaryColumn"] svg ~ span:not(:empty)', (els) => {
+                    return els.some((el) => el.innerHTML.includes('Try again'));
+                });
+
+                if (failedToLoad) {
+                    throw new Error('Failed to load page tweets, retrying...');
+                }
+            }
+
             await extendScraperFunction(undefined, {
                 page,
                 request,
             });
+
+            const signal = deferred();
 
             page.on('response', async (response) => {
                 try {
@@ -226,9 +248,15 @@ Apify.main(async () => {
                         return;
                     }
 
+                    if (!response.ok()) {
+                        reject(new Error(`Status ${response.status()}`));
+                        return;
+                    }
+
                     const url = response.url();
 
                     if (!url) {
+                        reject(new Error('response url is null'));
                         return;
                     }
 
@@ -236,6 +264,7 @@ Apify.main(async () => {
                     const data = (await response.json());
 
                     if (!data) {
+                        reject(new Error('data is invalid'));
                         return;
                     }
 
@@ -259,26 +288,39 @@ Apify.main(async () => {
                     }
                 } catch (err) {
                     log.debug(err.message, { request: request.userData });
+
+                    reject(err);
                 }
             });
 
             let lastCount = requestCounts.currentCount(request);
 
-            const displayStatus = setInterval(() => {
-                if (lastCount !== requestCounts.currentCount(request)) {
+            const intervalFn = (withCount = -1) => {
+                if (lastCount === withCount || lastCount !== requestCounts.currentCount(request)) {
                     lastCount = requestCounts.currentCount(request);
                     log.info(`Extracted ${lastCount} tweets from ${request.url}`);
                 }
-            }, 5000);
+            };
 
-            await infiniteScroll({
-                page,
-                isDone: () => requestCounts.isDone(request),
-            });
+            const displayStatus = setInterval(intervalFn, 5000);
 
-            clearInterval(displayStatus);
+            try {
+                await Promise.race([
+                    infiniteScroll({
+                        page,
+                        isDone: () => requestCounts.isDone(request),
+                    }),
+                    signal.promise,
+                ]);
+            } finally {
+                signal.resolve();
+                clearInterval(displayStatus);
 
-            page.removeAllListeners('response');
+                page.removeAllListeners('response');
+                page.removeAllListeners('request');
+            }
+
+            intervalFn(0);
         },
     });
 

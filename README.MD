@@ -29,8 +29,52 @@ Version 0.1 -> 1.0:
 
 * Every item on dataset is now a separate tweet. That means that using `unwind` parameter is not necessary anymore (and doesn't work.)
 * Proxies are required when running on Apify platform
-* Login isn't required anymore, but some profiles/tweets can only be accessed using this
+* Login isn't required anymore, but some profiles/tweets can only be accessed using login cookies
 * Some fields were renamed, it matches twitter property names
+
+
+## Results
+
+The actor stores its results into the default dataset associated with the actor run,
+from where they can be downloaded in formats like JSON, HTML, CSV or Excel.
+
+For each item in the dataset will contain a separate tweet, that follows this format:
+
+```jsonc
+{
+  "user": {
+    "id_str": "44196397",
+    "name": "Elon Musk",
+    "screen_name": "elonmusk",
+    "location": "",
+    "description": "",
+    "followers_count": 42144443,
+    "fast_followers_count": 0,
+    "normal_followers_count": 42144443,
+    "friends_count": 103,
+    "listed_count": 58846,
+    "created_at": "2009-06-02T20:12:29.000Z",
+    "favourites_count": 7772,
+    "verified": true,
+    "statuses_count": 13317,
+    "media_count": 800,
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/1295975423654977537/dHw9JcrK_normal.jpg",
+    "profile_banner_url": "https://pbs.twimg.com/profile_banners/44196397/1576183471",
+    "has_custom_timelines": true,
+    "advertiser_account_type": "promotable_user",
+    "business_profile_state": "none",
+    "translator_type": "none"
+  },
+  "id": "1347978218494513152",
+  "conversation_id": "1347978218494513152",
+  "full_text": "My 14-year-old son, Saxon, said he feels like 2021 will be a good year. I agree. Let us all make it so.",
+  "reply_count": 29669,
+  "retweet_count": 66928,
+  "favorite_count": 906614,
+  "url": "https://twitter.com/elonmusk/status/1347978218494513152",
+  "created_at": "2021-01-09T18:47:06.000Z"
+}
+```
 
 ## Extend output function
 
@@ -104,33 +148,6 @@ async ({ page, request, addSearch, addProfile, customData }) => {
             await addProfile(profile);
         }
     }
-}
-```
-
-## Results
-
-The actor stores its results into the default dataset associated with the actor run,
-from where they can be downloaded in formats like JSON, HTML, CSV or Excel.
-
-For each Twitter profile scraped, the resulting dataset contains a single record, which looks as follows (in JSON format):
-
-```jsonc
-{
-  "user": {
-    "name": "Patrick Collison",
-    "description": "Fallibilist, optimist. Stripe CEO.",
-    "location": "patrick@stripe.com",
-    "joined": "Tue Apr 17 01:46:27 +0000 2007",
-    "username": "patrickc"
-  },
-  "contentText": "@balajis I'm very happy to visit many restaurants that I suspect are not particularly good businesses.",
-  "conversationId": "1162066623240347648",
-  "replies": 2,
-  "retweets": 0,
-  "favorites": 51,
-  "dateTime": "Thu Aug 15 18:23:53 +0000 2019",
-  "tweetId": "1162067401954869248"
-  //...
 }
 ```
 

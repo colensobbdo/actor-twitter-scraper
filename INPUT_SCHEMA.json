@@ -30,6 +30,20 @@
                 "Videos"
             ]
         },
+        "startUrls": {
+            "title": "Start URLs",
+            "description": "If you have a file or a url list of twitter urls, you provide them here",
+            "default": [],
+            "type": "array",
+            "editor": "requestListSources"
+        },
+        "handle": {
+            "title": "List of handles to scrape",
+            "type": "array",
+            "description": "The twitter handles of the profiles you want to scrape. Shortcut instead of inputting https://twitter.com urls",
+            "prefill": ["elonmusk", "patrickc"],
+            "editor": "stringList"
+        },
         "toDate": {
             "title": "Tweets newer than",
             "description": "Will get tweets that are newer than this date. Can be used in conjunction with 'Tweets older than' to create specific date slices. Can use specific dates, such as YYYY-MM-DD or relative ones, like '1 month' or '2 days'",
@@ -48,14 +62,15 @@
             "title": "Max. Tweets",
             "type": "integer",
             "description": "Max. Number of Tweets to Retrieve.",
-            "prefill": 100
+            "prefill": 100,
+            "default": 100
         },
-        "handle": {
-            "title": "List of handles to scrape",
-            "type": "array",
-            "description": "The twitter handles of the profiles you want to scrape. Shortcut instead of inputting https://twitter.com urls",
-            "prefill": ["elonmusk", "patrickc"],
-            "editor": "stringList"
+        "addUserInfo": {
+            "title": "Add user info",
+            "description": "Appends an object to each tweet containing the user information",
+            "default": true,
+            "type": "boolean",
+            "editor": "checkbox"
         },
         "mode": {
             "title": "Tweet types",
@@ -73,17 +88,10 @@
                 "replies"
             ]
         },
-        "startUrls": {
-            "title": "Start URLs",
-            "description": "If you have a file or a url list of twitter urls, you provide them here",
-            "default": [],
-            "type": "array",
-            "editor": "requestListSources"
-        },
         "proxyConfig": {
             "title": "Proxy configuration",
             "type": "object",
-            "description": "Highly recommended to use a proxy.",
+            "description": "It's required to use proxies when running on the platform.",
             "prefill": {
                 "useApifyProxy": true
             },
@@ -98,7 +106,9 @@
             "type": "string",
             "default": "",
             "prefill": "async ({ data, item, page, request, customData }) => {\n  return item;\n}",
-            "editor": "javascript"
+            "editor": "javascript",
+            "sectionCaption": "Extend scraper functionality",
+            "sectionDescription": "You can change the output of the items for your dataset here, or add additional behavior for"
         },
         "extendScraperFunction": {
             "title": "Extend Scraper Function",
@@ -120,7 +130,9 @@
             "title": "Login Cookies",
             "type": "array",
             "description": "Your login cookies will be used to bypass the login wall. See <a href='https://apify.com/vdrmota/twitter-scraper'>ReadMe</a> for instructions.",
-            "editor": "json"
+            "editor": "json",
+            "sectionCaption": "Login information",
+            "sectionDescription": "By providing login information you can have access more access to data."
         }
     },
     "required": [

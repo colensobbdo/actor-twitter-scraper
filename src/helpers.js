@@ -274,7 +274,7 @@ const cleanupHandle = (handle) => {
  *  waitForDynamicContent?: number,
  * }} params
  */
-const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicContent = 6 }) => {
+const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicContent = 12 }) => {
     let finished = false;
     const MAX_TIMEOUT = maxTimeout; // seconds
     const WAIT_FOR_DYNAMIC_CONTENT = waitForDynamicContent; // how many seconds to wait for nothing to load before exit
@@ -316,9 +316,9 @@ const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicCont
         }
     };
 
-    setTimeout(scrollDown);
-
     return new Promise(async (resolve) => {
+        scrollDown();
+
         while (!finished) {
             try {
                 await page.evaluate(async () => {
@@ -480,6 +480,24 @@ const requestCounter = async (count) => {
     };
 };
 
+const deferred = () => {
+    /** @type {() => void} */
+    let resolve = () => {};
+    /** @type {() => void} */
+    let reject = () => {};
+
+    const promise = new Promise((r1, r2) => {
+        resolve = /** @type {any} */(r1);
+        reject = r2;
+    });
+
+    return {
+        resolve,
+        reject,
+        promise,
+    };
+};
+
 module.exports = {
     cutOffDate,
     extendFunction,
@@ -494,4 +512,5 @@ module.exports = {
     tweetToUrl,
     createAddSearch,
     createAddEvent,
+    deferred,
 };
