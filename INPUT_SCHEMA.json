@@ -108,7 +108,7 @@
             "prefill": "async ({ data, item, page, request, customData }) => {\n  return item;\n}",
             "editor": "javascript",
             "sectionCaption": "Extend scraper functionality",
-            "sectionDescription": "You can change the output of the items for your dataset here, or add additional behavior for"
+            "sectionDescription": "You can change the output of the items for your dataset here, or add additional behavior on the scraper."
         },
         "extendScraperFunction": {
             "title": "Extend Scraper Function",
@@ -132,7 +132,7 @@
             "description": "Your login cookies will be used to bypass the login wall. See <a href='https://apify.com/vdrmota/twitter-scraper'>ReadMe</a> for instructions.",
             "editor": "json",
             "sectionCaption": "Login information",
-            "sectionDescription": "By providing login information you can have access more access to data."
+            "sectionDescription": "By providing login information you can have more access to data."
         }
     },
     "required": [
