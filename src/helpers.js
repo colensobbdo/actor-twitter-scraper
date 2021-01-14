@@ -344,7 +344,7 @@ const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicCont
 
 /**
  * @template T
- * @typedef {T & { Apify: Apify, customData: any }} PARAMS
+ * @typedef {T & { Apify: Apify, customData: any, request: Apify.Request }} PARAMS
  */
 
 /**
@@ -364,15 +364,15 @@ const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicCont
  * @template MAPPED
  * @template {{ [key: string]: any }} HELPERS
  * @param {{
-    *  key: string,
-    *  map?: (data: RAW, params: PARAMS<HELPERS>) => Promise<MAPPED>,
-    *  output?: (data: MAPPED, params: PARAMS<HELPERS>) => Promise<void>,
-    *  filter?: (obj: { data: RAW, item: MAPPED }, params: PARAMS<HELPERS>) => Promise<boolean>,
-    *  input: INPUT,
-    *  helpers: HELPERS,
-    * }} params
-    * @return {Promise<(data: RAW, args?: Record<string, any>) => Promise<void>>}
-    */
+ *  key: string,
+ *  map?: (data: RAW, params: PARAMS<HELPERS>) => Promise<MAPPED>,
+ *  output?: (data: MAPPED, params: PARAMS<HELPERS>) => Promise<void>,
+ *  filter?: (obj: { data: RAW, item: MAPPED }, params: PARAMS<HELPERS>) => Promise<boolean>,
+ *  input: INPUT,
+ *  helpers: HELPERS,
+ * }} params
+ * @return {Promise<(data: RAW, args?: Record<string, any>) => Promise<void>>}
+ */
 const extendFunction = async ({
     key,
     output,
@@ -382,8 +382,8 @@ const extendFunction = async ({
     helpers,
 }) => {
     /**
-        * @type {PARAMS<HELPERS>}
-        */
+     * @type {PARAMS<HELPERS>}
+     */
     const base = {
         ...helpers,
         Apify,
@@ -392,7 +392,7 @@ const extendFunction = async ({
 
     const evaledFn = (() => {
         // need to keep the same signature for no-op
-        if (typeof input[key] !== 'string') {
+        if (typeof input[key] !== 'string' || input[key].trim() === '') {
             return new vm.Script('({ item }) => item');
         }
 
@@ -483,7 +483,7 @@ const requestCounter = async (count) => {
 const deferred = () => {
     /** @type {() => void} */
     let resolve = () => {};
-    /** @type {() => void} */
+    /** @type {(err: Error) => void} */
     let reject = () => {};
 
     const promise = new Promise((r1, r2) => {

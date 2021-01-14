@@ -15,7 +15,6 @@ const {
     deferred,
 } = require('./helpers');
 const { LABELS, USER_OMIT_FIELDS } = require('./constants');
-const { reject } = require('lodash')
 
 const { log } = Apify.utils;
 
@@ -249,14 +248,14 @@ Apify.main(async () => {
                     }
 
                     if (!response.ok()) {
-                        reject(new Error(`Status ${response.status()}`));
+                        signal.reject(new Error(`Status ${response.status()}`));
                         return;
                     }
 
                     const url = response.url();
 
                     if (!url) {
-                        reject(new Error('response url is null'));
+                        signal.reject(new Error('response url is null'));
                         return;
                     }
 
@@ -264,7 +263,7 @@ Apify.main(async () => {
                     const data = (await response.json());
 
                     if (!data) {
-                        reject(new Error('data is invalid'));
+                        signal.reject(new Error('data is invalid'));
                         return;
                     }
 
@@ -289,7 +288,7 @@ Apify.main(async () => {
                 } catch (err) {
                     log.debug(err.message, { request: request.userData });
 
-                    reject(err);
+                    signal.reject(err);
                 }
             });
 
