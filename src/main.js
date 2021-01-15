@@ -34,6 +34,8 @@ Apify.main(async () => {
         addUserInfo = true,
     } = input;
 
+    log.info(`Limiting tweet counts to ${tweetsDesired}...`);
+
     const requestQueue = await Apify.openRequestQueue();
     const requestCounts = await requestCounter(tweetsDesired);
 
@@ -48,6 +50,10 @@ Apify.main(async () => {
 
     const extendOutputFunction = await extendFunction({
         map: async (data) => {
+            if (!data.tweets) {
+                return [];
+            }
+
             return Object.values(data.tweets).reduce((/** @type {any[]} */out, tweet) => {
                 log.debug('Tweet data', tweet);
 
@@ -84,9 +90,9 @@ Apify.main(async () => {
         },
         output: async (item, { request }) => {
             if (!requestCounts.isDone(request)) {
-                requestCounts.increaseCount(request);
-
-                pushData(item.id, item);
+                if (pushData(item.id, item)) {
+                    requestCounts.increaseCount(request);
+                }
             }
         },
         input,
@@ -147,6 +153,10 @@ Apify.main(async () => {
     }
 
     const isLoggingIn = input.initialCookies && input.initialCookies.length > 0;
+
+    if (await requestQueue.isEmpty()) {
+        throw new Error('You need to provide something to be extracted');
+    }
 
     const crawler = new Apify.PuppeteerCrawler({
         handlePageTimeoutSecs: 3600,
@@ -214,22 +224,21 @@ Apify.main(async () => {
                 throw new Error('Failed to load page, retrying');
             }
         },
-        handlePageFunction: async ({ request, page }) => {
-            try {
-                await page.waitForSelector('[name="failedScript"]', { timeout: 15000 });
+        handlePageFunction: async ({ request, page, response }) => {
+            if (!response || !response.ok()) {
+                throw new Error('Page response is invalid');
+            }
+
+            if (await page.$('[name="failedScript"]')) {
                 throw new Error('Failed to load page scripts, retrying...');
-            } catch (e) {
-                if (e.message.includes('Failed')) {
-                    throw e;
-                }
+            }
 
-                const failedToLoad = await page.$$eval('[data-testid="primaryColumn"] svg ~ span:not(:empty)', (els) => {
-                    return els.some((el) => el.innerHTML.includes('Try again'));
-                });
+            const failedToLoad = await page.$$eval('[data-testid="primaryColumn"] svg ~ span:not(:empty)', (els) => {
+                return els.some((el) => el.innerHTML.includes('Try again'));
+            });
 
-                if (failedToLoad) {
-                    throw new Error('Failed to load page tweets, retrying...');
-                }
+            if (failedToLoad) {
+                throw new Error('Failed to load page tweets, retrying...');
             }
 
             await extendScraperFunction(undefined, {
@@ -239,20 +248,20 @@ Apify.main(async () => {
 
             const signal = deferred();
 
-            page.on('response', async (response) => {
+            page.on('response', async (res) => {
                 try {
-                    const contentType = response.headers()['content-type'];
+                    const contentType = res.headers()['content-type'];
 
                     if (!contentType || !`${contentType}`.includes('application/json')) {
                         return;
                     }
 
-                    if (!response.ok()) {
-                        signal.reject(new Error(`Status ${response.status()}`));
+                    if (!res.ok()) {
+                        signal.reject(new Error(`Status ${res.status()}`));
                         return;
                     }
 
-                    const url = response.url();
+                    const url = res.url();
 
                     if (!url) {
                         signal.reject(new Error('response url is null'));
@@ -260,7 +269,7 @@ Apify.main(async () => {
                     }
 
                     /** @type {any} */
-                    const data = (await response.json());
+                    const data = (await res.json());
 
                     if (!data) {
                         signal.reject(new Error('data is invalid'));
@@ -307,6 +316,7 @@ Apify.main(async () => {
                 await Promise.race([
                     infiniteScroll({
                         page,
+                        maxTimeout: 15,
                         isDone: () => requestCounts.isDone(request),
                     }),
                     signal.promise,

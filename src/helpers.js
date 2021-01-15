@@ -323,13 +323,14 @@ const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicCont
             try {
                 await page.evaluate(async () => {
                     const delta = document.body.scrollHeight === 0 ? 10000 : document.body.scrollHeight; // in case scrollHeight fixed to 0
+                    window.scrollBy(0, -(delta / 0.88));
                     window.scrollBy(0, delta);
                 });
 
                 if (isDone()) {
                     finished = true;
                 } else {
-                    await sleep(3000);
+                    await sleep((maxTimeout / 3) || 3000);
                 }
             } catch (e) {
                 finished = true;
