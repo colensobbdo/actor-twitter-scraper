@@ -44,6 +44,10 @@ const categorizeUrl = (url) => {
  * @param {Apify.RequestQueue} requestQueue
  */
 const createAddProfile = (requestQueue) => async (handle, replies = false) => {
+    if (!handle) {
+        return;
+    }
+
     const isUrl = `${handle}`.includes('twitter.com');
 
     return requestQueue.addRequest({
@@ -61,6 +65,10 @@ const createAddProfile = (requestQueue) => async (handle, replies = false) => {
  * @param {Apify.RequestQueue} requestQueue
  */
 const createAddSearch = (requestQueue) => async (search, mode) => {
+    if (!search) {
+        return;
+    }
+
     const isUrl = `${search}`.includes('twitter.com');
 
     return requestQueue.addRequest({
@@ -80,6 +88,10 @@ const createAddSearch = (requestQueue) => async (search, mode) => {
  * @param {Apify.RequestQueue} requestQueue
  */
 const createAddEvent = (requestQueue) => async (event) => {
+    if (!event) {
+        return;
+    }
+
     const isUrl = `${event}`.includes('twitter.com');
 
     return requestQueue.addRequest({
