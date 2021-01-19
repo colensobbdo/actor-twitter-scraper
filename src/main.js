@@ -13,6 +13,7 @@ const {
     categorizeUrl,
     tweetToUrl,
     deferred,
+    getEntities,
 } = require('./helpers');
 const { LABELS, USER_OMIT_FIELDS } = require('./constants');
 
@@ -78,6 +79,7 @@ Apify.main(async () => {
                         'retweet_count',
                         'favorite_count',
                     ]),
+                    ...getEntities(tweet),
                     url: tweetToUrl(user, tweet.id_str),
                     created_at: new Date(tweet.created_at).toISOString(),
                 });
@@ -88,9 +90,9 @@ Apify.main(async () => {
         filter: async ({ item }) => {
             return toDate(item.created_at) <= 0 && fromDate(item.created_at) >= 0;
         },
-        output: async (item, { request }) => {
+        output: async (output, { request, item }) => {
             if (!requestCounts.isDone(request)) {
-                if (pushData(item.id, item)) {
+                if (pushData(item.id, output)) {
                     requestCounts.increaseCount(request);
                 }
             }
@@ -316,7 +318,7 @@ Apify.main(async () => {
                 await Promise.race([
                     infiniteScroll({
                         page,
-                        maxTimeout: 15,
+                        maxTimeout: 60,
                         isDone: () => requestCounts.isDone(request),
                     }),
                     signal.promise,
