@@ -38,9 +38,10 @@
             "editor": "requestListSources"
         },
         "handle": {
-            "title": "List of handles to scrape",
+            "title": "List of usernames to scrape",
             "type": "array",
-            "description": "The twitter handles of the profiles you want to scrape. Shortcut instead of inputting https://twitter.com urls",
+            "description": "The twitter handles of the profiles you want to scrape. Shortcut instead of inputting https://twitter.com/username urls",
+            "default": [],
             "prefill": ["elonmusk", "patrickc"],
             "editor": "stringList"
         },
@@ -66,7 +67,7 @@
             "default": 100
         },
         "addUserInfo": {
-            "title": "Add user info",
+            "title": "Add user information",
             "description": "Appends an object to each tweet containing the user information",
             "default": true,
             "type": "boolean",

@@ -288,8 +288,6 @@ const cleanupHandle = (handle) => {
  */
 const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicContent = 12 }) => {
     let finished = false;
-    const MAX_TIMEOUT = maxTimeout; // seconds
-    const WAIT_FOR_DYNAMIC_CONTENT = waitForDynamicContent; // how many seconds to wait for nothing to load before exit
     const startTime = Date.now();
 
     const maybeResourceTypesInfiniteScroll = ['xhr', 'fetch', 'websocket', 'other'];
@@ -312,7 +310,7 @@ const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicCont
     const scrollDown = () => {
         if (resourcesStats.oldRequested === resourcesStats.newRequested) {
             resourcesStats.matchNumber++;
-            if (resourcesStats.matchNumber >= WAIT_FOR_DYNAMIC_CONTENT) {
+            if (resourcesStats.matchNumber >= waitForDynamicContent) {
                 finished = true;
                 return;
             }
@@ -321,10 +319,10 @@ const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicCont
             resourcesStats.oldRequested = resourcesStats.newRequested;
         }
         // check if timeout has been reached
-        if (MAX_TIMEOUT !== 0 && (Date.now() - startTime) / 1000 > MAX_TIMEOUT) {
+        if (maxTimeout !== 0 && (Date.now() - startTime) / 1000 > maxTimeout) {
             finished = true;
         } else {
-            setTimeout(scrollDown, 2000);
+            setTimeout(scrollDown, 3000);
         }
     };
 
@@ -336,13 +334,14 @@ const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicCont
                 await page.evaluate(async () => {
                     const delta = document.body.scrollHeight === 0 ? 10000 : document.body.scrollHeight; // in case scrollHeight fixed to 0
                     window.scrollBy(0, -(delta / 0.88));
+                    await new Promise((r) => setTimeout(r, 2000));
                     window.scrollBy(0, delta);
                 });
 
                 if (isDone()) {
                     finished = true;
                 } else {
-                    await sleep((maxTimeout / 3) || 3000);
+                    await sleep((maxTimeout / 3) || 5000);
                 }
             } catch (e) {
                 finished = true;
@@ -379,7 +378,7 @@ const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicCont
  * @param {{
  *  key: string,
  *  map?: (data: RAW, params: PARAMS<HELPERS>) => Promise<MAPPED>,
- *  output?: (data: MAPPED, params: PARAMS<HELPERS>) => Promise<void>,
+ *  output?: (data: MAPPED, params: PARAMS<HELPERS> & { data: RAW, item: MAPPED }) => Promise<void>,
  *  filter?: (obj: { data: RAW, item: MAPPED }, params: PARAMS<HELPERS>) => Promise<boolean>,
  *  input: INPUT,
  *  helpers: HELPERS,
@@ -455,7 +454,7 @@ const extendFunction = async ({
             for (const out of (Array.isArray(result) ? result : [result])) {
                 if (output) {
                     if (out !== null) {
-                        await output(out, merged);
+                        await output(out, { ...merged, data, item });
                     }
                     // skip output
                 }
@@ -511,6 +510,20 @@ const deferred = () => {
     };
 };
 
+/**
+ * @param {any} tweet
+ */
+const getEntities = (tweet) => {
+    const entities = _.get(tweet, 'entities', {});
+
+    return {
+        hashtags: _.get(entities, 'hashtags', []).map(({ text }) => text).filter(Boolean),
+        symbols: _.get(entities, 'symbols', []).map(({ text }) => text).filter(Boolean),
+        user_mentions: _.get(entities, 'user_mentions', []).map((user) => _.omit(user, ['id', 'indices'])).filter(Boolean),
+        urls: _.get(entities, 'urls', []).map((url) => _.pick(url, ['url', 'expanded_url', 'display_url'])).filter(Boolean),
+    };
+};
+
 module.exports = {
     cutOffDate,
     extendFunction,
@@ -526,4 +539,5 @@ module.exports = {
     createAddSearch,
     createAddEvent,
     deferred,
+    getEntities,
 };

@@ -1,3 +1,7 @@
+## 2021-01-19
+
+- Add mentions, symbols, urls and hashtags to output
+
 ## 2021-01-12
 
 - BREAKING CHANGE: Format of the dataset has changed

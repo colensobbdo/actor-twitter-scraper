@@ -45,16 +45,16 @@ For each item in the dataset will contain a separate tweet, that follows this fo
     "screen_name": "elonmusk",
     "location": "",
     "description": "",
-    "followers_count": 42144443,
+    "followers_count": 42583621,
     "fast_followers_count": 0,
-    "normal_followers_count": 42144443,
-    "friends_count": 103,
-    "listed_count": 58846,
+    "normal_followers_count": 42583621,
+    "friends_count": 104,
+    "listed_count": 59150,
     "created_at": "2009-06-02T20:12:29.000Z",
-    "favourites_count": 7772,
+    "favourites_count": 7840,
     "verified": true,
-    "statuses_count": 13317,
-    "media_count": 800,
+    "statuses_count": 13360,
+    "media_count": 801,
     "profile_image_url_https": "https://pbs.twimg.com/profile_images/1295975423654977537/dHw9JcrK_normal.jpg",
     "profile_banner_url": "https://pbs.twimg.com/profile_banners/44196397/1576183471",
     "has_custom_timelines": true,
@@ -62,14 +62,30 @@ For each item in the dataset will contain a separate tweet, that follows this fo
     "business_profile_state": "none",
     "translator_type": "none"
   },
-  "id": "1347978218494513152",
-  "conversation_id": "1347978218494513152",
-  "full_text": "My 14-year-old son, Saxon, said he feels like 2021 will be a good year. I agree. Let us all make it so.",
-  "reply_count": 29669,
-  "retweet_count": 66928,
-  "favorite_count": 906614,
-  "url": "https://twitter.com/elonmusk/status/1347978218494513152",
-  "created_at": "2021-01-09T18:47:06.000Z"
+  "id": "1338857124508684289",
+  "conversation_id": "1338390123373801472",
+  "full_text": "@CyberpunkGame The objective reality is that it is impossible to run an advanced game well on old hardware. This is a much more serious issue: https://t.co/OMNCTa9hJY",
+  "reply_count": 792,
+  "retweet_count": 669,
+  "favorite_count": 17739,
+  "hashtags": [],
+  "symbols": [],
+  "user_mentions": [
+    {
+      "screen_name": "CyberpunkGame",
+      "name": "Cyberpunk 2077",
+      "id_str": "821102114"
+    }
+  ],
+  "urls": [
+    {
+      "url": "https://t.co/OMNCTa9hJY",
+      "expanded_url": "https://www.pcgamer.com/the-more-time-i-spend-in-cyberpunk-2077s-world-the-less-i-believe-in-it/",
+      "display_url": "pcgamer.com/the-more-time-…"
+    }
+  ],
+  "url": "https://twitter.com/elonmusk/status/1338857124508684289",
+  "created_at": "2020-12-15T14:43:07.000Z"
 }
 ```
 
@@ -103,20 +119,15 @@ async ({ item }) => {
 }
 ```
 
-Splitting into multiple dataset items:
+Splitting into multiple dataset items and change the output completely:
 
 ```js
 async ({ item }) => {
-    const result = [];
-
-    const hashtags = item.full_text.match(/#([\S]+)/gu);
-
-    if (hashtags && hashtags.length) {
-        // dataset will be full of items like { hashtag: '#somehashtag' }
-        hashtags.forEach(hashtag => result.push({ hashtag }));
-    }
-
-    return result; // returning an array here will split in multiple dataset items
+    // dataset will be full of items like { hashtag: '#somehashtag' }
+    // returning an array here will split in multiple dataset items
+    return item.hashtags.map((hashtag) => {
+        return { hashtag: `#${hashtag}` };
+    });
 }
 ```
 
