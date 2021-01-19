@@ -1,14 +1,11 @@
 # Tweet Scraper
 
-The actor crawls specified twitter profiles and scrapes the following information:
+The actor crawls specified twitter profiles, searches and events, and scrapes the following information:
 
-- Name
-- Description
-- Location
-- Date joined
-- List of tweets, retweets, and replies
-- Number of favorites, replies, and retweets for each tweet
-- Conversation threads the tweets belong to
+- User information, like name, username, location, follower/following count, profile url/image/banner, date of creation
+- List of tweets, retweets, and replies from profiles
+- Statistics for each tweet of: favorites, replies, and retweets for each tweet
+- Search hashtags, get top, latest, people, pictures or videos tweets
 
 The actor is useful for extracting large amounts of tweet data. Unlike the Twitter API, it does not have rate limit contraints.
 
@@ -83,6 +80,7 @@ This parameter allows you to change the shape of your dataset output, split arra
 ```js
 async ({ item, request }) => {
     item.user = undefined; // removes this field from the output
+    delete item.user; // this works as well
 
     if (request.userData.search) {
         item.search = request.userData.search; // add the search term to the output
@@ -97,8 +95,8 @@ Filtering items:
 
 ```js
 async ({ item }) => {
-    if (!item.contentText.includes('lovely')) {
-        return null; // omit the output if doesn't contain the text
+    if (!item.full_text.includes('lovely')) {
+        return null; // omit the output if the tweet body doesn't contain the text
     }
 
     return item;
@@ -111,9 +109,9 @@ Splitting into multiple dataset items:
 async ({ item }) => {
     const result = [];
 
-    const hashtags = item.contextText.match(/#([\S]+)/g);
+    const hashtags = item.full_text.match(/#([\S]+)/gu);
 
-    if (hashtags) {
+    if (hashtags && hashtags.length) {
         // dataset will be full of items like { hashtag: '#somehashtag' }
         hashtags.forEach(hashtag => result.push({ hashtag }));
     }
