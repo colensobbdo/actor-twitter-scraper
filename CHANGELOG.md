@@ -1,6 +1,7 @@
 ## 2021-01-19
 
 - Add mentions, symbols, urls and hashtags to output
+- Add threads/status links support
 
 ## 2021-01-12
 

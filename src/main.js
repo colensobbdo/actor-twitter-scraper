@@ -9,6 +9,7 @@ const {
     createAddEvent,
     createAddProfile,
     createAddSearch,
+    createAddThread,
     extendFunction,
     categorizeUrl,
     tweetToUrl,
@@ -45,6 +46,7 @@ Apify.main(async () => {
     const addProfile = createAddProfile(requestQueue);
     const addSearch = createAddSearch(requestQueue);
     const addEvent = createAddEvent(requestQueue);
+    const addThread = createAddThread(requestQueue);
 
     const toDate = cutOffDate(-Infinity, input.toDate ? parseRelativeDate(input.toDate) : undefined);
     const fromDate = cutOffDate(Infinity, input.fromDate ? parseRelativeDate(input.fromDate) : undefined);
@@ -132,6 +134,9 @@ Apify.main(async () => {
                     break;
                 case LABELS.HANDLE:
                     await addProfile(req.url, mode === 'replies');
+                    break;
+                case LABELS.STATUS:
+                    await addThread(req.url);
                     break;
                 case LABELS.SEARCH:
                     await addSearch(req.url, input.searchMode);
@@ -281,7 +286,8 @@ Apify.main(async () => {
                     if (
                         (url.includes('/search/adaptive')
                         || url.includes('/timeline/profile')
-                        || url.includes('/live_event/timeline'))
+                        || url.includes('/live_event/timeline')
+                        || url.includes('/timeline/conversation'))
                         && data.globalObjects
                     ) {
                         await extendOutputFunction(data.globalObjects, {

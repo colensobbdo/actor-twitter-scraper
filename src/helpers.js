@@ -29,6 +29,10 @@ const categorizeUrl = (url) => {
         return LABELS.SEARCH;
     }
 
+    if (/\/[a-zA-Z0-9_]{1,15}\/status\//.test(nUrl.pathname)) {
+        return LABELS.STATUS;
+    }
+
     if (/\/i\/events\//.test(nUrl.pathname)) {
         return LABELS.EVENTS;
     }
@@ -57,6 +61,27 @@ const createAddProfile = (requestQueue) => async (handle, replies = false) => {
         userData: {
             label: LABELS.HANDLE,
             handle: cleanupHandle(handle),
+        },
+    });
+};
+
+/**
+ * @param {Apify.RequestQueue} requestQueue
+ */
+const createAddThread = (requestQueue) => async (thread) => {
+    if (!thread) {
+        return;
+    }
+
+    const isUrl = `${thread}`.includes('twitter.com');
+
+    return requestQueue.addRequest({
+        url: isUrl
+            ? thread
+            : `https://twitter.com/i/status/${thread}`,
+        userData: {
+            label: LABELS.STATUS,
+            thread,
         },
     });
 };
@@ -535,9 +560,10 @@ module.exports = {
     requestCounter,
     categorizeUrl,
     createAddProfile,
-    tweetToUrl,
     createAddSearch,
     createAddEvent,
+    createAddThread,
+    tweetToUrl,
     deferred,
     getEntities,
 };

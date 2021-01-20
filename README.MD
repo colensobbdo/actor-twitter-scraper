@@ -136,7 +136,7 @@ async ({ item }) => {
 This parameter allows to extend how the scraper works, can make it easier to extend the default functionality without having to create your own version. As an example, you can include searching the trending topics on each page visit:
 
 ```js
-async ({ page, request, addSearch, addProfile, customData }) => {
+async ({ page, request, addSearch, addProfile, addThread, customData }) => {
     await page.waitForSelector('[aria-label="Timeline: Trending now"] [data-testid="trend"]');
 
     const trending = await page.evaluate(() => {
@@ -151,12 +151,16 @@ async ({ page, request, addSearch, addProfile, customData }) => {
     });
 
     for (const { search, profiles } of trending) {
-        await addSearch(search);
+        await addSearch(search); // add a search using text
 
         for (const profile of profiles) {
-            await addProfile(profile);
+            await addProfile(profile); // adds a profile using link
         }
     }
+
+    // adds a thread and get replies. can accept an id, like from conversation_id or an url
+    // you can call this multiple times but will be added only once
+    await addThread("1351044768030142464");
 }
 ```
 

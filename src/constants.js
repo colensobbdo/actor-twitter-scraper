@@ -1,8 +1,8 @@
-/* eslint-disable max-classes-per-file */
 const LABELS = {
     HANDLE: 'HANDLE',
     SEARCH: 'SEARCH',
     EVENTS: 'EVENTS',
+    STATUS: 'STATUS',
 };
 
 const SEARCH_MODE = {
