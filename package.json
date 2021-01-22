@@ -1,5 +1,5 @@
 {
-    "name": "twitter-extractor",
+    "name": "twitter-scraper",
     "version": "2.0.0",
     "description": "",
     "main": "main.js",
@@ -8,7 +8,7 @@
         "start": "node src/main"
     },
     "author": "",
-    "license": "ISC",
+    "license": "Apache-2.0",
     "dependencies": {
         "apify": "^0.22.4",
         "puppeteer": "^5.5.0",
