@@ -15,6 +15,7 @@ const {
     tweetToUrl,
     deferred,
     getEntities,
+    proxyConfiguration,
 } = require('./helpers');
 const { LABELS, USER_OMIT_FIELDS } = require('./constants');
 
@@ -24,11 +25,9 @@ Apify.main(async () => {
     /** @type {any} */
     const input = await Apify.getValue('INPUT');
 
-    const proxyConfiguration = await Apify.createProxyConfiguration(input.proxyConfig);
-
-    if (Apify.isAtHome() && (!proxyConfiguration || proxyConfiguration.groups.includes('GOOGLE_SERP'))) {
-        throw new Error('You need to provide a valid proxy group when running on the platform');
-    }
+    const proxyConfig = await proxyConfiguration({
+        proxyConfig: input.proxyConfig,
+    });
 
     const {
         tweetsDesired = 100,
@@ -168,7 +167,7 @@ Apify.main(async () => {
     const crawler = new Apify.PuppeteerCrawler({
         handlePageTimeoutSecs: 3600,
         requestQueue,
-        proxyConfiguration,
+        proxyConfiguration: proxyConfig,
         maxConcurrency: isLoggingIn ? 1 : undefined,
         launchPuppeteerOptions: {
             stealth: false,

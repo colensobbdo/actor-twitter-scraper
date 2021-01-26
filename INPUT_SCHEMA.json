@@ -93,9 +93,6 @@
             "title": "Proxy configuration",
             "type": "object",
             "description": "It's required to use proxies when running on the platform.",
-            "prefill": {
-                "useApifyProxy": true
-            },
             "default": {
                 "useApifyProxy": true
             },
@@ -130,6 +127,8 @@
         "initialCookies": {
             "title": "Login Cookies",
             "type": "array",
+            "default": [],
+            "prefill": [],
             "description": "Your login cookies will be used to bypass the login wall. See <a href='https://apify.com/vdrmota/twitter-scraper'>ReadMe</a> for instructions.",
             "editor": "json",
             "sectionCaption": "Login information",
