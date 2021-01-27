@@ -36,6 +36,5 @@
             },
             "editor": "proxy"
         }
-    },
-    "required": ["initialCookies", "handle", "proxyConfig"]
+    }
 }
