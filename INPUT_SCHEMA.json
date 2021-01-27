@@ -6,6 +6,8 @@
         "initialCookies": {
             "title": "Login Cookies",
             "type": "array",
+            "default": [],
+            "prefill": [],
             "description": "Your login cookies will be used to bypass the login wall. See <a href='https://apify.com/vdrmota/twitter-scraper'>ReadMe</a> for instructions.",
             "editor": "json"
         },
@@ -27,6 +29,9 @@
             "type": "object",
             "description": "Use a proxy.",
             "default": {
+                "useApifyProxy": true
+            },
+            "prefill": {
                 "useApifyProxy": true
             },
             "editor": "proxy"
