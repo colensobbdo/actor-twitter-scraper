@@ -323,7 +323,7 @@ Apify.main(async () => {
                 await Promise.race([
                     infiniteScroll({
                         page,
-                        maxTimeout: 60,
+                        maxTimeout: 120,
                         isDone: () => requestCounts.isDone(request),
                     }),
                     signal.promise,

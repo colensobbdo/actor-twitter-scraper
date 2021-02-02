@@ -311,7 +311,7 @@ const cleanupHandle = (handle) => {
  *  waitForDynamicContent?: number,
  * }} params
  */
-const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicContent = 12 }) => {
+const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicContent = 16 }) => {
     let finished = false;
     const startTime = Date.now();
 
@@ -358,8 +358,6 @@ const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicCont
             try {
                 await page.evaluate(async () => {
                     const delta = document.body.scrollHeight === 0 ? 10000 : document.body.scrollHeight; // in case scrollHeight fixed to 0
-                    window.scrollBy(0, -(delta / 0.88));
-                    await new Promise((r) => setTimeout(r, 2000));
                     window.scrollBy(0, delta);
                 });
 
@@ -567,14 +565,14 @@ const proxyConfiguration = async ({
     required = true,
     force = Apify.isAtHome(),
     blacklist = ['GOOGLESERP'],
-    hint = []
+    hint = [],
 }) => {
     const configuration = await Apify.createProxyConfiguration(proxyConfig);
 
     // this works for custom proxyUrls
     if (Apify.isAtHome() && required) {
         if (!configuration || (!configuration.usesApifyProxy && (!configuration.proxyUrls || !configuration.proxyUrls.length)) || !configuration.newUrl()) {
-            throw new Error(`\n=======\nYou're required to provide a valid proxy configuration\n\n=======`);
+            throw new Error('\n=======\nYou\'re required to provide a valid proxy configuration\n\n=======');
         }
     }
 
@@ -594,7 +592,7 @@ const proxyConfiguration = async ({
     }
 
     return configuration;
-}
+};
 
 module.exports = {
     cutOffDate,
