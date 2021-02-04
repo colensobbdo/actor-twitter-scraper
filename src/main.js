@@ -97,11 +97,13 @@ Apify.main(async () => {
         },
         output: async (output, { request, item }) => {
             if (!requestCounts.isDone(request)) {
-                if (item.id && pushedItems.has(item.id)) {
-                    return;
+                if (item.id) {
+                    if (pushedItems.has(item.id)) {
+                        return;
+                    }
+                    pushedItems.add(item.id);
                 }
 
-                pushedItems.add(item.id);
                 await Apify.pushData(output);
                 requestCounts.increaseCount(request);
             }
