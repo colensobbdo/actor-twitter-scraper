@@ -8,6 +8,7 @@ Features:
 
 Fixes:
 - Deduplication of tweets
+- Force retiring forever failing proxies
 
 ## 2021-01-19
 

@@ -475,19 +475,29 @@ const requestCounter = async (count) => {
 };
 
 const deferred = () => {
-    /** @type {() => void} */
+    let isResolved = false;
+    /** @type {(res?: any) => void} */
     let resolve = () => {};
     /** @type {(err: Error) => void} */
     let reject = () => {};
 
     const promise = new Promise((r1, r2) => {
-        resolve = /** @type {any} */(r1);
-        reject = r2;
+        resolve = (res) => {
+            isResolved = true;
+            r1(res);
+        };
+        reject = (err) => {
+            isResolved = true;
+            r2(err);
+        };
     });
 
     return {
         resolve,
         reject,
+        get isResolved() {
+            return isResolved;
+        },
         promise,
     };
 };

@@ -101,6 +101,7 @@ Apify.main(async () => {
                     return;
                 }
 
+                pushedItems.add(item.id);
                 await Apify.pushData(output);
                 requestCounts.increaseCount(request);
             }
@@ -246,12 +247,21 @@ Apify.main(async () => {
                 throw new Error('Failed to load page, retrying');
             }
         },
-        handlePageFunction: async ({ request, page, response }) => {
+        handlePageFunction: async ({ request, session, puppeteerPool, page, response }) => {
+            const retire = async () => {
+                // TODO: need to force retiring both, the SDK sticks with forever failing sessions even with errorScore >= 1
+                log.warning('Retiring session...');
+                session.retire();
+                await puppeteerPool.retire(page.browser());
+            };
+
             if (!response || !response.ok()) {
+                await retire();
                 throw new Error('Page response is invalid');
             }
 
             if (await page.$('[name="failedScript"]')) {
+                await retire();
                 throw new Error('Failed to load page scripts, retrying...');
             }
 
@@ -260,6 +270,7 @@ Apify.main(async () => {
             });
 
             if (failedToLoad) {
+                await retire();
                 throw new Error('Failed to load page tweets, retrying...');
             }
 
@@ -367,7 +378,7 @@ Apify.main(async () => {
                     infiniteScroll({
                         page,
                         maxTimeout: 60,
-                        isDone: () => requestCounts.isDone(request),
+                        isDone: () => (signal.isResolved || requestCounts.isDone(request)),
                     }),
                     signal.promise,
                 ]);
