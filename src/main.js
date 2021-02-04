@@ -350,12 +350,15 @@ Apify.main(async () => {
                         signal,
                     });
 
-                    const instructions = _.get(data, 'timeline.instructions', []);
+                    // ignore the terminate command if not related to tweets
+                    if (payload) {
+                        const instructions = _.get(data, 'timeline.instructions', []);
 
-                    for (const i of instructions) {
-                        if (i && 'terminateTimeline' in i) {
-                            signal.resolve();
-                            return;
+                        for (const i of instructions) {
+                            if (i && 'terminateTimeline' in i) {
+                                signal.resolve();
+                                return;
+                            }
                         }
                     }
                 } catch (err) {
