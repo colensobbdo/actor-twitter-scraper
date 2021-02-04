@@ -187,7 +187,8 @@ Apify.main(async () => {
         proxyConfiguration: proxyConfig,
         maxConcurrency: isLoggingIn ? 1 : undefined,
         launchPuppeteerOptions: {
-            stealth: false,
+            useChrome: Apify.isAtHome(),
+            stealth: !Apify.isAtHome(),
         },
         puppeteerPoolOptions: {
             useIncognitoPages: true,
