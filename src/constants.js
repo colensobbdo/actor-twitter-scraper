@@ -3,6 +3,7 @@ const LABELS = {
     SEARCH: 'SEARCH',
     EVENTS: 'EVENTS',
     STATUS: 'STATUS',
+    TOPIC: 'TOPIC',
 };
 
 const SEARCH_MODE = {

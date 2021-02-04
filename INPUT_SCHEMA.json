@@ -102,8 +102,8 @@
             "title": "Extend Output Function",
             "description": "Add or remove properties on the output object or omit the output returning null",
             "type": "string",
-            "default": "",
-            "prefill": "async ({ data, item, page, request, customData }) => {\n  return item;\n}",
+            "default": "async ({ data, item, page, request, customData, Apify }) => {\n  return item;\n}",
+            "prefill": "async ({ data, item, page, request, customData, Apify }) => {\n  return item;\n}",
             "editor": "javascript",
             "sectionCaption": "Extend scraper functionality",
             "sectionDescription": "You can change the output of the items for your dataset here, or add additional behavior on the scraper."
@@ -112,8 +112,8 @@
             "title": "Extend Scraper Function",
             "description": "Advanced function that allows you to extend the default scraper functionality, allowing you to manually perform actions on the page",
             "type": "string",
-            "default": "",
-            "prefill": "async ({ page, request, addSearch, addProfile, addThread, addEvent, customData, Apify }) => {\n \n}",
+            "default": "async ({ page, request, addSearch, addProfile, _, addThread, addEvent, customData, Apify, signal, label }) => {\n \n}",
+            "prefill": "async ({ page, request, addSearch, addProfile, _, addThread, addEvent, customData, Apify, signal, label }) => {\n \n}",
             "editor": "javascript"
         },
         "customData": {
@@ -123,6 +123,14 @@
             "prefill": {},
             "type": "object",
             "editor": "json"
+        },
+        "handlePageTimeoutSecs": {
+            "title": "Max timeout seconds",
+            "description": "Max timeout for the handlePageFunction. Can be increased for long running processes",
+            "default": 3600,
+            "prefill": 3600,
+            "editor": "number",
+            "type": "integer"
         },
         "initialCookies": {
             "title": "Login Cookies",

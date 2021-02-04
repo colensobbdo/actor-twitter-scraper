@@ -25,16 +25,20 @@ const categorizeUrl = (url) => {
 
     const nUrl = new URL(url, 'https://twitter.com');
 
-    if (nUrl.pathname === '/search') {
+    if (nUrl.pathname === '/search' || nUrl.pathname.startsWith('/hashtag/')) {
         return LABELS.SEARCH;
     }
 
-    if (/\/[a-zA-Z0-9_]{1,15}\/status\//.test(nUrl.pathname)) {
+    if (/\/[a-zA-Z0-9_]{1,15}\/status\/\d+/.test(nUrl.pathname)) {
         return LABELS.STATUS;
     }
 
-    if (/\/i\/events\//.test(nUrl.pathname)) {
+    if (/\/i\/events\/\d+/.test(nUrl.pathname)) {
         return LABELS.EVENTS;
+    }
+
+    if (/\/i\/topics\/\d+/.test(nUrl.pathname)) {
+        return LABELS.TOPIC;
     }
 
     if (/^\/[a-zA-Z0-9_]{1,15}(\/|$)/.test(nUrl.pathname)) {
@@ -82,6 +86,27 @@ const createAddThread = (requestQueue) => async (thread) => {
         userData: {
             label: LABELS.STATUS,
             thread,
+        },
+    });
+};
+
+/**
+ * @param {Apify.RequestQueue} requestQueue
+ */
+const createAddTopic = (requestQueue) => async (topic) => {
+    if (!topic) {
+        return;
+    }
+
+    const isUrl = `${topic}`.includes('twitter.com');
+
+    return requestQueue.addRequest({
+        url: isUrl
+            ? topic
+            : `https://twitter.com/i/topics/${topic}`,
+        userData: {
+            label: LABELS.TOPIC,
+            topic,
         },
     });
 };
@@ -221,72 +246,6 @@ const cutOffDate = (fallback, base) => {
 
     return (compare) => {
         return formatted.diff(compare);
-    };
-};
-
-/**
- * @param {Apify.Dataset} dataset
- * @param {number} [limit]
- */
-const intervalPushData = async (dataset, limit = 500) => {
-    const data = new Map(await Apify.getValue('PENDING_PUSH'));
-    await Apify.setValue('PENDING_PUSH', []);
-    let shouldPush = true;
-
-    /** @type {any} */
-    let timeout;
-
-    const timeoutFn = async () => {
-        if (shouldPush && data.size >= limit) {
-            const dataToPush = [...data.values()];
-            data.clear();
-            await dataset.pushData(dataToPush);
-        }
-
-        timeout = setTimeout(timeoutFn, 10000);
-    };
-
-    Apify.events.on('migrating', async () => {
-        shouldPush = false;
-        if (timeout) {
-            clearTimeout(timeout);
-        }
-        await Apify.setValue('PENDING_PUSH', [...data.entries()]);
-    });
-
-    await timeoutFn();
-
-    return {
-        /**
-             * Synchronous pushData
-             *
-             * @param {string} key
-             * @param {any} item
-             * @returns {boolean} Returns true if the item is new
-             */
-        pushData(key, item) {
-            const isNew = !data.has(key);
-            data.set(key, item);
-            return isNew;
-        },
-        /**
-             * Flushes any remaining items on the pending array.
-             * Call this after await crawler.run()
-             */
-        async flush() {
-            shouldPush = false;
-
-            if (timeout) {
-                clearTimeout(timeout);
-            }
-
-            const dataToPush = [...data.values()];
-
-            while (dataToPush.length) {
-                await Apify.pushData(dataToPush.splice(0, limit));
-                await Apify.utils.sleep(1000);
-            }
-        },
     };
 };
 
@@ -598,7 +557,6 @@ module.exports = {
     cutOffDate,
     extendFunction,
     convertDate,
-    intervalPushData,
     parseRelativeDate,
     infiniteScroll,
     cleanupHandle,
@@ -609,6 +567,7 @@ module.exports = {
     createAddSearch,
     createAddEvent,
     createAddThread,
+    createAddTopic,
     tweetToUrl,
     deferred,
     getEntities,

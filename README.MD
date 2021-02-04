@@ -20,6 +20,17 @@ The actor has the following input options
 - **Proxy Configuration** - Select a proxy to be used by the actor.
 - **Login Cookies** - Your Twitter login cookies (no username/password is submitted). For instructions on how to get your login cookies, please see our [tutorial](https://apify.com/help-dev/en/articles/1444249-log-in-to-website-by-transferring-cookies-from-web-browser).
 
+## Supported urls types
+
+* Events: https://twitter.com/i/events/1354736314923372544
+* Searches: https://twitter.com/search?q=tesla&src=typed_query
+* Trending topics: https://twitter.com/search?q=%23FESTABBB21&src=trend_click&vertical=trends
+* Profiles: https://twitter.com/elonmusk
+* Statuses: https://twitter.com/elonmusk/status/1356381230925635591
+* Topics: https://twitter.com/i/topics/933033311844286464
+* Hashtag: https://twitter.com/hashtag/WandaVison
+* Retweets with quotes: https://twitter.com/elonmusk/status/1356524205374918659/retweets/with_comments (requires login)
+
 ## Results
 
 The actor stores its results into the default dataset associated with the actor run,
@@ -87,6 +98,27 @@ Version 0.1 -> 1.0:
 * Proxies are required when running on Apify platform
 * Login isn't required anymore, but some profiles/tweets can only be accessed using login cookies
 * Some fields were renamed, it matches twitter property names
+
+## Login
+
+By providing login cookies, you can access more content that are private, with sensitive media and/or related to your own account.
+You need to provide just one cookie, that looks like this:
+
+```json
+[
+    {
+        "name": "auth_token",
+        "domain": ".twitter.com",
+        "value": "f431d25ba571dfdb6c03b9900f28f6f2c7de3e97"
+    }
+]
+```
+
+## Advanced search
+
+You can use a predefined search using the Advanced Search as a `startUrl`, like `https://twitter.com/search?q=cool%20until%3A2020-01-01&src=typed_query`
+
+This returns only tweets containing "cool" before `2020-01-01`.
 
 ## Extend output function
 
@@ -163,3 +195,20 @@ async ({ page, request, addSearch, addProfile, addThread, customData }) => {
 }
 ```
 
+Many variables are available inside `extendScraperFunction`, as well different phases:
+
+```js
+async ({ label, response, url }) => {
+    if (label === 'response' && response) {
+        // inside the page.on('response') callback
+        if (url.includes('live_pipeline')) {
+            // deal with plain text content
+            const blob = await (await response.blob()).text();
+        }
+    } else if (label === 'before') {
+        // executes before the page.on('response'), can be used for intercept request/response
+    } else if (label === 'after') {
+        // executes after the scraping process has finished, even on crash
+    }
+}
+```

@@ -1,3 +1,14 @@
+## 2021-02-04
+
+Features:
+- Add topics
+- Add hashtags urls
+- Optimize end of listings
+- Labels for outputScraperFunction for various scraper phases
+
+Fixes:
+- Deduplication of tweets
+
 ## 2021-01-19
 
 - Add mentions, symbols, urls and hashtags to output

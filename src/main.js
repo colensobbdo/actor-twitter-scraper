@@ -2,7 +2,6 @@ const Apify = require('apify');
 const _ = require('lodash');
 const {
     infiniteScroll,
-    intervalPushData,
     parseRelativeDate,
     requestCounter,
     cutOffDate,
@@ -10,6 +9,7 @@ const {
     createAddProfile,
     createAddSearch,
     createAddThread,
+    createAddTopic,
     extendFunction,
     categorizeUrl,
     tweetToUrl,
@@ -39,13 +39,17 @@ Apify.main(async () => {
 
     const requestQueue = await Apify.openRequestQueue();
     const requestCounts = await requestCounter(tweetsDesired);
+    const pushedItems = new Set(await Apify.getValue('PUSHED'));
 
-    const { flush, pushData } = await intervalPushData(await Apify.openDataset(), 50);
+    Apify.events.on('migrating', async () => {
+        await Apify.setValue('PUSHED', [...pushedItems.values()]);
+    });
 
     const addProfile = createAddProfile(requestQueue);
     const addSearch = createAddSearch(requestQueue);
     const addEvent = createAddEvent(requestQueue);
     const addThread = createAddThread(requestQueue);
+    const addTopic = createAddTopic(requestQueue);
 
     const toDate = cutOffDate(-Infinity, input.toDate ? parseRelativeDate(input.toDate) : undefined);
     const fromDate = cutOffDate(Infinity, input.fromDate ? parseRelativeDate(input.fromDate) : undefined);
@@ -93,9 +97,12 @@ Apify.main(async () => {
         },
         output: async (output, { request, item }) => {
             if (!requestCounts.isDone(request)) {
-                if (pushData(item.id, output)) {
-                    requestCounts.increaseCount(request);
+                if (item.id && pushedItems.has(item.id)) {
+                    return;
                 }
+
+                await Apify.pushData(output);
+                requestCounts.increaseCount(request);
             }
         },
         input,
@@ -113,6 +120,10 @@ Apify.main(async () => {
             addProfile,
             addSearch,
             addEvent,
+            addTopic,
+            addThread,
+            pushedItems,
+            extendOutputFunction,
             requestQueue,
             _,
         },
@@ -136,6 +147,9 @@ Apify.main(async () => {
                     break;
                 case LABELS.STATUS:
                     await addThread(req.url);
+                    break;
+                case LABELS.TOPIC:
+                    await addTopic(req.url);
                     break;
                 case LABELS.SEARCH:
                     await addSearch(req.url, input.searchMode);
@@ -165,7 +179,7 @@ Apify.main(async () => {
     }
 
     const crawler = new Apify.PuppeteerCrawler({
-        handlePageTimeoutSecs: 3600,
+        handlePageTimeoutSecs: input.handlePageTimeoutSecs || 3600,
         requestQueue,
         proxyConfiguration: proxyConfig,
         maxConcurrency: isLoggingIn ? 1 : undefined,
@@ -184,17 +198,14 @@ Apify.main(async () => {
                     maxErrorScore: 1,
                 });
 
-                if (isLoggingIn) {
-                    session.setPuppeteerCookies(input.initialCookies, 'https://twitter.com');
-                }
-
                 return session;
             },
         },
         useSessionPool: true,
         maxRequestRetries: 10,
-        persistCookiesPerSession: true,
         gotoFunction: async ({ page, request, puppeteerPool, session }) => {
+            await page.setBypassCSP(true);
+
             await Apify.utils.puppeteer.blockRequests(page, {
                 urlPatterns: [
                     '.jpg',
@@ -219,9 +230,14 @@ Apify.main(async () => {
                 await Apify.utils.puppeteer.injectJQuery(page);
             }
 
+            if (isLoggingIn) {
+                await page.setCookie(...input.initialCookies);
+            }
+
             try {
                 return page.goto(request.url, {
                     waitUntil: 'domcontentloaded',
+                    timeout: 30000,
                 });
             } catch (e) {
                 session.retire();
@@ -247,12 +263,14 @@ Apify.main(async () => {
                 throw new Error('Failed to load page tweets, retrying...');
             }
 
+            const signal = deferred();
+
             await extendScraperFunction(undefined, {
                 page,
                 request,
+                label: 'before',
+                signal,
             });
-
-            const signal = deferred();
 
             page.on('response', async (res) => {
                 try {
@@ -282,24 +300,49 @@ Apify.main(async () => {
                         return;
                     }
 
+                    /**
+                     * @type {any}
+                     */
+                    let payload = null;
+
                     if (
                         (url.includes('/search/adaptive')
                         || url.includes('/timeline/profile')
                         || url.includes('/live_event/timeline')
+                        || url.includes('/topics/')
                         || url.includes('/timeline/conversation'))
                         && data.globalObjects
                     ) {
-                        await extendOutputFunction(data.globalObjects, {
+                        payload = data.globalObjects;
+                    }
+
+                    if (url.includes('/live_event/') && data.twitter_objects) {
+                        payload = data.twitter_objects;
+                    }
+
+                    if (payload) {
+                        await extendOutputFunction(payload, {
                             request,
                             page,
                         });
                     }
 
-                    if (url.includes('/live_event/') && data.twitter_objects) {
-                        await extendOutputFunction(data.twitter_objects, {
-                            request,
-                            page,
-                        });
+                    await extendScraperFunction(payload, {
+                        request,
+                        page,
+                        response,
+                        url,
+                        label: 'response',
+                        signal,
+                    });
+
+                    const instructions = _.get(data, 'timeline.instructions', []);
+
+                    for (const i of instructions) {
+                        if (i && 'terminateTimeline' in i) {
+                            signal.resolve();
+                            return;
+                        }
                     }
                 } catch (err) {
                     log.debug(err.message, { request: request.userData });
@@ -323,7 +366,7 @@ Apify.main(async () => {
                 await Promise.race([
                     infiniteScroll({
                         page,
-                        maxTimeout: 120,
+                        maxTimeout: 60,
                         isDone: () => requestCounts.isDone(request),
                     }),
                     signal.promise,
@@ -334,6 +377,13 @@ Apify.main(async () => {
 
                 page.removeAllListeners('response');
                 page.removeAllListeners('request');
+
+                await extendScraperFunction(undefined, {
+                    page,
+                    request,
+                    label: 'after',
+                    signal,
+                });
             }
 
             intervalFn(0);
@@ -343,7 +393,6 @@ Apify.main(async () => {
     log.info('Starting scraper');
 
     await crawler.run();
-    await flush();
 
     log.info('All finished');
 });
