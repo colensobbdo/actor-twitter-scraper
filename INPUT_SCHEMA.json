@@ -132,6 +132,13 @@
             "editor": "number",
             "type": "integer"
         },
+        "stealth": {
+            "title": "Stealth",
+            "description": "Apply stealth to the browser",
+            "default": false,
+            "type": "boolean",
+            "editor": "checkbox"
+        },
         "initialCookies": {
             "title": "Login Cookies",
             "type": "array",
