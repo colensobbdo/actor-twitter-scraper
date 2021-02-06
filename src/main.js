@@ -238,7 +238,7 @@ Apify.main(async () => {
             }
 
             try {
-                return page.goto(request.url, {
+                return await page.goto(request.url, {
                     waitUntil: 'domcontentloaded',
                     timeout: 30000,
                 });
@@ -249,6 +249,13 @@ Apify.main(async () => {
                 throw new Error('Failed to load page, retrying');
             }
         },
+        handleFailedRequestFunction: async ({ request }) => {
+            log.error(`${request.url} failed ${request.retryCount} times and won't be retried anymore...`);
+
+            await Apify.pushData({
+                '#debug': Apify.utils.createRequestDebugInfo(request),
+            });
+        },
         handlePageFunction: async ({ request, session, puppeteerPool, page, response }) => {
             const retire = async () => {
                 // TODO: need to force retiring both, the SDK sticks with forever failing sessions even with errorScore >= 1
@@ -257,33 +264,7 @@ Apify.main(async () => {
                 await puppeteerPool.retire(page.browser());
             };
 
-            if (!response || !response.ok()) {
-                await retire();
-                throw new Error('Page response is invalid');
-            }
-
-            if (await page.$('[name="failedScript"]')) {
-                await retire();
-                throw new Error('Failed to load page scripts, retrying...');
-            }
-
-            const failedToLoad = await page.$$eval('[data-testid="primaryColumn"] svg ~ span:not(:empty)', (els) => {
-                return els.some((el) => el.innerHTML.includes('Try again'));
-            });
-
-            if (failedToLoad) {
-                await retire();
-                throw new Error('Failed to load page tweets, retrying...');
-            }
-
             const signal = deferred();
-
-            await extendScraperFunction(undefined, {
-                page,
-                request,
-                label: 'before',
-                signal,
-            });
 
             page.on('response', async (res) => {
                 try {
@@ -367,6 +348,14 @@ Apify.main(async () => {
                 }
             });
 
+            try {
+                await page.waitForFunction(() => {
+                    return window.__SCRIPTS_LOADED__ && Object.values(window.__SCRIPTS_LOADED__).every(Boolean);
+                });
+            } catch (e) {
+                throw new Error('Scripts did not load properly');
+            }
+
             let lastCount = requestCounts.currentCount(request);
 
             const intervalFn = (withCount = -1) => {
@@ -379,6 +368,32 @@ Apify.main(async () => {
             const displayStatus = setInterval(intervalFn, 5000);
 
             try {
+                if (!response || !response.ok()) {
+                    await retire();
+                    throw new Error('Page response is invalid');
+                }
+
+                if (await page.$('[name="failedScript"]')) {
+                    await retire();
+                    throw new Error('Failed to load page scripts, retrying...');
+                }
+
+                const failedToLoad = await page.$$eval('[data-testid="primaryColumn"] svg ~ span:not(:empty)', (els) => {
+                    return els.some((el) => el.innerHTML.includes('Try again'));
+                });
+
+                if (failedToLoad) {
+                    await retire();
+                    throw new Error('Failed to load page tweets, retrying...');
+                }
+
+                await extendScraperFunction(undefined, {
+                    page,
+                    request,
+                    label: 'before',
+                    signal,
+                });
+
                 await Promise.race([
                     infiniteScroll({
                         page,
