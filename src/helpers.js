@@ -281,6 +281,9 @@ const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicCont
         matchNumber: 0,
     };
 
+    /**
+     * @param {Puppeteer.Request} msg
+     */
     const getRequest = (msg) => {
         try {
             if (maybeResourceTypesInfiniteScroll.includes(msg.resourceType())) {
@@ -291,7 +294,7 @@ const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicCont
 
     page.on('request', getRequest);
 
-    const scrollDown = () => {
+    const checkForMaxTimeout = () => {
         if (resourcesStats.oldRequested === resourcesStats.newRequested) {
             resourcesStats.matchNumber++;
             if (resourcesStats.matchNumber >= waitForDynamicContent) {
@@ -306,26 +309,53 @@ const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicCont
         if (maxTimeout !== 0 && (Date.now() - startTime) / 1000 > maxTimeout) {
             finished = true;
         } else {
-            setTimeout(scrollDown, 3000);
+            setTimeout(checkForMaxTimeout, 3000);
         }
     };
 
     return new Promise(async (resolve) => {
-        scrollDown();
+        checkForMaxTimeout();
+
+        const scrollHeight = await page.evaluate(() => window.innerHeight / 2);
+        let lastScrollHeight = 0;
 
         while (!finished) {
             try {
-                await page.evaluate(async () => {
-                    const delta = document.body.scrollHeight === 0 ? 10000 : document.body.scrollHeight; // in case scrollHeight fixed to 0
+                lastScrollHeight = await page.evaluate(async (delta) => {
                     window.scrollBy(0, delta);
-                });
+                    return window.scrollY;
+                }, lastScrollHeight + scrollHeight);
+
+                try {
+                    while (true) {
+                        const buttons = await page.$x('//*[@role="button"][contains(.,"Show")]'); // Show replies / Show more replies / Show buttons
+
+                        for (const button of buttons) {
+                            if (isDone()) {
+                                break;
+                            }
+                            await sleep(3000);
+                            if (isDone()) {
+                                break;
+                            }
+                            await button.click();
+                        }
+
+                        if (!buttons.length) {
+                            break;
+                        }
+                    }
+                } catch (e) {
+                    log.debug(`Wait for response, ${e.message}`);
+                }
 
                 if (isDone()) {
                     finished = true;
                 } else {
-                    await sleep((maxTimeout / 3) || 5000);
+                    await sleep((maxTimeout * 30) || 3000);
                 }
             } catch (e) {
+                log.debug(e);
                 finished = true;
             }
         }

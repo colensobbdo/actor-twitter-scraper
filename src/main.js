@@ -43,6 +43,7 @@ Apify.main(async () => {
 
     Apify.events.on('migrating', async () => {
         await Apify.setValue('PUSHED', [...pushedItems.values()]);
+        await Apify.setValue('STATS', stats);
     });
 
     const addProfile = createAddProfile(requestQueue);
@@ -177,6 +178,11 @@ Apify.main(async () => {
 
     const isLoggingIn = input.initialCookies && input.initialCookies.length > 0;
 
+    await extendScraperFunction(undefined, {
+        label: 'setup',
+        isLoggingIn,
+    });
+
     if (await requestQueue.isEmpty()) {
         throw new Error('You need to provide something to be extracted');
     }
@@ -228,6 +234,12 @@ Apify.main(async () => {
                 ],
             });
 
+            await page.setViewport({
+                height: 1080,
+                width: 1920,
+                deviceScaleFactor: 1.5,
+            });
+
             if (input.extendOutputFunction || input.extendScraperFunction) {
                 // insert jQuery only when the user have an output function
                 await Apify.utils.puppeteer.injectJQuery(page);
@@ -274,12 +286,14 @@ Apify.main(async () => {
                         return;
                     }
 
+                    const url = res.url();
+
                     if (!res.ok()) {
-                        signal.reject(new Error(`Status ${res.status()}`));
+                        if (!url.includes('/friends/')) {
+                            signal.reject(new Error(`Status ${res.status()}`));
+                        }
                         return;
                     }
-
-                    const url = res.url();
 
                     if (!url) {
                         signal.reject(new Error('response url is null'));
@@ -335,9 +349,9 @@ Apify.main(async () => {
                         const instructions = _.get(data, 'timeline.instructions', []);
 
                         for (const i of instructions) {
-                            if (i && 'terminateTimeline' in i) {
+                            if (i && i.terminateTimeline === true) {
                                 signal.resolve();
-                                return;
+                                break;
                             }
                         }
                     }
@@ -424,6 +438,9 @@ Apify.main(async () => {
     log.info('Starting scraper');
 
     await crawler.run();
+    await extendScraperFunction(undefined, {
+        label: 'finish',
+    });
 
     log.info('All finished');
 });
