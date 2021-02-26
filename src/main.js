@@ -370,6 +370,17 @@ Apify.main(async () => {
                 throw new Error('Scripts did not load properly');
             }
 
+            await page.waitForSelector('header');
+
+            // move the layout away so it doesn't hover over the scrolling items
+            await page.evaluate(() => {
+                const header = document.querySelector('header');
+                if (header) {
+                    header.style.width = '100px !important';
+                    header.style.flexGrow = '0';
+                }
+            });
+
             let lastCount = requestCounts.currentCount(request);
 
             const intervalFn = (withCount = -1) => {
