@@ -1,3 +1,11 @@
+## 2021-02-26
+
+Features:
+- Scrape replies of replies
+
+Fixes:
+- Improve scraping stability
+
 ## 2021-02-04
 
 Features:
