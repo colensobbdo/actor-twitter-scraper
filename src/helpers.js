@@ -158,51 +158,6 @@ const createAddEvent = (requestQueue) => async (event) => {
 };
 
 /**
- * @param {string} dateFrom
- */
-const parseRelativeDate = (dateFrom) => {
-    if (!dateFrom) {
-        return;
-    }
-
-    const parsedDateFrom = new Date(dateFrom);
-
-    if (!Number.isNaN(parsedDateFrom.getTime())) {
-        return parsedDateFrom.getTime();
-    }
-
-    const now = moment();
-
-    if (!/(hour|minute|second)/i.test(dateFrom)) {
-        now
-            .hour(0)
-            .minute(0)
-            .second(0)
-            .millisecond(0);
-    }
-
-    if (!dateFrom.includes(' ')) {
-        switch (dateFrom) {
-            case 'today':
-                return now.valueOf();
-            case 'yesterday':
-                return now.subtract(1, 'day').valueOf();
-            default:
-                throw new Error(`Invalid date format: ${dateFrom}`);
-        }
-    }
-
-    const split = dateFrom.split(' ', 2);
-    const difference = now.clone().subtract(+split[0], split[1]);
-    if (now.valueOf() !== difference.valueOf()) {
-        // Means the subtraction worked
-        return difference.valueOf();
-    }
-
-    throw new Error('\n---------WRONG INPUT:\n\ndateFrom is not a valid date. Please use date in YYYY-MM-DD or format like "1 week", "1 hour" or "20 days"\n\n---------');
-};
-
-/**
  * @param {string|Date|number} [value]
  * @param {boolean} [isoString]
  */
@@ -232,20 +187,70 @@ const convertDate = (value, isoString = false) => {
 };
 
 /**
- * Check if the provided date is greater/less than the minimum
- * @param {number} fallback
- * @param {string|Date|number} [base]
- * @return {(compare: string | Date) => number}
+ * @param {*} value
+ * @returns
  */
-const cutOffDate = (fallback, base) => {
-    if (!base) {
-        return () => fallback;
+const parseTimeUnit = (value) => {
+    if (!value) {
+        return null;
     }
 
-    const formatted = moment(base);
+    if (value === 'today' || value === 'yesterday') {
+        return (value === 'today' ? moment() : moment().subtract(1, 'day')).startOf('day');
+    }
 
-    return (compare) => {
-        return formatted.diff(compare);
+    const [, number, unit] = `${value}`.match(/^(\d+)\s?(minute|second|day|hour|month|year|week)s?$/i) || [];
+
+    if (+number && unit) {
+        return moment().subtract(+number, unit);
+    }
+
+    return moment(value);
+};
+
+/**
+ * @typedef MinMax
+ * @property {number | string} [min]
+ * @property {number | string} [max]
+ */
+
+/**
+ * @typedef {ReturnType<typeof minMaxDates>} MinMaxDates
+ */
+
+/**
+ * Generate a function that can check date intervals depending on the input
+ * @param {MinMax} param
+ */
+const minMaxDates = ({ min, max }) => {
+    const minDate = parseTimeUnit(min);
+    const maxDate = parseTimeUnit(max);
+
+    if (minDate && maxDate && maxDate.diff(minDate) < 0) {
+        throw new Error(`Minimum date ${minDate.toString()} needs to be less than max date ${maxDate.toString()}`);
+    }
+
+    return {
+        /**
+         * cloned min date, if set
+         */
+        get minDate() {
+            return minDate?.clone();
+        },
+        /**
+         * cloned max date, if set
+         */
+        get maxDate() {
+            return maxDate?.clone();
+        },
+        /**
+         * compare the given date/timestamp to the time interval
+         * @param {string | number} time
+         */
+        compare(time) {
+            const base = moment(time);
+            return (minDate ? minDate.diff(base) <= 0 : true) && (maxDate ? maxDate.diff(base) >= 0 : true);
+        },
     };
 };
 
@@ -328,7 +333,7 @@ const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicCont
 
                 try {
                     while (true) {
-                        const buttons = await page.$x('//*[@role="button"][contains(.,"Show")]'); // Show replies / Show more replies / Show buttons
+                        const buttons = await page.$x('//*[@role="button" and contains(.,"Show") and not(@aria-label)]'); // Show replies / Show more replies / Show buttons
 
                         for (const button of buttons) {
                             if (isDone()) {
@@ -594,10 +599,9 @@ const proxyConfiguration = async ({
 };
 
 module.exports = {
-    cutOffDate,
+    minMaxDates,
     extendFunction,
     convertDate,
-    parseRelativeDate,
     infiniteScroll,
     cleanupHandle,
     proxyConfiguration,

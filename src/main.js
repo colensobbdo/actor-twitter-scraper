@@ -2,9 +2,8 @@ const Apify = require('apify');
 const _ = require('lodash');
 const {
     infiniteScroll,
-    parseRelativeDate,
     requestCounter,
-    cutOffDate,
+    minMaxDates,
     createAddEvent,
     createAddProfile,
     createAddSearch,
@@ -43,7 +42,6 @@ Apify.main(async () => {
 
     Apify.events.on('migrating', async () => {
         await Apify.setValue('PUSHED', [...pushedItems.values()]);
-        await Apify.setValue('STATS', stats);
     });
 
     const addProfile = createAddProfile(requestQueue);
@@ -52,8 +50,18 @@ Apify.main(async () => {
     const addThread = createAddThread(requestQueue);
     const addTopic = createAddTopic(requestQueue);
 
-    const toDate = cutOffDate(-Infinity, input.toDate ? parseRelativeDate(input.toDate) : undefined);
-    const fromDate = cutOffDate(Infinity, input.fromDate ? parseRelativeDate(input.fromDate) : undefined);
+    const dates = minMaxDates({
+        min: input.toDate,
+        max: input.fromDate,
+    });
+
+    if (dates.maxDate) {
+        log.info(`\n\nGetting tweets older than ${dates.maxDate.toLocaleString()}\n`);
+    }
+
+    if (dates.minDate) {
+        log.info(`\n\nGetting tweets newer than ${dates.minDate.toLocaleString()}\n`);
+    }
 
     const extendOutputFunction = await extendFunction({
         map: async (data) => {
@@ -94,7 +102,7 @@ Apify.main(async () => {
             }, []);
         },
         filter: async ({ item }) => {
-            return toDate(item.created_at) <= 0 && fromDate(item.created_at) >= 0;
+            return dates.compare(item.created_at);
         },
         output: async (output, { request, item }) => {
             if (!requestCounts.isDone(request)) {
@@ -188,19 +196,19 @@ Apify.main(async () => {
     }
 
     const crawler = new Apify.PuppeteerCrawler({
-        handlePageTimeoutSecs: input.handlePageTimeoutSecs || 3600,
+        handlePageTimeoutSecs: input.handlePageTimeoutSecs || 5000,
         requestQueue,
         proxyConfiguration: proxyConfig,
         maxConcurrency: isLoggingIn ? 1 : undefined,
-        launchPuppeteerOptions: {
+        launchContext: {
             stealth: input.stealth || false,
-        },
-        puppeteerPoolOptions: {
-            useIncognitoPages: true,
-            maxOpenPagesPerInstance: 1,
+            launchOptions: {
+                useIncognitoPages: true,
+                maxOpenPagesPerInstance: 1,
+            },
         },
         sessionPoolOptions: {
-            createSessionFunction: (sessionPool) => {
+            createSessionFunction: async (sessionPool) => {
                 const session = new Apify.Session({
                     sessionPool,
                     maxUsageCount: isLoggingIn ? 5000 : 50,
@@ -212,7 +220,10 @@ Apify.main(async () => {
         },
         useSessionPool: true,
         maxRequestRetries: 10,
-        gotoFunction: async ({ page, request, puppeteerPool, session }) => {
+        preNavigationHooks: [async ({ page }, gotoOptions) => {
+            gotoOptions.waitUntil = 'domcontentloaded';
+            gotoOptions.timeout = 30000;
+
             await page.setBypassCSP(true);
 
             await Apify.utils.puppeteer.blockRequests(page, {
@@ -248,19 +259,7 @@ Apify.main(async () => {
             if (isLoggingIn) {
                 await page.setCookie(...input.initialCookies);
             }
-
-            try {
-                return await page.goto(request.url, {
-                    waitUntil: 'domcontentloaded',
-                    timeout: 30000,
-                });
-            } catch (e) {
-                session.retire();
-                await puppeteerPool.retire(page.browser());
-
-                throw new Error('Failed to load page, retrying');
-            }
-        },
+        }],
         handleFailedRequestFunction: async ({ request }) => {
             log.error(`${request.url} failed ${request.retryCount} times and won't be retried anymore...`);
 
@@ -268,12 +267,11 @@ Apify.main(async () => {
                 '#debug': Apify.utils.createRequestDebugInfo(request),
             });
         },
-        handlePageFunction: async ({ request, session, puppeteerPool, page, response }) => {
+        handlePageFunction: async ({ request, session, page, response }) => {
             const retire = async () => {
                 // TODO: need to force retiring both, the SDK sticks with forever failing sessions even with errorScore >= 1
                 log.warning('Retiring session...');
                 session.retire();
-                await puppeteerPool.retire(page.browser());
             };
 
             const signal = deferred();

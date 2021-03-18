@@ -1,3 +1,11 @@
+## 2021-03-18
+
+Features:
+- Update to SDK 1.0.2
+
+Fixes:
+- Clicking on non-replies buttons
+
 ## 2021-02-26
 
 Features:

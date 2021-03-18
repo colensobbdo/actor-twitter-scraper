@@ -48,7 +48,7 @@
         "toDate": {
             "title": "Tweets newer than",
             "description": "Will get tweets that are newer than this date. Can be used in conjunction with 'Tweets older than' to create specific date slices. Can use specific dates, such as YYYY-MM-DD or relative ones, like '1 month' or '2 days'",
-            "pattern": "(\\d{4}-\\d{2}-\\d{2}|(\\d+ )?\\S+)",
+            "pattern": "(\\d{4}-\\d{2}-\\d{2}|(\\d+)\\s?\\S+)",
             "type": "string",
             "editor": "textfield"
         },
@@ -56,7 +56,7 @@
             "title": "Tweets older than",
             "description": "Will start getting tweets from this date and older. Can be used in conjunction 'Tweets newer than'. Can use specific dates, such as YYYY-MM-DD or relative ones, like '1 month' or '2 days'",
             "type": "string",
-            "pattern": "(\\d{4}-\\d{2}-\\d{2}|(\\d+ )?\\S+)",
+            "pattern": "(\\d{4}-\\d{2}-\\d{2}|(\\d+)\\s?\\S+)",
             "editor": "textfield"
         },
         "tweetsDesired": {
