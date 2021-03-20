@@ -15,6 +15,7 @@ const {
     deferred,
     getEntities,
     proxyConfiguration,
+    blockPatterns,
 } = require('./helpers');
 const { LABELS, USER_OMIT_FIELDS } = require('./constants');
 
@@ -199,13 +200,15 @@ Apify.main(async () => {
         handlePageTimeoutSecs: input.handlePageTimeoutSecs || 5000,
         requestQueue,
         proxyConfiguration: proxyConfig,
-        maxConcurrency: isLoggingIn ? 1 : undefined,
+        maxConcurrency: 1,
         launchContext: {
             stealth: input.stealth || false,
             launchOptions: {
                 useIncognitoPages: true,
-                maxOpenPagesPerInstance: 1,
             },
+        },
+        browserPoolOptions: {
+            maxOpenPagesPerBrowser: 1, // unfocused tabs stops responding
         },
         sessionPoolOptions: {
             createSessionFunction: async (sessionPool) => {
@@ -227,22 +230,7 @@ Apify.main(async () => {
             await page.setBypassCSP(true);
 
             await Apify.utils.puppeteer.blockRequests(page, {
-                urlPatterns: [
-                    '.jpg',
-                    '.ico',
-                    '.jpeg',
-                    '.gif',
-                    '.svg',
-                    '.png',
-                    'pbs.twimg.com/semantic_core_img',
-                    'pbs.twimg.com/profile_banners',
-                    'pbs.twimg.com/media',
-                    'pbs.twimg.com/card_img',
-                    'www.google-analytics.com',
-                    'branch.io',
-                    '/guide.json',
-                    '/client_event.json',
-                ],
+                urlPatterns: blockPatterns,
             });
 
             await page.setViewport({
@@ -258,6 +246,11 @@ Apify.main(async () => {
 
             if (isLoggingIn) {
                 await page.setCookie(...input.initialCookies);
+            }
+        }],
+        postNavigationHooks: [async ({ session, browserController }) => {
+            if (!session.isUsable()) {
+                await browserController.close();
             }
         }],
         handleFailedRequestFunction: async ({ request }) => {
@@ -420,8 +413,7 @@ Apify.main(async () => {
                 await Promise.race([
                     infiniteScroll({
                         page,
-                        maxTimeout: 60,
-                        isDone: () => (signal.isResolved || requestCounts.isDone(request)),
+                        isDone: () => (page.isClosed() || signal.isResolved || requestCounts.isDone(request)),
                     }),
                     signal.promise,
                 ]);
@@ -438,6 +430,8 @@ Apify.main(async () => {
                     label: 'after',
                     signal,
                 });
+
+                log.info(`Finished with ${request.url}`);
             }
 
             intervalFn(0);

@@ -127,8 +127,8 @@
         "handlePageTimeoutSecs": {
             "title": "Max timeout seconds",
             "description": "Max timeout for the handlePageFunction. Can be increased for long running processes",
-            "default": 3600,
-            "prefill": 3600,
+            "default": 5000,
+            "prefill": 5000,
             "editor": "number",
             "type": "integer"
         },

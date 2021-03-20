@@ -267,23 +267,53 @@ const cleanupHandle = (handle) => {
     return matches.groups.HANDLE;
 };
 
+const blockPatterns = [
+    '.jpg',
+    '.ico',
+    '.jpeg',
+    '.gif',
+    '.svg',
+    '.png',
+    'pbs.twimg.com/semantic_core_img',
+    'pbs.twimg.com/profile_banners',
+    'pbs.twimg.com/media',
+    'pbs.twimg.com/card_img',
+    'www.google-analytics.com',
+    'branch.io',
+    '/guide.json',
+    '/client_event.json',
+    '/amplify_video/',
+    '/ext_tw_video/',
+    'help/settings',
+    'help/settings',
+];
+
+/**
+ * Check if the url is blocked, need to check it on request, as
+ * the request blocked by blockRequests won't be able to be
+ * differentiated
+ *
+ * @param {string} url
+ */
+const isBlockedUrl = (url) => blockPatterns.some((pattern) => url.includes(pattern));
+
 /**
  * @param {{
  *  page: Puppeteer.Page,
- *  maxTimeout?: number,
+ *  maxIdleTimeoutSecs?: number,
  *  isDone: () => boolean,
  *  waitForDynamicContent?: number,
  * }} params
  */
-const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicContent = 16 }) => {
+const infiniteScroll = async ({ page, isDone, maxIdleTimeoutSecs = 20, waitForDynamicContent = 16 }) => {
     let finished = false;
-    const startTime = Date.now();
 
     const maybeResourceTypesInfiniteScroll = ['xhr', 'fetch', 'websocket', 'other'];
     const resourcesStats = {
         newRequested: 0,
         oldRequested: 0,
         matchNumber: 0,
+        lastRequested: Date.now(),
     };
 
     /**
@@ -291,8 +321,10 @@ const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicCont
      */
     const getRequest = (msg) => {
         try {
-            if (maybeResourceTypesInfiniteScroll.includes(msg.resourceType())) {
+            if (maybeResourceTypesInfiniteScroll.includes(msg.resourceType()) && !isBlockedUrl(msg.url())) {
                 resourcesStats.newRequested++;
+                resourcesStats.lastRequested = Date.now();
+                log.debug('New requested', resourcesStats);
             }
         } catch (e) { }
     };
@@ -304,16 +336,18 @@ const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicCont
             resourcesStats.matchNumber++;
             if (resourcesStats.matchNumber >= waitForDynamicContent) {
                 finished = true;
-                return;
             }
         } else {
             resourcesStats.matchNumber = 0;
             resourcesStats.oldRequested = resourcesStats.newRequested;
         }
-        // check if timeout has been reached
-        if (maxTimeout !== 0 && (Date.now() - startTime) / 1000 > maxTimeout) {
+
+        if (maxIdleTimeoutSecs !== 0 && (Date.now() - resourcesStats.lastRequested) > maxIdleTimeoutSecs * 1000) {
+            log.warning(`Scrolling seems to have stopped and data was not received after ${maxIdleTimeoutSecs}s`);
             finished = true;
-        } else {
+        }
+
+        if (!finished) {
             setTimeout(checkForMaxTimeout, 3000);
         }
     };
@@ -321,15 +355,13 @@ const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicCont
     return new Promise(async (resolve) => {
         checkForMaxTimeout();
 
-        const scrollHeight = await page.evaluate(() => window.innerHeight / 2);
-        let lastScrollHeight = 0;
+        const scrollHeight = await page.evaluate(() => window.innerHeight);
 
         while (!finished) {
             try {
-                lastScrollHeight = await page.evaluate(async (delta) => {
-                    window.scrollBy(0, delta);
-                    return window.scrollY;
-                }, lastScrollHeight + scrollHeight);
+                await page.evaluate(async (height) => {
+                    window.scrollBy(0, height);
+                }, scrollHeight);
 
                 try {
                     while (true) {
@@ -339,7 +371,7 @@ const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicCont
                             if (isDone()) {
                                 break;
                             }
-                            await sleep(3000);
+                            await sleep(2000);
                             if (isDone()) {
                                 break;
                             }
@@ -357,10 +389,13 @@ const infiniteScroll = async ({ page, isDone, maxTimeout = 0, waitForDynamicCont
                 if (isDone()) {
                     finished = true;
                 } else {
-                    await sleep((maxTimeout * 30) || 3000);
+                    await sleep(700);
                 }
             } catch (e) {
                 log.debug(e);
+                if (!page.isClosed()) {
+                    page.off('request', getRequest); // Target closed
+                }
                 finished = true;
             }
         }
@@ -615,4 +650,5 @@ module.exports = {
     tweetToUrl,
     deferred,
     getEntities,
+    blockPatterns,
 };
