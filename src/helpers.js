@@ -158,35 +158,6 @@ const createAddEvent = (requestQueue) => async (event) => {
 };
 
 /**
- * @param {string|Date|number} [value]
- * @param {boolean} [isoString]
- */
-const convertDate = (value, isoString = false) => {
-    if (!value) {
-        return isoString ? '2100-01-01T00:00:00.000Z' : Infinity;
-    }
-
-    if (value instanceof Date) {
-        return isoString ? value.toISOString() : value.getTime();
-    }
-
-    let tryConvert = new Date(value);
-
-    // catch values less than year 2002
-    if (Number.isNaN(tryConvert.getTime()) || `${tryConvert.getTime()}`.length < 13) {
-        if (typeof value === 'string') {
-            // convert seconds to miliseconds
-            tryConvert = new Date(value.length >= 13 ? +value : +value * 1000);
-        } else if (typeof value === 'number') {
-            // convert seconds to miliseconds
-            tryConvert = new Date(`${value}`.length >= 13 ? value : value * 1000);
-        }
-    }
-
-    return isoString ? tryConvert.toISOString() : tryConvert.getTime();
-};
-
-/**
  * @param {*} value
  * @returns
  */
@@ -633,10 +604,75 @@ const proxyConfiguration = async ({
     return configuration;
 };
 
+/**
+ * Filter important cookies
+ *
+ * @param {Puppeteer.Cookie[] | Array<Puppeteer.Cookie[]>} cookies
+ */
+const filterCookies = (cookies) => {
+    if (!cookies?.length || !Array.isArray(cookies)) {
+        return [];
+    }
+
+    if (Array.isArray(cookies[0])) {
+        if (!cookies[0].length) {
+            return [];
+        }
+
+        // pick one from an array of arrays of cookies
+        return filterCookies(cookies[Math.round(Math.random() * 1000) % cookies.length]);
+    }
+
+    return cookies
+        .filter(({ name }) => ['auth_token', 'guest_id', 'remember_checked_on', 'twid', 'lang'].includes(name))
+        .map(({ id, storeId, expirationDate, ...rest }) => ({
+            ...rest,
+            domain: '.twitter.com',
+        }));
+};
+
+/**
+ * Get deep entries from GraphQL response
+ *
+ * @param {any[]} instructions
+ */
+const getTimelineInstructions = (instructions) => {
+    if (!instructions?.length) {
+        return [];
+    }
+
+    const timelineAddEntries = instructions.filter(({ type }) => type === 'TimelineAddEntries');
+
+    if (!timelineAddEntries.length || !timelineAddEntries[0].entries?.length) {
+        return undefined;
+    }
+
+    // the format is really weird and we need to flatten it and make it
+    // compatible with the globalObject format
+    /** @type {{ tweets: Record<string, any>, users: Record<string, any> }} */
+    const globalObject = {
+        tweets: {},
+        users: {},
+    };
+
+    for (const { entries } of timelineAddEntries) {
+        if (entries?.length) {
+            for (const { sortIndex, content } of entries) {
+                if (content?.entryType === 'TimelineTimelineItem' && content?.itemContent?.tweet?.legacy) {
+                    const { tweet } = content.itemContent;
+                    globalObject.tweets[sortIndex] = tweet.legacy;
+                    globalObject.users[tweet.core.user.rest_id] = globalObject.users[tweet.core.user.rest_id] ?? tweet.core.user.legacy;
+                }
+            }
+        }
+    }
+
+    return globalObject;
+};
+
 module.exports = {
     minMaxDates,
     extendFunction,
-    convertDate,
     infiniteScroll,
     cleanupHandle,
     proxyConfiguration,
@@ -650,5 +686,7 @@ module.exports = {
     tweetToUrl,
     deferred,
     getEntities,
+    filterCookies,
+    getTimelineInstructions,
     blockPatterns,
 };

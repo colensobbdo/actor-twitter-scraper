@@ -1,8 +1,8 @@
 # Twitter Scraper
 
-The actor crawls specified twitter profiles, searches and events, and scrapes the following information:
+The actor crawls specified Twitter profiles, searches and events, and scrapes the following information:
 
-- User information, like name, username, location, follower/following count, profile url/image/banner, date of creation
+- User information, like name, username, location, follower/following count, profile URL/image/banner, date of creation
 - List of tweets, retweets, and replies from profiles
 - Statistics for each tweet of: favorites, replies, and retweets for each tweet
 - Search hashtags, get top, latest, people, pictures or videos tweets
@@ -14,13 +14,13 @@ The actor is useful for extracting large amounts of tweet data. Unlike the Twitt
 The actor has the following input options
 
 - **Mode** - Scrape only own tweets from the profile page or include replies to other users
-- **List of Handles** - Specify a list of twitter handles (usernames) you want to scrape
+- **List of Handles** - Specify a list of Twitter handles (usernames) you want to scrape
   shall the crawler visit. If zero, the actor ignores the links and only crawls the Start URLs.
 - **Max. Tweets** - Specify the maximum number of tweets you want to scrape.
 - **Proxy Configuration** - Select a proxy to be used by the actor.
-- **Login Cookies** - Your Twitter login cookies (no username/password is submitted). For instructions on how to get your login cookies, please see our [tutorial](https://apify.com/help-dev/en/articles/1444249-log-in-to-website-by-transferring-cookies-from-web-browser).
+- **Login Cookies** - Your Twitter login cookies (no username/password is submitted). Check the [login](#login) section.
 
-## Supported urls types
+## Supported Twitter URLs types
 
 * Events: https://twitter.com/i/events/1354736314923372544
 * Searches: https://twitter.com/search?q=tesla&src=typed_query
@@ -90,19 +90,10 @@ For each item in the dataset will contain a separate tweet, that follows this fo
 }
 ```
 
-## Migration
-
-Version 0.1 -> 1.0:
-
-* Every item on dataset is now a separate tweet. That means that using `unwind` parameter is not necessary anymore (and doesn't work.)
-* Proxies are required when running on Apify platform
-* Login isn't required anymore, but some profiles/tweets can only be accessed using login cookies
-* Some fields were renamed, it matches twitter property names
-
 ## Login
 
-By providing login cookies, you can access more content that are private, with sensitive media and/or related to your own account.
-You need to provide just one cookie, that looks like this:
+By providing *login cookies*, you can access more content that are private, with sensitive media and/or related to your own account.
+The *login cookies* look like this:
 
 ```json
 [
@@ -114,11 +105,25 @@ You need to provide just one cookie, that looks like this:
 ]
 ```
 
+You can get this information using [EditThisCookie](https://chrome.google.com/webstore/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg?hl=en) extension.
+
 ## Advanced search
 
 You can use a predefined search using the Advanced Search as a `startUrl`, like `https://twitter.com/search?q=cool%20until%3A2020-01-01&src=typed_query`
 
 This returns only tweets containing "cool" before `2020-01-01`.
+
+## Workaround max tweets limit
+
+By default, Twitter API will return only at most 3200 tweets per profile / search. If you need to get more than the max, you can split your start URLs with time slices, like so:
+
+* `https://twitter.com/search?q=(from%3Aelonmusk)%20until%3A2020-03-01%20since%3A2020-04-01&src=typed_query&f=live`
+* `https://twitter.com/search?q=(from%3Aelonmusk)%20until%3A2020-02-01%20since%3A2020-03-01&src=typed_query&f=live`
+* `https://twitter.com/search?q=(from%3Aelonmusk)%20until%3A2020-01-01%20since%3A2020-02-01&src=typed_query&f=live`
+
+All URLs are from the same profile (elonmusk), but they are split by month (January -> February -> March 2020). This can be created using Twitter "Advanced Search" on https://twitter.com/search
+
+You can use bigger intervals for profiles that don't post very often.
 
 ## Extend output function
 
@@ -131,7 +136,7 @@ async ({ item, request }) => {
 
     if (request.userData.search) {
         item.search = request.userData.search; // add the search term to the output
-        item.searchUrl = request.loadedUrl; // add the raw search url to the output
+        item.searchUrl = request.loadedUrl; // add the raw search URL to the output
     }
 
     return item;
@@ -189,7 +194,7 @@ async ({ page, request, addSearch, addProfile, addThread, customData }) => {
         }
     }
 
-    // adds a thread and get replies. can accept an id, like from conversation_id or an url
+    // adds a thread and get replies. can accept an id, like from conversation_id or an URL
     // you can call this multiple times but will be added only once
     await addThread("1351044768030142464");
 }
@@ -212,3 +217,12 @@ async ({ label, response, url }) => {
     }
 }
 ```
+
+## Migration
+
+Version 0.1 -> 1.0:
+
+* Every item on dataset is now a separate tweet. That means that using `unwind` parameter is not necessary anymore (and doesn't work.)
+* Proxies are required when running on Apify platform
+* Login isn't required anymore, but some profiles/tweets can only be accessed using login cookies
+* Some fields were renamed, it matches Twitter property names

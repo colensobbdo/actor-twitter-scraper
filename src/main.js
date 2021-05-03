@@ -16,6 +16,8 @@ const {
     getEntities,
     proxyConfiguration,
     blockPatterns,
+    filterCookies,
+    getTimelineInstructions,
 } = require('./helpers');
 const { LABELS, USER_OMIT_FIELDS } = require('./constants');
 
@@ -223,6 +225,7 @@ Apify.main(async () => {
         },
         useSessionPool: true,
         maxRequestRetries: 10,
+        persistCookiesPerSession: false,
         preNavigationHooks: [async ({ page }, gotoOptions) => {
             gotoOptions.waitUntil = 'domcontentloaded';
             gotoOptions.timeout = 30000;
@@ -244,8 +247,10 @@ Apify.main(async () => {
                 await Apify.utils.puppeteer.injectJQuery(page);
             }
 
-            if (isLoggingIn) {
-                await page.setCookie(...input.initialCookies);
+            const filteredCookies = filterCookies(input.initialCookies);
+
+            if (isLoggingIn && filteredCookies.length) {
+                await page.setCookie(...filteredCookies);
             }
         }],
         postNavigationHooks: [async ({ session, browserController }) => {
@@ -268,6 +273,7 @@ Apify.main(async () => {
             };
 
             const signal = deferred();
+            const isUserSearch = page.url().includes('f=user'); // user search doesn't contain tweets
 
             page.on('response', async (res) => {
                 try {
@@ -315,15 +321,40 @@ Apify.main(async () => {
                         payload = data.globalObjects;
                     }
 
+                    if (url.includes('/UserTweets') && data.data?.user?.result?.timeline?.timeline?.instructions?.length) {
+                        payload = getTimelineInstructions(data.data.user.result.timeline.timeline.instructions);
+                    }
+
                     if (url.includes('/live_event/') && data.twitter_objects) {
                         payload = data.twitter_objects;
                     }
 
                     if (payload) {
-                        await extendOutputFunction(payload, {
-                            request,
-                            page,
-                        });
+                        if (!isUserSearch) {
+                            await extendOutputFunction(payload, {
+                                request,
+                                page,
+                                isUserSearch,
+                            });
+                        } else if (request.userData.label === LABELS.SEARCH && payload?.users) {
+                            const users = Object.values(payload.users);
+
+                            let count = 0;
+                            /* eslint-disable camelcase */
+                            for (const { screen_name } of users) {
+                                if (screen_name) {
+                                    const req = await addProfile(screen_name, mode === 'replies');
+
+                                    if (!req?.wasAlreadyPresent) {
+                                        count++;
+                                    }
+                                }
+                            }
+                            /* eslint-enable camelcase */
+                            if (count) {
+                                log.info(`Added ${count} profiles to scrape, extracting ${input.tweetsDesired} tweets from each`);
+                            }
+                        }
                     }
 
                     await extendScraperFunction(payload, {
@@ -333,6 +364,7 @@ Apify.main(async () => {
                         url,
                         label: 'response',
                         signal,
+                        isUserSearch,
                     });
 
                     // ignore the terminate command if not related to tweets
@@ -355,13 +387,21 @@ Apify.main(async () => {
 
             try {
                 await page.waitForFunction(() => {
-                    return window.__SCRIPTS_LOADED__ && Object.values(window.__SCRIPTS_LOADED__).every(Boolean);
+                    return typeof window.__SCRIPTS_LOADED__ === 'object'
+                        && Object.values(window.__SCRIPTS_LOADED__).length
+                        && Object.values(window.__SCRIPTS_LOADED__).every((e) => e === true);
+                }, {
+                    timeout: 30000,
+                });
+
+                await page.waitForSelector('header', {
+                    timeout: 30000,
                 });
             } catch (e) {
+                log.debug(e.message, { url: request.url });
+
                 throw new Error('Scripts did not load properly');
             }
-
-            await page.waitForSelector('header');
 
             // move the layout away so it doesn't hover over the scrolling items
             await page.evaluate(() => {
