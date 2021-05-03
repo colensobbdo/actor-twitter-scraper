@@ -1,3 +1,14 @@
+## 2021-05-03
+
+Features:
+- Update to SDK 1.1.2
+- Recursive "People" search
+- Tweaks to wording in README and INPUT schema
+
+Bug fixes:
+- Filter cookies that lead to never loading page / 401 error
+- Fetch data from GraphQl responses
+
 ## 2021-03-18
 
 Features:
@@ -18,7 +29,7 @@ Fixes:
 
 Features:
 - Add topics
-- Add hashtags urls
+- Add hashtags URLs
 - Optimize end of listings
 - Labels for outputScraperFunction for various scraper phases
 
@@ -28,7 +39,7 @@ Fixes:
 
 ## 2021-01-19
 
-- Add mentions, symbols, urls and hashtags to output
+- Add mentions, symbols, URLs and hashtags to output
 - Add threads/status links support
 
 ## 2021-01-12
@@ -47,5 +58,5 @@ Fixes:
 - Update SDK version
 - Allow to filter profile tweets for own tweets or include replies
 - Scrape faster when there's no login information
-- Accept twitter urls, handles or `@usernames` for better user experience
+- Accept twitter URLs, handles or `@usernames` for better user experience
 - Throws immediately if invalid handles are passed

@@ -37,14 +37,6 @@
             "type": "array",
             "editor": "requestListSources"
         },
-        "handle": {
-            "title": "List of usernames to scrape",
-            "type": "array",
-            "description": "The twitter handles of the profiles you want to scrape. Shortcut instead of inputting https://twitter.com/username urls",
-            "default": [],
-            "prefill": ["elonmusk", "patrickc"],
-            "editor": "stringList"
-        },
         "toDate": {
             "title": "Tweets newer than",
             "description": "Will get tweets that are newer than this date. Can be used in conjunction with 'Tweets older than' to create specific date slices. Can use specific dates, such as YYYY-MM-DD or relative ones, like '1 month' or '2 days'",
@@ -60,15 +52,16 @@
             "editor": "textfield"
         },
         "tweetsDesired": {
-            "title": "Max. Tweets",
+            "title": "Maximum number of tweets",
             "type": "integer",
-            "description": "Max. Number of Tweets to Retrieve.",
+            "description": "Maximum number of tweets to retrieve. Twitter have a default limit of around 3200 tweets. Check the README for workarounds.",
+            "maximum": 3300,
             "prefill": 100,
             "default": 100
         },
         "addUserInfo": {
             "title": "Add user information",
-            "description": "Appends an object to each tweet containing the user information",
+            "description": "Appends an object to each tweet containing the user information. You can decrease the size of your dataset by turning this off.",
             "default": true,
             "type": "boolean",
             "editor": "checkbox"
@@ -89,10 +82,21 @@
                 "replies"
             ]
         },
+        "handle": {
+            "title": "List of usernames to scrape",
+            "type": "array",
+            "description": "The twitter handles of the profiles you want to scrape. Shortcut instead of inputting https://twitter.com/username urls",
+            "default": [],
+            "prefill": ["elonmusk", "patrickc"],
+            "editor": "stringList"
+        },
         "proxyConfig": {
             "title": "Proxy configuration",
             "type": "object",
             "description": "It's required to use proxies when running on the platform.",
+            "prefill": {
+                "useApifyProxy": true
+            },
             "default": {
                 "useApifyProxy": true
             },
@@ -134,17 +138,17 @@
         },
         "stealth": {
             "title": "Stealth",
-            "description": "Apply stealth to the browser",
+            "description": "Enabling stealth allows to decrease the chance of your scrape being detected as an automated process. Recommended to enable if you're providing your login cookies.",
             "default": false,
             "type": "boolean",
             "editor": "checkbox"
         },
         "initialCookies": {
-            "title": "Login Cookies",
+            "title": "Login cookies",
             "type": "array",
             "default": [],
             "prefill": [],
-            "description": "Your login cookies will be used to bypass the login wall. See <a href='https://apify.com/vdrmota/twitter-scraper'>ReadMe</a> for instructions.",
+            "description": "Your login cookies will be used to bypass the login wall. See <a href='https://apify.com/vdrmota/twitter-scraper'>README</a> for instructions.",
             "editor": "json",
             "sectionCaption": "Login information",
             "sectionDescription": "By providing login information you can have more access to data."
