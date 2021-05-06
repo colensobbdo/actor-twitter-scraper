@@ -662,6 +662,7 @@ const getTimelineInstructions = (instructions) => {
                     const { tweet } = content.itemContent;
                     globalObject.tweets[sortIndex] = tweet.legacy;
                     globalObject.users[tweet.core.user.rest_id] = globalObject.users[tweet.core.user.rest_id] ?? tweet.core.user.legacy;
+                    globalObject.users[tweet.core.user.rest_id].id_str = tweet.core.user.rest_id;
                 }
             }
         }
