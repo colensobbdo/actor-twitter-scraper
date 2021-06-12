@@ -1,3 +1,11 @@
+## 2021-06-12
+
+Features:
+- Update to SDK 1.1.2
+
+Fixes:
+- New GraphQL format
+
 ## 2021-05-03
 
 Features:

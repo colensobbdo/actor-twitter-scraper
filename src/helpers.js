@@ -638,13 +638,13 @@ const filterCookies = (cookies) => {
  */
 const getTimelineInstructions = (instructions) => {
     if (!instructions?.length) {
-        return [];
+        return null;
     }
 
     const timelineAddEntries = instructions.filter(({ type }) => type === 'TimelineAddEntries');
 
     if (!timelineAddEntries.length || !timelineAddEntries[0].entries?.length) {
-        return undefined;
+        return null;
     }
 
     // the format is really weird and we need to flatten it and make it
@@ -658,8 +658,8 @@ const getTimelineInstructions = (instructions) => {
     for (const { entries } of timelineAddEntries) {
         if (entries?.length) {
             for (const { sortIndex, content } of entries) {
-                if (content?.entryType === 'TimelineTimelineItem' && content?.itemContent?.tweet?.legacy) {
-                    const { tweet } = content.itemContent;
+                if (content?.entryType === 'TimelineTimelineItem' && (content?.itemContent?.tweet?.legacy || content.itemContent?.tweet_results?.result)) {
+                    const tweet = content.itemContent?.tweet_results?.result || content?.itemContent?.tweet;
                     globalObject.tweets[sortIndex] = tweet.legacy;
                     globalObject.users[tweet.core.user.rest_id] = globalObject.users[tweet.core.user.rest_id] ?? tweet.core.user.legacy;
                     globalObject.users[tweet.core.user.rest_id].id_str = tweet.core.user.rest_id;
