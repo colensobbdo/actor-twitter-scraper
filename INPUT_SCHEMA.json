@@ -143,6 +143,29 @@
             "type": "boolean",
             "editor": "checkbox"
         },
+        "maxRequestRetries": {
+            "title": "Max request retries",
+            "description": "Set the max request retries",
+            "default": 3,
+            "prefill": 3,
+            "type": "integer",
+            "editor": "number"
+        },
+        "maxIdleTimeoutSecs": {
+            "title": "Scrolling idle seconds",
+            "description": "Configures how many seconds of no data received to consider it done",
+            "default": 30,
+            "prefill": 30,
+            "type": "integer",
+            "editor": "number"
+        },
+        "debugLog": {
+            "title": "Debug log",
+            "description": "Enable debug log",
+            "default": false,
+            "type": "boolean",
+            "editor": "checkbox"
+        },
         "initialCookies": {
             "title": "Login cookies",
             "type": "array",

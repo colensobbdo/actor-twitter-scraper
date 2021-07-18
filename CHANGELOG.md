@@ -1,3 +1,14 @@
+## 2021-07-18
+
+Features:
+- Update to SDK 1.3.1
+
+Changes:
+- Change default timeout values
+- Retiring of broken sessions
+- Deals with pinned tweets
+- Add debug log
+
 ## 2021-06-12
 
 Features:

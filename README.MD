@@ -125,6 +125,11 @@ All URLs are from the same profile (elonmusk), but they are split by month (Janu
 
 You can use bigger intervals for profiles that don't post very often.
 
+Other limitations include:
+
+- Live tweets are capped by at most 1 day in the past (use the search filters above to get around this)
+- Most search modes are capped at around 150 tweets (Top, Videos, Pictures)
+
 ## Extend output function
 
 This parameter allows you to change the shape of your dataset output, split arrays into separate dataset items or filter the output:

@@ -288,7 +288,7 @@ const infiniteScroll = async ({ page, isDone, maxIdleTimeoutSecs = 20, waitForDy
     };
 
     /**
-     * @param {Puppeteer.Request} msg
+     * @param {Puppeteer.HTTPRequest} msg
      */
     const getRequest = (msg) => {
         try {
@@ -323,58 +323,54 @@ const infiniteScroll = async ({ page, isDone, maxIdleTimeoutSecs = 20, waitForDy
         }
     };
 
-    return new Promise(async (resolve) => {
-        checkForMaxTimeout();
+    checkForMaxTimeout();
 
-        const scrollHeight = await page.evaluate(() => window.innerHeight);
+    const scrollHeight = await page.evaluate(() => window.innerHeight);
 
-        while (!finished) {
+    while (!finished) {
+        try {
+            await page.evaluate(async (height) => {
+                window.scrollBy(0, height);
+            }, scrollHeight);
+
             try {
-                await page.evaluate(async (height) => {
-                    window.scrollBy(0, height);
-                }, scrollHeight);
+                while (true) {
+                    const buttons = await page.$x('//*[@role="button" and contains(.,"Show") and not(@aria-label)]'); // Show replies / Show more replies / Show buttons
 
-                try {
-                    while (true) {
-                        const buttons = await page.$x('//*[@role="button" and contains(.,"Show") and not(@aria-label)]'); // Show replies / Show more replies / Show buttons
-
-                        for (const button of buttons) {
-                            if (isDone()) {
-                                break;
-                            }
-                            await sleep(2000);
-                            if (isDone()) {
-                                break;
-                            }
-                            await button.click();
-                        }
-
-                        if (!buttons.length) {
+                    for (const button of buttons) {
+                        if (isDone()) {
                             break;
                         }
+                        await sleep(2000);
+                        if (isDone()) {
+                            break;
+                        }
+                        await button.click();
                     }
-                } catch (e) {
-                    log.debug(`Wait for response, ${e.message}`);
-                }
 
-                if (isDone()) {
-                    finished = true;
-                } else {
-                    await sleep(700);
+                    if (!buttons.length) {
+                        break;
+                    }
                 }
             } catch (e) {
-                log.debug(e);
-                if (!page.isClosed()) {
-                    page.off('request', getRequest); // Target closed
-                }
-                finished = true;
+                log.debug(`Wait for response, ${e.message}`);
             }
+
+            if (isDone()) {
+                finished = true;
+            } else {
+                await sleep(700);
+            }
+        } catch (e) {
+            log.debug(e);
+            if (!page.isClosed()) {
+                page.off('request', getRequest); // Target closed
+            }
+            finished = true;
         }
+    }
 
-        log.debug('Stopped scrolling');
-
-        resolve(undefined);
-    });
+    log.debug('Stopped scrolling');
 };
 
 /**
@@ -524,12 +520,20 @@ const deferred = () => {
 
     const promise = new Promise((r1, r2) => {
         resolve = (res) => {
-            isResolved = true;
-            r1(res);
+            if (!isResolved) {
+                isResolved = true;
+                setTimeout(() => {
+                    r1(res);
+                });
+            }
         };
         reject = (err) => {
-            isResolved = true;
-            r2(err);
+            if (!isResolved) {
+                isResolved = true;
+                setTimeout(() => {
+                    r2(err);
+                });
+            }
         };
     });
 
@@ -641,11 +645,7 @@ const getTimelineInstructions = (instructions) => {
         return null;
     }
 
-    const timelineAddEntries = instructions.filter(({ type }) => type === 'TimelineAddEntries');
-
-    if (!timelineAddEntries.length || !timelineAddEntries[0].entries?.length) {
-        return null;
-    }
+    const timelineAddEntries = instructions.filter(({ type }) => ['TimelinePinEntry', 'TimelineAddEntries'].includes(type));
 
     // the format is really weird and we need to flatten it and make it
     // compatible with the globalObject format
@@ -655,16 +655,42 @@ const getTimelineInstructions = (instructions) => {
         users: {},
     };
 
-    for (const { entries } of timelineAddEntries) {
-        if (entries?.length) {
-            for (const { sortIndex, content } of entries) {
-                if (content?.entryType === 'TimelineTimelineItem' && (content?.itemContent?.tweet?.legacy || content.itemContent?.tweet_results?.result)) {
-                    const tweet = content.itemContent?.tweet_results?.result || content?.itemContent?.tweet;
-                    globalObject.tweets[sortIndex] = tweet.legacy;
-                    globalObject.users[tweet.core.user.rest_id] = globalObject.users[tweet.core.user.rest_id] ?? tweet.core.user.legacy;
-                    globalObject.users[tweet.core.user.rest_id].id_str = tweet.core.user.rest_id;
+    for (const { type, entries, entry } of timelineAddEntries) {
+        switch (type) {
+            case 'TimelinePinEntry': {
+                const tweet = entry?.content?.itemContent?.tweet_results?.result;
+                const userId = tweet?.core?.user?.rest_id;
+                if (userId) {
+                    globalObject.tweets[entry.sortIndex] = tweet.legacy;
+                    globalObject.users[userId] = globalObject.users[userId] || tweet.core.user.legacy;
+                    if (globalObject.users[userId]) {
+                        globalObject.users[userId].id_str = userId;
+                    }
                 }
+                break;
             }
+            case 'TimelineAddEntries': {
+                for (const { sortIndex, content } of (entries || [])) {
+                    if (content?.entryType === 'TimelineTimelineItem') {
+                        const tweet = content.itemContent?.tweet_results?.result;
+                        const userId = tweet?.legacy?.user_id_str
+                            ?? tweet?.core?.user?.rest_id;
+
+                        if (userId) {
+                            globalObject.tweets[sortIndex] = tweet.legacy;
+                            globalObject.users[userId] = globalObject.users[userId]
+                                ?? tweet.core?.user?.legacy;
+
+                            if (globalObject.users[userId]) {
+                                globalObject.users[userId].id_str = userId;
+                            }
+                        }
+                    }
+                }
+                break;
+            }
+            default:
+                log.debug('Unknown entry', { type, entries, entry });
         }
     }
 

@@ -35,7 +35,14 @@ Apify.main(async () => {
         tweetsDesired = 100,
         mode = 'replies',
         addUserInfo = true,
+        maxRequestRetries = 3,
+        maxIdleTimeoutSecs = 30,
+        debugLog = false,
     } = input;
+
+    if (debugLog) {
+        log.setLevel(log.LEVELS.DEBUG);
+    }
 
     log.info(`Limiting tweet counts to ${tweetsDesired}...`);
 
@@ -211,6 +218,11 @@ Apify.main(async () => {
         },
         browserPoolOptions: {
             maxOpenPagesPerBrowser: 1, // unfocused tabs stops responding
+            postPageCloseHooks: [async (pageId, browserController) => {
+                if (!browserController?.launchContext?.session?.isUsable()) {
+                    await browserController.close();
+                }
+            }],
         },
         sessionPoolOptions: {
             createSessionFunction: async (sessionPool) => {
@@ -224,7 +236,7 @@ Apify.main(async () => {
             },
         },
         useSessionPool: true,
-        maxRequestRetries: 10,
+        maxRequestRetries,
         persistCookiesPerSession: false,
         preNavigationHooks: [async ({ page }, gotoOptions) => {
             gotoOptions.waitUntil = 'domcontentloaded';
@@ -253,15 +265,11 @@ Apify.main(async () => {
                 await page.setCookie(...filteredCookies);
             }
         }],
-        postNavigationHooks: [async ({ session, browserController }) => {
-            if (!session.isUsable()) {
-                await browserController.close();
-            }
-        }],
         handleFailedRequestFunction: async ({ request }) => {
             log.error(`${request.url} failed ${request.retryCount} times and won't be retried anymore...`);
 
             await Apify.pushData({
+                '#failed': true,
                 '#debug': Apify.utils.createRequestDebugInfo(request),
             });
         },
@@ -286,7 +294,7 @@ Apify.main(async () => {
                     const url = res.url();
 
                     if (!res.ok()) {
-                        if (!url.includes('/friends/')) {
+                        if (!url.includes('/friends/') && !url.includes('list.json')) {
                             signal.reject(new Error(`Status ${res.status()}`));
                         }
                         return;
@@ -453,6 +461,7 @@ Apify.main(async () => {
                 await Promise.race([
                     infiniteScroll({
                         page,
+                        maxIdleTimeoutSecs,
                         isDone: () => (page.isClosed() || signal.isResolved || requestCounts.isDone(request)),
                     }),
                     signal.promise,
@@ -472,9 +481,8 @@ Apify.main(async () => {
                 });
 
                 log.info(`Finished with ${request.url}`);
+                intervalFn(0);
             }
-
-            intervalFn(0);
         },
     });
 
