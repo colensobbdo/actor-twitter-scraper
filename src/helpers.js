@@ -257,6 +257,7 @@ const blockPatterns = [
     '/ext_tw_video/',
     'help/settings',
     'help/settings',
+    '/broadcasts/show.json',
 ];
 
 /**
@@ -655,35 +656,47 @@ const getTimelineInstructions = (instructions) => {
         users: {},
     };
 
+    const extractInfo = ({ userId, tweet, sortIndex }) => {
+        if (userId && tweet) {
+            globalObject.tweets[sortIndex] = tweet.legacy;
+            globalObject.users[userId] = globalObject.users[userId] || tweet.core.user.legacy;
+            if (globalObject.users[userId]) {
+                globalObject.users[userId].id_str = userId;
+            }
+        }
+    };
+
     for (const { type, entries, entry } of timelineAddEntries) {
         switch (type) {
             case 'TimelinePinEntry': {
                 const tweet = entry?.content?.itemContent?.tweet_results?.result;
-                const userId = tweet?.core?.user?.rest_id;
-                if (userId) {
-                    globalObject.tweets[entry.sortIndex] = tweet.legacy;
-                    globalObject.users[userId] = globalObject.users[userId] || tweet.core.user.legacy;
-                    if (globalObject.users[userId]) {
-                        globalObject.users[userId].id_str = userId;
-                    }
-                }
+
+                extractInfo({
+                    tweet,
+                    userId: tweet?.core?.user?.rest_id,
+                    sortIndex: entry.sortIndex,
+                });
                 break;
             }
             case 'TimelineAddEntries': {
                 for (const { sortIndex, content } of (entries || [])) {
                     if (content?.entryType === 'TimelineTimelineItem') {
                         const tweet = content.itemContent?.tweet_results?.result;
-                        const userId = tweet?.legacy?.user_id_str
-                            ?? tweet?.core?.user?.rest_id;
 
-                        if (userId) {
-                            globalObject.tweets[sortIndex] = tweet.legacy;
-                            globalObject.users[userId] = globalObject.users[userId]
-                                ?? tweet.core?.user?.legacy;
+                        extractInfo({
+                            tweet,
+                            userId: tweet?.legacy?.user_id_str ?? tweet?.core?.user?.rest_id,
+                            sortIndex,
+                        });
+                    } else if (content?.entryType === 'TimelineTimelineModule' && content?.items?.length) {
+                        for (const { item } of content.items) {
+                            const tweet = item?.itemContent?.tweet_results?.result;
 
-                            if (globalObject.users[userId]) {
-                                globalObject.users[userId].id_str = userId;
-                            }
+                            extractInfo({
+                                tweet,
+                                sortIndex,
+                                userId: tweet?.core?.user?.rest_id,
+                            });
                         }
                     }
                 }

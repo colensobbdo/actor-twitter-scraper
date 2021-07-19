@@ -9,6 +9,9 @@ Changes:
 - Deals with pinned tweets
 - Add debug log
 
+Bug fixes:
+- Fix thread extraction
+
 ## 2021-06-12
 
 Features:
