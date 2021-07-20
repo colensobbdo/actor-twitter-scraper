@@ -260,6 +260,13 @@ const blockPatterns = [
     '/broadcasts/show.json',
 ];
 
+const ignoreRequest = [
+    'badge_count.json',
+    'notifications/all',
+    'guide.json',
+    'update_subscriptions',
+];
+
 /**
  * Check if the url is blocked, need to check it on request, as
  * the request blocked by blockRequests won't be able to be
@@ -267,7 +274,12 @@ const blockPatterns = [
  *
  * @param {string} url
  */
-const isBlockedUrl = (url) => blockPatterns.some((pattern) => url.includes(pattern));
+const isBlockedUrl = (url) => {
+    const includes = (pattern) => url.includes(pattern);
+
+    return blockPatterns.some(includes)
+        || ignoreRequest.some(includes);
+};
 
 /**
  * @param {{
