@@ -1,3 +1,11 @@
+## 2021-08-09
+
+Features:
+- Update SDK 2
+
+Bug fixes:
+- User shape object for some profiles
+
 ## 2021-07-18
 
 Features:
