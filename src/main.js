@@ -21,15 +21,50 @@ const {
 } = require('./helpers');
 const { LABELS, USER_OMIT_FIELDS } = require('./constants');
 
+const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+
 const { log } = Apify.utils;
 
 Apify.main(async () => {
     /** @type {any} */
-    const input = await Apify.getValue('INPUT');
+    const input = !isDevelopment ? await Apify.getInput() : {
+        trendKey: 'goodindex',
+        ignoreCountryCode: false,
+        hashtag: "#goodindex",
+        searchMode: 'live',
+        startUrls: [],
+        // toDate: '',
+        // fromDate: '',
+        tweetsDesired: 10,
+        addUserInfo: false,
+        mode: 'replies',
+        handle: [],
+        proxy: {
+            useApifyProxy: false,
+            // useApifyProxy: true,
+            // apifyProxyGroups: [
+            //     'RESIDENTIAL'
+            // ],
+        },
+        handlePageTimeoutSecs: 5000,
+        stealth: false,
+        maxIdleTimeoutSecs: 30,
+        debug: true,
+        initialCookies: [],
+        // languageCode = "it";
+        // languageCode = "ita";
+        // languageCode = "itaa";
+        // countryCode = "it";
+        // countryCode = "sx";
+        // countryCode = "zw";
+        // countryCode = "itaa";
+    };
 
     const proxyConfig = await proxyConfiguration({
         proxyConfig: input.proxyConfig,
     });
+
+    input.searchTerms = [input.hashtag];
 
     const {
         tweetsDesired = 100,
@@ -37,7 +72,7 @@ Apify.main(async () => {
         addUserInfo = true,
         maxRequestRetries = 3,
         maxIdleTimeoutSecs = 30,
-        debugLog = false,
+        debug: debugLog = false,
     } = input;
 
     if (debugLog) {
@@ -55,7 +90,7 @@ Apify.main(async () => {
     });
 
     const addProfile = createAddProfile(requestQueue);
-    const addSearch = createAddSearch(requestQueue);
+    const addSearch = createAddSearch(requestQueue, input);
     const addEvent = createAddEvent(requestQueue);
     const addThread = createAddThread(requestQueue);
     const addTopic = createAddTopic(requestQueue);
@@ -98,14 +133,18 @@ Apify.main(async () => {
                     id: tweet.id_str,
                     conversation_id: tweet.conversation_id_str,
                     ..._.pick(tweet, [
-                        'full_text',
+                        // 'full_text',
                         'reply_count',
                         'retweet_count',
                         'favorite_count',
                     ]),
                     ...getEntities(tweet),
                     url: tweetToUrl(user, tweet.id_str),
-                    created_at: new Date(tweet.created_at).toISOString(),
+                    timestamp: new Date(tweet.created_at).toISOString(),
+                    languageCode: tweet.lang,
+                    tweetId: tweet.id_str,
+                    image: _.get(tweet, 'extended_entities.media[0].media_url_https'),
+                    text: tweet.full_text,
                 });
 
                 return out;

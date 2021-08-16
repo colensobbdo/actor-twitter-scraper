@@ -5,7 +5,8 @@
     "main": "main.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node src/main"
+        "start": "node src/main",
+        "dev": "clear; apify run --purge"
     },
     "author": "",
     "license": "Apache-2.0",
@@ -16,8 +17,8 @@
         "puppeteer": "*"
     },
     "devDependencies": {
-        "@types/lodash": "^4.14.172",
         "@apify/eslint-config": "^0.1.4",
+        "@types/lodash": "^4.14.172",
         "eslint": "^7.32.0"
     }
 }

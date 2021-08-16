@@ -1,0 +1,5753 @@
+[
+  {
+    "name": {
+      "common": "Aruba"
+    },
+    "cca2": "AW",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "nld": "Dutch",
+      "pap": "Papiamento"
+    },
+    "latlng": [
+      12.5,
+      -69.96666666
+    ],
+    "area": 180,
+    "coord": {
+      "north": 12.6237,
+      "south": 12.4117,
+      "west": -70.0645,
+      "east": -69.8658
+    },
+    "radius": 16
+  },
+  {
+    "name": {
+      "common": "Afghanistan"
+    },
+    "cca2": "AF",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "languages": {
+      "prs": "Dari",
+      "pus": "Pashto",
+      "tuk": "Turkmen"
+    },
+    "latlng": [
+      33,
+      65
+    ],
+    "area": 652230,
+    "coord": {
+      "north": 38.4834,
+      "south": 29.3775,
+      "west": 60.4784,
+      "east": 74.8794
+    },
+    "radius": 834
+  },
+  {
+    "name": {
+      "common": "Angola"
+    },
+    "cca2": "AO",
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "languages": {
+      "por": "Portuguese"
+    },
+    "latlng": [
+      -12.5,
+      18.5
+    ],
+    "area": 1246700,
+    "coord": {
+      "north": -4.37683,
+      "south": -18.0421,
+      "west": 11.6792,
+      "east": 24.0821
+    },
+    "radius": 1017
+  },
+  {
+    "name": {
+      "common": "Anguilla"
+    },
+    "cca2": "AI",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      18.25,
+      -63.16666666
+    ],
+    "area": 91,
+    "coord": {
+      "north": 18.2834,
+      "south": 18.1668,
+      "west": -63.1729,
+      "east": -62.9714
+    },
+    "radius": 13
+  },
+  {
+    "name": {
+      "common": "Åland Islands"
+    },
+    "cca2": "AX",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "languages": {
+      "swe": "Swedish"
+    },
+    "latlng": [
+      60.116667,
+      19.9
+    ],
+    "area": 1580,
+    "coord": {},
+    "radius": 23
+  },
+  {
+    "name": {
+      "common": "Albania"
+    },
+    "cca2": "AL",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "languages": {
+      "sqi": "Albanian"
+    },
+    "latlng": [
+      41,
+      20
+    ],
+    "area": 28748,
+    "coord": {
+      "north": 42.6656,
+      "south": 39.6484,
+      "west": 19.294,
+      "east": 21.0685
+    },
+    "radius": 184
+  },
+  {
+    "name": {
+      "common": "Andorra"
+    },
+    "cca2": "AD",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "languages": {
+      "cat": "Catalan"
+    },
+    "latlng": [
+      42.5,
+      1.5
+    ],
+    "area": 468,
+    "coord": {
+      "north": 42.656,
+      "south": 42.4285,
+      "west": 1.40719,
+      "east": 1.78654
+    },
+    "radius": 21
+  },
+  {
+    "name": {
+      "common": "United Arab Emirates"
+    },
+    "cca2": "AE",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "languages": {
+      "ara": "Arabic"
+    },
+    "latlng": [
+      24,
+      54
+    ],
+    "area": 83600,
+    "coord": {
+      "north": 26.0842,
+      "south": 22.6333,
+      "west": 51.5833,
+      "east": 56.3817
+    },
+    "radius": 310
+  },
+  {
+    "name": {
+      "common": "Argentina"
+    },
+    "cca2": "AR",
+    "region": "Americas",
+    "subregion": "South America",
+    "languages": {
+      "grn": "Guaraní",
+      "spa": "Spanish"
+    },
+    "latlng": [
+      -34,
+      -64
+    ],
+    "area": 2780400,
+    "coord": {
+      "north": -21.7813,
+      "south": -55.0613,
+      "west": -73.583,
+      "east": -53.5918
+    },
+    "radius": 2029
+  },
+  {
+    "name": {
+      "common": "Armenia"
+    },
+    "cca2": "AM",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "languages": {
+      "hye": "Armenian"
+    },
+    "latlng": [
+      40,
+      45
+    ],
+    "area": 29743,
+    "coord": {
+      "north": 41.3018,
+      "south": 38.8305,
+      "west": 43.4498,
+      "east": 46.7724
+    },
+    "radius": 198
+  },
+  {
+    "name": {
+      "common": "American Samoa"
+    },
+    "cca2": "AS",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "languages": {
+      "eng": "English",
+      "smo": "Samoan"
+    },
+    "latlng": [
+      -14.33333333,
+      -170
+    ],
+    "area": 199,
+    "coord": {
+      "north": -11.0497,
+      "south": -14.3825,
+      "west": -171.092,
+      "east": -169.416
+    },
+    "radius": 207
+  },
+  {
+    "name": {
+      "common": "Antarctica"
+    },
+    "cca2": "AQ",
+    "region": "Antarctic",
+    "subregion": "",
+    "languages": {},
+    "latlng": [
+      -90,
+      0
+    ],
+    "area": 14000000,
+    "coord": {
+      "north": -60.5155,
+      "south": -89.9999,
+      "west": -180,
+      "east": 180
+    },
+    "radius": 1640
+  },
+  {
+    "name": {
+      "common": "French Southern and Antarctic Lands"
+    },
+    "cca2": "TF",
+    "region": "Antarctic",
+    "subregion": "",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      -49.25,
+      69.167
+    ],
+    "area": 7747,
+    "coord": {},
+    "radius": 50
+  },
+  {
+    "name": {
+      "common": "Antigua and Barbuda"
+    },
+    "cca2": "AG",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      17.05,
+      -61.8
+    ],
+    "area": 442,
+    "coord": {
+      "north": 17.7294,
+      "south": 16.997,
+      "west": -61.9064,
+      "east": -61.6724
+    },
+    "radius": 43
+  },
+  {
+    "name": {
+      "common": "Australia"
+    },
+    "cca2": "AU",
+    "region": "Oceania",
+    "subregion": "Australia and New Zealand",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      -27,
+      133
+    ],
+    "area": 7692024,
+    "coord": {
+      "north": -10.0628,
+      "south": -43.644,
+      "west": 112.911,
+      "east": 153.639
+    },
+    "radius": 2706
+  },
+  {
+    "name": {
+      "common": "Austria"
+    },
+    "cca2": "AT",
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "languages": {
+      "bar": "Austro-Bavarian German"
+    },
+    "latlng": [
+      47.33333333,
+      13.33333333
+    ],
+    "area": 83871,
+    "coord": {
+      "north": 49.0212,
+      "south": 46.3727,
+      "west": 9.53095,
+      "east": 17.1621
+    },
+    "radius": 322
+  },
+  {
+    "name": {
+      "common": "Azerbaijan"
+    },
+    "cca2": "AZ",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "languages": {
+      "aze": "Azerbaijani",
+      "rus": "Russian"
+    },
+    "latlng": [
+      40.5,
+      47.5
+    ],
+    "area": 86600,
+    "coord": {
+      "north": 41.9056,
+      "south": 38.3892,
+      "west": 44.7741,
+      "east": 50.3701
+    },
+    "radius": 308
+  },
+  {
+    "name": {
+      "common": "Burundi"
+    },
+    "cca2": "BI",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "languages": {
+      "fra": "French",
+      "run": "Kirundi"
+    },
+    "latlng": [
+      -3.5,
+      30
+    ],
+    "area": 27834,
+    "coord": {
+      "north": -2.31012,
+      "south": -4.46571,
+      "west": 28.9931,
+      "east": 30.8477
+    },
+    "radius": 158
+  },
+  {
+    "name": {
+      "common": "Belgium"
+    },
+    "cca2": "BE",
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "languages": {
+      "deu": "German",
+      "fra": "French",
+      "nld": "Dutch"
+    },
+    "latlng": [
+      50.83333333,
+      4
+    ],
+    "area": 30528,
+    "coord": {
+      "north": 51.5054,
+      "south": 49.4936,
+      "west": 2.54694,
+      "east": 6.40386
+    },
+    "radius": 177
+  },
+  {
+    "name": {
+      "common": "Benin"
+    },
+    "cca2": "BJ",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      9.5,
+      2.25
+    ],
+    "area": 112622,
+    "coord": {
+      "north": 12.4183,
+      "south": 6.22575,
+      "west": 0.774575,
+      "east": 3.8517
+    },
+    "radius": 384
+  },
+  {
+    "name": {
+      "common": "Burkina Faso"
+    },
+    "cca2": "BF",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      13,
+      -2
+    ],
+    "area": 272967,
+    "coord": {
+      "north": 15.0826,
+      "south": 9.40111,
+      "west": -5.51892,
+      "east": 2.4054
+    },
+    "radius": 534
+  },
+  {
+    "name": {
+      "common": "Bangladesh"
+    },
+    "cca2": "BD",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "languages": {
+      "ben": "Bengali"
+    },
+    "latlng": [
+      24,
+      90
+    ],
+    "area": 147570,
+    "coord": {
+      "north": 26.6319,
+      "south": 20.7433,
+      "west": 88.0283,
+      "east": 92.6737
+    },
+    "radius": 404
+  },
+  {
+    "name": {
+      "common": "Bulgaria"
+    },
+    "cca2": "BG",
+    "region": "Europe",
+    "subregion": "Eastern Europe",
+    "languages": {
+      "bul": "Bulgarian"
+    },
+    "latlng": [
+      43,
+      25
+    ],
+    "area": 110879,
+    "coord": {
+      "north": 44.2176,
+      "south": 41.2421,
+      "west": 22.3712,
+      "east": 28.6122
+    },
+    "radius": 304
+  },
+  {
+    "name": {
+      "common": "Bahrain"
+    },
+    "cca2": "BH",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "languages": {
+      "ara": "Arabic"
+    },
+    "latlng": [
+      26,
+      50.55
+    ],
+    "area": 765,
+    "coord": {
+      "north": 26.2826,
+      "south": 25.7969,
+      "west": 50.4541,
+      "east": 50.6645
+    },
+    "radius": 29
+  },
+  {
+    "name": {
+      "common": "Bahamas"
+    },
+    "cca2": "BS",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      24.25,
+      -76
+    ],
+    "area": 13943,
+    "coord": {
+      "north": 26.9192,
+      "south": 22.8527,
+      "west": -78.9959,
+      "east": -74.4239
+    },
+    "radius": 323
+  },
+  {
+    "name": {
+      "common": "Bosnia and Herzegovina"
+    },
+    "cca2": "BA",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "languages": {
+      "bos": "Bosnian",
+      "hrv": "Croatian",
+      "srp": "Serbian"
+    },
+    "latlng": [
+      44,
+      18
+    ],
+    "area": 51209,
+    "coord": {
+      "north": 45.2392,
+      "south": 42.5461,
+      "west": 15.7189,
+      "east": 19.6222
+    },
+    "radius": 217
+  },
+  {
+    "name": {
+      "common": "Saint Barthélemy"
+    },
+    "cca2": "BL",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      18.5,
+      -63.41666666
+    ],
+    "area": 21,
+    "coord": {},
+    "radius": 3
+  },
+  {
+    "name": {
+      "common": "Saint Helena, Ascension and Tristan da Cunha"
+    },
+    "cca2": "SH",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      -15.95,
+      -5.72
+    ],
+    "area": 394,
+    "coord": {},
+    "radius": 12
+  },
+  {
+    "name": {
+      "common": "Belarus"
+    },
+    "cca2": "BY",
+    "region": "Europe",
+    "subregion": "Eastern Europe",
+    "languages": {
+      "bel": "Belarusian",
+      "rus": "Russian"
+    },
+    "latlng": [
+      53,
+      28
+    ],
+    "area": 207600,
+    "coord": {
+      "north": 56.1658,
+      "south": 51.2564,
+      "west": 23.1769,
+      "east": 32.7708
+    },
+    "radius": 417
+  },
+  {
+    "name": {
+      "common": "Belize"
+    },
+    "cca2": "BZ",
+    "region": "Americas",
+    "subregion": "Central America",
+    "languages": {
+      "bjz": "Belizean Creole",
+      "eng": "English",
+      "spa": "Spanish"
+    },
+    "latlng": [
+      17.25,
+      -88.75
+    ],
+    "area": 22966,
+    "coord": {
+      "north": 18.4966,
+      "south": 15.8893,
+      "west": -89.2248,
+      "east": -87.777
+    },
+    "radius": 165
+  },
+  {
+    "name": {
+      "common": "Bermuda"
+    },
+    "cca2": "BM",
+    "region": "Americas",
+    "subregion": "North America",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      32.33333333,
+      -64.75
+    ],
+    "area": 54,
+    "coord": {
+      "north": 32.3938,
+      "south": 32.2466,
+      "west": -64.896,
+      "east": -64.652
+    },
+    "radius": 15
+  },
+  {
+    "name": {
+      "common": "Bolivia"
+    },
+    "cca2": "BO",
+    "region": "Americas",
+    "subregion": "South America",
+    "languages": {
+      "aym": "Aymara",
+      "grn": "Guaraní",
+      "que": "Quechua",
+      "spa": "Spanish"
+    },
+    "latlng": [
+      -17,
+      -65
+    ],
+    "area": 1098581,
+    "coord": {
+      "north": -9.68057,
+      "south": -22.8961,
+      "west": -69.6408,
+      "east": -57.4581
+    },
+    "radius": 980
+  },
+  {
+    "name": {
+      "common": "Caribbean Netherlands"
+    },
+    "cca2": "BQ",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "eng": "English",
+      "nld": "Dutch",
+      "pap": "Papiamento"
+    },
+    "latlng": [
+      12.18,
+      -68.25
+    ],
+    "area": 328,
+    "coord": {},
+    "radius": 11
+  },
+  {
+    "name": {
+      "common": "Brazil"
+    },
+    "cca2": "BR",
+    "region": "Americas",
+    "subregion": "South America",
+    "languages": {
+      "por": "Portuguese"
+    },
+    "latlng": [
+      -10,
+      -55
+    ],
+    "area": 8515767,
+    "coord": {
+      "north": 5.26488,
+      "south": -33.7507,
+      "west": -73.9855,
+      "east": -32.393
+    },
+    "radius": 3079
+  },
+  {
+    "name": {
+      "common": "Barbados"
+    },
+    "cca2": "BB",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      13.16666666,
+      -59.53333333
+    ],
+    "area": 430,
+    "coord": {
+      "north": 13.3273,
+      "south": 13.0398,
+      "west": -59.6489,
+      "east": -59.4204
+    },
+    "radius": 21
+  },
+  {
+    "name": {
+      "common": "Brunei"
+    },
+    "cca2": "BN",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "languages": {
+      "msa": "Malay"
+    },
+    "latlng": [
+      4.5,
+      114.66666666
+    ],
+    "area": 5765,
+    "coord": {
+      "north": 5.04717,
+      "south": 4.00308,
+      "west": 114.071,
+      "east": 115.359
+    },
+    "radius": 93
+  },
+  {
+    "name": {
+      "common": "Bhutan"
+    },
+    "cca2": "BT",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "languages": {
+      "dzo": "Dzongkha"
+    },
+    "latlng": [
+      27.5,
+      90.5
+    ],
+    "area": 38394,
+    "coord": {
+      "north": 28.3238,
+      "south": 26.7076,
+      "west": 88.7597,
+      "east": 92.1252
+    },
+    "radius": 189
+  },
+  {
+    "name": {
+      "common": "Bouvet Island"
+    },
+    "cca2": "BV",
+    "region": "Antarctic",
+    "subregion": "",
+    "languages": {
+      "nor": "Norwegian"
+    },
+    "latlng": [
+      -54.43333333,
+      3.4
+    ],
+    "area": 49,
+    "coord": {
+      "north": -54.4003,
+      "south": -54.4624,
+      "west": 3.3355,
+      "east": 3.48798
+    },
+    "radius": 7
+  },
+  {
+    "name": {
+      "common": "Botswana"
+    },
+    "cca2": "BW",
+    "region": "Africa",
+    "subregion": "Southern Africa",
+    "languages": {
+      "eng": "English",
+      "tsn": "Tswana"
+    },
+    "latlng": [
+      -22,
+      24
+    ],
+    "area": 582000,
+    "coord": {
+      "north": -17.7808,
+      "south": -26.9072,
+      "west": 19.9995,
+      "east": 29.3608
+    },
+    "radius": 699
+  },
+  {
+    "name": {
+      "common": "Central African Republic"
+    },
+    "cca2": "CF",
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "languages": {
+      "fra": "French",
+      "sag": "Sango"
+    },
+    "latlng": [
+      7,
+      21
+    ],
+    "area": 622984,
+    "coord": {
+      "north": 11.0076,
+      "south": 2.22051,
+      "west": 14.4201,
+      "east": 27.4634
+    },
+    "radius": 870
+  },
+  {
+    "name": {
+      "common": "Canada"
+    },
+    "cca2": "CA",
+    "region": "Americas",
+    "subregion": "North America",
+    "languages": {
+      "eng": "English",
+      "fra": "French"
+    },
+    "latlng": [
+      60,
+      -95
+    ],
+    "area": 9984670,
+    "coord": {
+      "north": 83.1106,
+      "south": 41.676,
+      "west": -141,
+      "east": -52.6363
+    },
+    "radius": 2697
+  },
+  {
+    "name": {
+      "common": "Cocos (Keeling) Islands"
+    },
+    "cca2": "CC",
+    "region": "Oceania",
+    "subregion": "Australia and New Zealand",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      -12.5,
+      96.83333333
+    ],
+    "area": 14,
+    "coord": {
+      "north": null,
+      "south": null,
+      "west": null,
+      "east": null
+    },
+    "radius": 3
+  },
+  {
+    "name": {
+      "common": "Switzerland"
+    },
+    "cca2": "CH",
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "languages": {
+      "fra": "French",
+      "gsw": "Swiss German",
+      "ita": "Italian",
+      "roh": "Romansh"
+    },
+    "latlng": [
+      47,
+      8
+    ],
+    "area": 41284,
+    "coord": {
+      "north": 47.8053,
+      "south": 45.8257,
+      "west": 5.95747,
+      "east": 10.4915
+    },
+    "radius": 205
+  },
+  {
+    "name": {
+      "common": "Chile"
+    },
+    "cca2": "CL",
+    "region": "Americas",
+    "subregion": "South America",
+    "languages": {
+      "spa": "Spanish"
+    },
+    "latlng": [
+      -30,
+      -71
+    ],
+    "area": 756102,
+    "coord": {
+      "north": -17.5076,
+      "south": -55.9256,
+      "west": -80.7859,
+      "east": -66.4176
+    },
+    "radius": 2221
+  },
+  {
+    "name": {
+      "common": "China"
+    },
+    "cca2": "CN",
+    "region": "Asia",
+    "subregion": "Eastern Asia",
+    "languages": {
+      "zho": "Chinese"
+    },
+    "latlng": [
+      35,
+      105
+    ],
+    "area": 9706961,
+    "coord": {
+      "north": 53.5609,
+      "south": 15.7754,
+      "west": 73.5577,
+      "east": 134.774
+    },
+    "radius": 3359
+  },
+  {
+    "name": {
+      "common": "Ivory Coast"
+    },
+    "cca2": "CI",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      8,
+      -5
+    ],
+    "area": 322463,
+    "coord": {
+      "north": 10.7366,
+      "south": 4.35707,
+      "west": -8.5993,
+      "east": -2.4949
+    },
+    "radius": 489
+  },
+  {
+    "name": {
+      "common": "Cameroon"
+    },
+    "cca2": "CM",
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "languages": {
+      "eng": "English",
+      "fra": "French"
+    },
+    "latlng": [
+      6,
+      12
+    ],
+    "area": 475442,
+    "coord": {
+      "north": 13.0781,
+      "south": 1.65255,
+      "west": 8.49476,
+      "east": 16.1921
+    },
+    "radius": 764
+  },
+  {
+    "name": {
+      "common": "DR Congo"
+    },
+    "cca2": "CD",
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "languages": {
+      "fra": "French",
+      "kon": "Kikongo",
+      "lin": "Lingala",
+      "lua": "Tshiluba",
+      "swa": "Swahili"
+    },
+    "latlng": [
+      0,
+      25
+    ],
+    "area": 2344858,
+    "coord": {},
+    "radius": 864
+  },
+  {
+    "name": {
+      "common": "Republic of the Congo"
+    },
+    "cca2": "CG",
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "languages": {
+      "fra": "French",
+      "kon": "Kikongo",
+      "lin": "Lingala"
+    },
+    "latlng": [
+      -1,
+      15
+    ],
+    "area": 342000,
+    "coord": {},
+    "radius": 330
+  },
+  {
+    "name": {
+      "common": "Cook Islands"
+    },
+    "cca2": "CK",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "languages": {
+      "eng": "English",
+      "rar": "Cook Islands Māori"
+    },
+    "latlng": [
+      -21.23333333,
+      -159.76666666
+    ],
+    "area": 236,
+    "coord": {
+      "north": -10.0231,
+      "south": -21.9442,
+      "west": -161.094,
+      "east": -157.312
+    },
+    "radius": 693
+  },
+  {
+    "name": {
+      "common": "Colombia"
+    },
+    "cca2": "CO",
+    "region": "Americas",
+    "subregion": "South America",
+    "languages": {
+      "spa": "Spanish"
+    },
+    "latlng": [
+      4,
+      -72
+    ],
+    "area": 1141748,
+    "coord": {
+      "north": 13.3805,
+      "south": -4.22587,
+      "west": -81.7281,
+      "east": -66.8698
+    },
+    "radius": 1278
+  },
+  {
+    "name": {
+      "common": "Comoros"
+    },
+    "cca2": "KM",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "languages": {
+      "ara": "Arabic",
+      "fra": "French",
+      "zdj": "Comorian"
+    },
+    "latlng": [
+      -12.16666666,
+      44.25
+    ],
+    "area": 1862,
+    "coord": {
+      "north": -11.3624,
+      "south": -12.3879,
+      "west": 43.2158,
+      "east": 44.5382
+    },
+    "radius": 92
+  },
+  {
+    "name": {
+      "common": "Cape Verde"
+    },
+    "cca2": "CV",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "languages": {
+      "por": "Portuguese"
+    },
+    "latlng": [
+      16,
+      -24
+    ],
+    "area": 4033,
+    "coord": {
+      "north": 17.1972,
+      "south": 14.808,
+      "west": -25.3587,
+      "east": -22.6694
+    },
+    "radius": 196
+  },
+  {
+    "name": {
+      "common": "Costa Rica"
+    },
+    "cca2": "CR",
+    "region": "Americas",
+    "subregion": "Central America",
+    "languages": {
+      "spa": "Spanish"
+    },
+    "latlng": [
+      10,
+      -84
+    ],
+    "area": 51100,
+    "coord": {
+      "north": 11.2168,
+      "south": 8.03298,
+      "west": -85.9506,
+      "east": -82.556
+    },
+    "radius": 257
+  },
+  {
+    "name": {
+      "common": "Cuba"
+    },
+    "cca2": "CU",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "spa": "Spanish"
+    },
+    "latlng": [
+      21.5,
+      -80
+    ],
+    "area": 109884,
+    "coord": {
+      "north": 23.226,
+      "south": 19.8281,
+      "west": -84.9574,
+      "east": -74.1318
+    },
+    "radius": 591
+  },
+  {
+    "name": {
+      "common": "Curaçao"
+    },
+    "cca2": "CW",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "eng": "English",
+      "nld": "Dutch",
+      "pap": "Papiamento"
+    },
+    "latlng": [
+      12.116667,
+      -68.933333
+    ],
+    "area": 444,
+    "coord": {},
+    "radius": 12
+  },
+  {
+    "name": {
+      "common": "Christmas Island"
+    },
+    "cca2": "CX",
+    "region": "Oceania",
+    "subregion": "Australia and New Zealand",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      -10.5,
+      105.66666666
+    ],
+    "area": 135,
+    "coord": {
+      "north": -10.4124,
+      "south": -10.5705,
+      "west": 105.533,
+      "east": 105.713
+    },
+    "radius": 14
+  },
+  {
+    "name": {
+      "common": "Cayman Islands"
+    },
+    "cca2": "KY",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      19.5,
+      -80.5
+    ],
+    "area": 264,
+    "coord": {
+      "north": 19.7617,
+      "south": 19.263,
+      "west": -81.4328,
+      "east": -79.7273
+    },
+    "radius": 94
+  },
+  {
+    "name": {
+      "common": "Cyprus"
+    },
+    "cca2": "CY",
+    "region": "Europe",
+    "subregion": "Eastern Europe",
+    "languages": {
+      "ell": "Greek",
+      "tur": "Turkish"
+    },
+    "latlng": [
+      35,
+      33
+    ],
+    "area": 9251,
+    "coord": {
+      "north": 35.7015,
+      "south": 34.6333,
+      "west": 32.2731,
+      "east": 34.5979
+    },
+    "radius": 122
+  },
+  {
+    "name": {
+      "common": "Czechia"
+    },
+    "cca2": "CZ",
+    "region": "Europe",
+    "subregion": "Eastern Europe",
+    "languages": {
+      "ces": "Czech",
+      "slk": "Slovak"
+    },
+    "latlng": [
+      49.75,
+      15.5
+    ],
+    "area": 78865,
+    "coord": {},
+    "radius": 159
+  },
+  {
+    "name": {
+      "common": "Germany"
+    },
+    "cca2": "DE",
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "languages": {
+      "deu": "German"
+    },
+    "latlng": [
+      51,
+      9
+    ],
+    "area": 357114,
+    "coord": {
+      "north": 55.0556,
+      "south": 47.2758,
+      "west": 5.86564,
+      "east": 15.0399
+    },
+    "radius": 538
+  },
+  {
+    "name": {
+      "common": "Djibouti"
+    },
+    "cca2": "DJ",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "languages": {
+      "ara": "Arabic",
+      "fra": "French"
+    },
+    "latlng": [
+      11.5,
+      43
+    ],
+    "area": 23200,
+    "coord": {
+      "north": 12.7068,
+      "south": 10.9099,
+      "west": 41.7735,
+      "east": 43.417
+    },
+    "radius": 135
+  },
+  {
+    "name": {
+      "common": "Dominica"
+    },
+    "cca2": "DM",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      15.41666666,
+      -61.33333333
+    ],
+    "area": 751,
+    "coord": {
+      "north": 15.6318,
+      "south": 15.2017,
+      "west": -61.4841,
+      "east": -61.2442
+    },
+    "radius": 28
+  },
+  {
+    "name": {
+      "common": "Denmark"
+    },
+    "cca2": "DK",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "languages": {
+      "dan": "Danish"
+    },
+    "latlng": [
+      56,
+      10
+    ],
+    "area": 43094,
+    "coord": {
+      "north": 57.7484,
+      "south": 54.5624,
+      "west": 8.07561,
+      "east": 15.1588
+    },
+    "radius": 282
+  },
+  {
+    "name": {
+      "common": "Dominican Republic"
+    },
+    "cca2": "DO",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "spa": "Spanish"
+    },
+    "latlng": [
+      19,
+      -70.66666666
+    ],
+    "area": 48671,
+    "coord": {
+      "north": 19.9299,
+      "south": 17.5432,
+      "west": -72.0035,
+      "east": -68.32
+    },
+    "radius": 235
+  },
+  {
+    "name": {
+      "common": "Algeria"
+    },
+    "cca2": "DZ",
+    "region": "Africa",
+    "subregion": "Northern Africa",
+    "languages": {
+      "ara": "Arabic"
+    },
+    "latlng": [
+      28,
+      3
+    ],
+    "area": 2381741,
+    "coord": {
+      "north": 37.0937,
+      "south": 18.96,
+      "west": -8.67387,
+      "east": 11.9795
+    },
+    "radius": 1424
+  },
+  {
+    "name": {
+      "common": "Ecuador"
+    },
+    "cca2": "EC",
+    "region": "Americas",
+    "subregion": "South America",
+    "languages": {
+      "spa": "Spanish"
+    },
+    "latlng": [
+      -2,
+      -77.5
+    ],
+    "area": 276841,
+    "coord": {
+      "north": 1.43902,
+      "south": -4.99882,
+      "west": -81.0786,
+      "east": -75.1846
+    },
+    "radius": 486
+  },
+  {
+    "name": {
+      "common": "Egypt"
+    },
+    "cca2": "EG",
+    "region": "Africa",
+    "subregion": "Northern Africa",
+    "languages": {
+      "ara": "Arabic"
+    },
+    "latlng": [
+      27,
+      30
+    ],
+    "area": 1002450,
+    "coord": {
+      "north": 31.6673,
+      "south": 21.7254,
+      "west": 24.6981,
+      "east": 36.8983
+    },
+    "radius": 820
+  },
+  {
+    "name": {
+      "common": "Eritrea"
+    },
+    "cca2": "ER",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "languages": {
+      "ara": "Arabic",
+      "eng": "English",
+      "tir": "Tigrinya"
+    },
+    "latlng": [
+      15,
+      39
+    ],
+    "area": 117600,
+    "coord": {
+      "north": 18.0031,
+      "south": 12.3596,
+      "west": 36.4388,
+      "east": 43.1346
+    },
+    "radius": 477
+  },
+  {
+    "name": {
+      "common": "Western Sahara"
+    },
+    "cca2": "EH",
+    "region": "Africa",
+    "subregion": "Northern Africa",
+    "languages": {
+      "ber": "Berber",
+      "mey": "Hassaniya",
+      "spa": "Spanish"
+    },
+    "latlng": [
+      24.5,
+      -13
+    ],
+    "area": 266000,
+    "coord": {
+      "north": 27.6697,
+      "south": 20.7742,
+      "west": -17.1032,
+      "east": -8.67028
+    },
+    "radius": 574
+  },
+  {
+    "name": {
+      "common": "Spain"
+    },
+    "cca2": "ES",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "languages": {
+      "spa": "Spanish"
+    },
+    "latlng": [
+      40,
+      -4
+    ],
+    "area": 505992,
+    "coord": {
+      "north": 43.7914,
+      "south": 36.0001,
+      "west": -9.30152,
+      "east": 4.32778
+    },
+    "radius": 724
+  },
+  {
+    "name": {
+      "common": "Estonia"
+    },
+    "cca2": "EE",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "languages": {
+      "est": "Estonian"
+    },
+    "latlng": [
+      59,
+      26
+    ],
+    "area": 45227,
+    "coord": {
+      "north": 59.6762,
+      "south": 57.5162,
+      "west": 21.8376,
+      "east": 28.21
+    },
+    "radius": 221
+  },
+  {
+    "name": {
+      "common": "Ethiopia"
+    },
+    "cca2": "ET",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "languages": {
+      "amh": "Amharic"
+    },
+    "latlng": [
+      8,
+      38
+    ],
+    "area": 1104300,
+    "coord": {
+      "north": 14.8938,
+      "south": 3.40242,
+      "west": 32.9999,
+      "east": 47.9862
+    },
+    "radius": 1041
+  },
+  {
+    "name": {
+      "common": "Finland"
+    },
+    "cca2": "FI",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "languages": {
+      "fin": "Finnish",
+      "swe": "Swedish"
+    },
+    "latlng": [
+      64,
+      26
+    ],
+    "area": 338424,
+    "coord": {
+      "north": 70.0961,
+      "south": 59.8088,
+      "west": 20.5569,
+      "east": 31.5809
+    },
+    "radius": 626
+  },
+  {
+    "name": {
+      "common": "Fiji"
+    },
+    "cca2": "FJ",
+    "region": "Oceania",
+    "subregion": "Melanesia",
+    "languages": {
+      "eng": "English",
+      "fij": "Fijian",
+      "hif": "Fiji Hindi"
+    },
+    "latlng": [
+      -18,
+      175
+    ],
+    "area": 18272,
+    "coord": {},
+    "radius": 77
+  },
+  {
+    "name": {
+      "common": "Falkland Islands"
+    },
+    "cca2": "FK",
+    "region": "Americas",
+    "subregion": "South America",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      -51.75,
+      -59
+    ],
+    "area": 12173,
+    "coord": {
+      "north": -51.2407,
+      "south": -52.3605,
+      "west": -61.3452,
+      "east": -57.7125
+    },
+    "radius": 140
+  },
+  {
+    "name": {
+      "common": "France"
+    },
+    "cca2": "FR",
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      46,
+      2
+    ],
+    "area": 551695,
+    "coord": {
+      "north": 51.0928,
+      "south": 41.3716,
+      "west": -5.14222,
+      "east": 9.56156
+    },
+    "radius": 780
+  },
+  {
+    "name": {
+      "common": "Faroe Islands"
+    },
+    "cca2": "FO",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "languages": {
+      "dan": "Danish",
+      "fao": "Faroese"
+    },
+    "latlng": [
+      62,
+      -7
+    ],
+    "area": 1393,
+    "coord": {
+      "north": 62.4007,
+      "south": 61.3949,
+      "west": -7.458,
+      "east": -6.39958
+    },
+    "radius": 63
+  },
+  {
+    "name": {
+      "common": "Micronesia"
+    },
+    "cca2": "FM",
+    "region": "Oceania",
+    "subregion": "Micronesia",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      6.91666666,
+      158.25
+    ],
+    "area": 702,
+    "coord": {},
+    "radius": 15
+  },
+  {
+    "name": {
+      "common": "Gabon"
+    },
+    "cca2": "GA",
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      -1,
+      11.75
+    ],
+    "area": 267668,
+    "coord": {
+      "north": 2.32261,
+      "south": -3.97881,
+      "west": 8.69547,
+      "east": 14.5023
+    },
+    "radius": 477
+  },
+  {
+    "name": {
+      "common": "United Kingdom"
+    },
+    "cca2": "GB",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      54,
+      -2
+    ],
+    "area": 242900,
+    "coord": {
+      "north": 59.3602,
+      "south": 49.9062,
+      "west": -8.62356,
+      "east": 1.759
+    },
+    "radius": 622
+  },
+  {
+    "name": {
+      "common": "Georgia"
+    },
+    "cca2": "GE",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "languages": {
+      "kat": "Georgian"
+    },
+    "latlng": [
+      42,
+      43.5
+    ],
+    "area": 69700,
+    "coord": {
+      "north": 43.5865,
+      "south": 41.0532,
+      "west": 40.0101,
+      "east": 46.726
+    },
+    "radius": 310
+  },
+  {
+    "name": {
+      "common": "Guernsey"
+    },
+    "cca2": "GG",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "languages": {
+      "eng": "English",
+      "fra": "French",
+      "nfr": "Guernésiais"
+    },
+    "latlng": [
+      49.46666666,
+      -2.58333333
+    ],
+    "area": 78,
+    "coord": {},
+    "radius": 5
+  },
+  {
+    "name": {
+      "common": "Ghana"
+    },
+    "cca2": "GH",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      8,
+      -2
+    ],
+    "area": 238533,
+    "coord": {
+      "north": 11.1733,
+      "south": 4.73672,
+      "west": -3.25542,
+      "east": 1.19178
+    },
+    "radius": 434
+  },
+  {
+    "name": {
+      "common": "Gibraltar"
+    },
+    "cca2": "GI",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      36.13333333,
+      -5.35
+    ],
+    "area": 6,
+    "coord": {
+      "north": 36.1554,
+      "south": 36.109,
+      "west": -5.36626,
+      "east": -5.33828
+    },
+    "radius": 3
+  },
+  {
+    "name": {
+      "common": "Guinea"
+    },
+    "cca2": "GN",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      11,
+      -10
+    ],
+    "area": 245857,
+    "coord": {
+      "north": 12.6762,
+      "south": 7.19355,
+      "west": -14.9266,
+      "east": -7.64107
+    },
+    "radius": 502
+  },
+  {
+    "name": {
+      "common": "Guadeloupe"
+    },
+    "cca2": "GP",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      16.25,
+      -61.583333
+    ],
+    "area": 1628,
+    "coord": {
+      "north": 16.5168,
+      "south": 15.8676,
+      "west": -61.5448,
+      "east": -61
+    },
+    "radius": 47
+  },
+  {
+    "name": {
+      "common": "Gambia"
+    },
+    "cca2": "GM",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      13.46666666,
+      -16.56666666
+    ],
+    "area": 10689,
+    "coord": {
+      "north": 13.8266,
+      "south": 13.0643,
+      "west": -16.8251,
+      "east": -13.7978
+    },
+    "radius": 170
+  },
+  {
+    "name": {
+      "common": "Guinea-Bissau"
+    },
+    "cca2": "GW",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "languages": {
+      "por": "Portuguese",
+      "pov": "Upper Guinea Creole"
+    },
+    "latlng": [
+      12,
+      -15
+    ],
+    "area": 36125,
+    "coord": {
+      "north": 12.6808,
+      "south": 10.9243,
+      "west": -16.7175,
+      "east": -13.6365
+    },
+    "radius": 195
+  },
+  {
+    "name": {
+      "common": "Equatorial Guinea"
+    },
+    "cca2": "GQ",
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "languages": {
+      "fra": "French",
+      "por": "Portuguese",
+      "spa": "Spanish"
+    },
+    "latlng": [
+      2,
+      10
+    ],
+    "area": 28051,
+    "coord": {
+      "north": 2.34699,
+      "south": 0.92086,
+      "west": 9.34686,
+      "east": 11.3357
+    },
+    "radius": 137
+  },
+  {
+    "name": {
+      "common": "Greece"
+    },
+    "cca2": "GR",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "languages": {
+      "ell": "Greek"
+    },
+    "latlng": [
+      39,
+      22
+    ],
+    "area": 131990,
+    "coord": {
+      "north": 41.7485,
+      "south": 34.8021,
+      "west": 19.3736,
+      "east": 28.2471
+    },
+    "radius": 547
+  },
+  {
+    "name": {
+      "common": "Grenada"
+    },
+    "cca2": "GD",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      12.11666666,
+      -61.66666666
+    ],
+    "area": 344,
+    "coord": {
+      "north": 12.3183,
+      "south": 11.9869,
+      "west": -61.8023,
+      "east": -61.5768
+    },
+    "radius": 23
+  },
+  {
+    "name": {
+      "common": "Greenland"
+    },
+    "cca2": "GL",
+    "region": "Americas",
+    "subregion": "North America",
+    "languages": {
+      "kal": "Greenlandic"
+    },
+    "latlng": [
+      72,
+      -40
+    ],
+    "area": 2166086,
+    "coord": {
+      "north": 83.6274,
+      "south": 59.7774,
+      "west": -73.042,
+      "east": -11.3123
+    },
+    "radius": 1542
+  },
+  {
+    "name": {
+      "common": "Guatemala"
+    },
+    "cca2": "GT",
+    "region": "Americas",
+    "subregion": "Central America",
+    "languages": {
+      "spa": "Spanish"
+    },
+    "latlng": [
+      15.5,
+      -90.25
+    ],
+    "area": 108889,
+    "coord": {
+      "north": 17.8152,
+      "south": 13.7373,
+      "west": -92.2363,
+      "east": -88.2232
+    },
+    "radius": 313
+  },
+  {
+    "name": {
+      "common": "French Guiana"
+    },
+    "cca2": "GF",
+    "region": "Americas",
+    "subregion": "South America",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      4,
+      -53
+    ],
+    "area": 83534,
+    "coord": {
+      "north": 5.7765,
+      "south": 2.12709,
+      "west": -54.5425,
+      "east": -51.6139
+    },
+    "radius": 260
+  },
+  {
+    "name": {
+      "common": "Guam"
+    },
+    "cca2": "GU",
+    "region": "Oceania",
+    "subregion": "Micronesia",
+    "languages": {
+      "cha": "Chamorro",
+      "eng": "English",
+      "spa": "Spanish"
+    },
+    "latlng": [
+      13.46666666,
+      144.78333333
+    ],
+    "area": 549,
+    "coord": {
+      "north": 13.6544,
+      "south": 13.2338,
+      "west": 144.618,
+      "east": 144.957
+    },
+    "radius": 30
+  },
+  {
+    "name": {
+      "common": "Guyana"
+    },
+    "cca2": "GY",
+    "region": "Americas",
+    "subregion": "South America",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      5,
+      -59
+    ],
+    "area": 214969,
+    "coord": {
+      "north": 8.55757,
+      "south": 1.17508,
+      "west": -61.3848,
+      "east": -56.4803
+    },
+    "radius": 493
+  },
+  {
+    "name": {
+      "common": "Hong Kong"
+    },
+    "cca2": "HK",
+    "region": "Asia",
+    "subregion": "Eastern Asia",
+    "languages": {
+      "eng": "English",
+      "zho": "Chinese"
+    },
+    "latlng": [
+      22.267,
+      114.188
+    ],
+    "area": 1104,
+    "coord": {
+      "north": 22.5598,
+      "south": 22.1532,
+      "west": 113.838,
+      "east": 114.435
+    },
+    "radius": 39
+  },
+  {
+    "name": {
+      "common": "Heard Island and McDonald Islands"
+    },
+    "cca2": "HM",
+    "region": "Antarctic",
+    "subregion": "",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      -53.1,
+      72.51666666
+    ],
+    "area": 412,
+    "coord": {
+      "north": -52.9094,
+      "south": -53.192,
+      "west": 72.5965,
+      "east": 73.8591
+    },
+    "radius": 46
+  },
+  {
+    "name": {
+      "common": "Honduras"
+    },
+    "cca2": "HN",
+    "region": "Americas",
+    "subregion": "Central America",
+    "languages": {
+      "spa": "Spanish"
+    },
+    "latlng": [
+      15,
+      -86.5
+    ],
+    "area": 112492,
+    "coord": {
+      "north": 16.5103,
+      "south": 12.9824,
+      "west": -89.3508,
+      "east": -83.1554
+    },
+    "radius": 387
+  },
+  {
+    "name": {
+      "common": "Croatia"
+    },
+    "cca2": "HR",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "languages": {
+      "hrv": "Croatian"
+    },
+    "latlng": [
+      45.16666666,
+      15.5
+    ],
+    "area": 56594,
+    "coord": {
+      "north": 46.5387,
+      "south": 42.4359,
+      "west": 13.4932,
+      "east": 19.4274
+    },
+    "radius": 328
+  },
+  {
+    "name": {
+      "common": "Haiti"
+    },
+    "cca2": "HT",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "fra": "French",
+      "hat": "Haitian Creole"
+    },
+    "latlng": [
+      19,
+      -72.41666666
+    ],
+    "area": 27750,
+    "coord": {
+      "north": 20.0878,
+      "south": 18.021,
+      "west": -74.4786,
+      "east": -71.6134
+    },
+    "radius": 190
+  },
+  {
+    "name": {
+      "common": "Hungary"
+    },
+    "cca2": "HU",
+    "region": "Europe",
+    "subregion": "Eastern Europe",
+    "languages": {
+      "hun": "Hungarian"
+    },
+    "latlng": [
+      47,
+      20
+    ],
+    "area": 93028,
+    "coord": {
+      "north": 48.5857,
+      "south": 45.7436,
+      "west": 16.1119,
+      "east": 22.906
+    },
+    "radius": 302
+  },
+  {
+    "name": {
+      "common": "Indonesia"
+    },
+    "cca2": "ID",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "languages": {
+      "ind": "Indonesian"
+    },
+    "latlng": [
+      -5,
+      120
+    ],
+    "area": 1904569,
+    "coord": {
+      "north": 5.90442,
+      "south": -10.9419,
+      "west": 95.0093,
+      "east": 141.022
+    },
+    "radius": 2713
+  },
+  {
+    "name": {
+      "common": "Isle of Man"
+    },
+    "cca2": "IM",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "languages": {
+      "eng": "English",
+      "glv": "Manx"
+    },
+    "latlng": [
+      54.25,
+      -4.5
+    ],
+    "area": 572,
+    "coord": {},
+    "radius": 14
+  },
+  {
+    "name": {
+      "common": "India"
+    },
+    "cca2": "IN",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "languages": {
+      "eng": "English",
+      "hin": "Hindi",
+      "tam": "Tamil"
+    },
+    "latlng": [
+      20,
+      77
+    ],
+    "area": 3287590,
+    "coord": {
+      "north": 35.5042,
+      "south": 6.74714,
+      "west": 68.1867,
+      "east": 97.4033
+    },
+    "radius": 2186
+  },
+  {
+    "name": {
+      "common": "British Indian Ocean Territory"
+    },
+    "cca2": "IO",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      -6,
+      71.5
+    ],
+    "area": 60,
+    "coord": {
+      "north": -5.26833,
+      "south": -7.43803,
+      "west": 71.26,
+      "east": 72.4932
+    },
+    "radius": 139
+  },
+  {
+    "name": {
+      "common": "Ireland"
+    },
+    "cca2": "IE",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "languages": {
+      "eng": "English",
+      "gle": "Irish"
+    },
+    "latlng": [
+      53,
+      -8
+    ],
+    "area": 70273,
+    "coord": {
+      "north": 55.3879,
+      "south": 51.4516,
+      "west": -10.4786,
+      "east": -6.00239
+    },
+    "radius": 265
+  },
+  {
+    "name": {
+      "common": "Iran"
+    },
+    "cca2": "IR",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "languages": {
+      "fas": "Persian (Farsi)"
+    },
+    "latlng": [
+      32,
+      53
+    ],
+    "area": 1648195,
+    "coord": {
+      "north": 39.7772,
+      "south": 25.0641,
+      "west": 44.0473,
+      "east": 63.3175
+    },
+    "radius": 1215
+  },
+  {
+    "name": {
+      "common": "Iraq"
+    },
+    "cca2": "IQ",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "languages": {
+      "ara": "Arabic",
+      "arc": "Aramaic",
+      "ckb": "Sorani"
+    },
+    "latlng": [
+      33,
+      44
+    ],
+    "area": 438317,
+    "coord": {
+      "north": 37.378,
+      "south": 29.0694,
+      "west": 38.7959,
+      "east": 48.5759
+    },
+    "radius": 648
+  },
+  {
+    "name": {
+      "common": "Iceland"
+    },
+    "cca2": "IS",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "languages": {
+      "isl": "Icelandic"
+    },
+    "latlng": [
+      65,
+      -18
+    ],
+    "area": 103000,
+    "coord": {
+      "north": 66.5346,
+      "south": 63.3933,
+      "west": -24.5465,
+      "east": -13.4958
+    },
+    "radius": 313
+  },
+  {
+    "name": {
+      "common": "Israel"
+    },
+    "cca2": "IL",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "languages": {
+      "ara": "Arabic",
+      "heb": "Hebrew"
+    },
+    "latlng": [
+      31.47,
+      35.13
+    ],
+    "area": 20770,
+    "coord": {
+      "north": 33.3401,
+      "south": 29.4966,
+      "west": 34.2703,
+      "east": 35.8768
+    },
+    "radius": 227
+  },
+  {
+    "name": {
+      "common": "Italy"
+    },
+    "cca2": "IT",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "languages": {
+      "ita": "Italian"
+    },
+    "latlng": [
+      42.83333333,
+      12.83333333
+    ],
+    "area": 301336,
+    "coord": {
+      "north": 47.0952,
+      "south": 36.6528,
+      "west": 6.61489,
+      "east": 18.5134
+    },
+    "radius": 760
+  },
+  {
+    "name": {
+      "common": "Jamaica"
+    },
+    "cca2": "JM",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "eng": "English",
+      "jam": "Jamaican Patois"
+    },
+    "latlng": [
+      18.25,
+      -77.5
+    ],
+    "area": 10991,
+    "coord": {
+      "north": 18.527,
+      "south": 17.7036,
+      "west": -78.3666,
+      "east": -76.1803
+    },
+    "radius": 125
+  },
+  {
+    "name": {
+      "common": "Jersey"
+    },
+    "cca2": "JE",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "languages": {
+      "eng": "English",
+      "fra": "French",
+      "nrf": "Jèrriais"
+    },
+    "latlng": [
+      49.25,
+      -2.16666666
+    ],
+    "area": 116,
+    "coord": {},
+    "radius": 7
+  },
+  {
+    "name": {
+      "common": "Jordan"
+    },
+    "cca2": "JO",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "languages": {
+      "ara": "Arabic"
+    },
+    "latlng": [
+      31,
+      36
+    ],
+    "area": 89342,
+    "coord": {
+      "north": 33.3677,
+      "south": 29.1859,
+      "west": 34.96,
+      "east": 39.3012
+    },
+    "radius": 311
+  },
+  {
+    "name": {
+      "common": "Japan"
+    },
+    "cca2": "JP",
+    "region": "Asia",
+    "subregion": "Eastern Asia",
+    "languages": {
+      "jpn": "Japanese"
+    },
+    "latlng": [
+      36,
+      138
+    ],
+    "area": 377930,
+    "coord": {
+      "north": 45.5231,
+      "south": 24.2495,
+      "west": 122.939,
+      "east": 145.821
+    },
+    "radius": 1566
+  },
+  {
+    "name": {
+      "common": "Kazakhstan"
+    },
+    "cca2": "KZ",
+    "region": "Asia",
+    "subregion": "Central Asia",
+    "languages": {
+      "kaz": "Kazakh",
+      "rus": "Russian"
+    },
+    "latlng": [
+      48,
+      68
+    ],
+    "area": 2724900,
+    "coord": {
+      "north": null,
+      "south": null,
+      "west": null,
+      "east": null
+    },
+    "radius": 932
+  },
+  {
+    "name": {
+      "common": "Kenya"
+    },
+    "cca2": "KE",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "languages": {
+      "eng": "English",
+      "swa": "Swahili"
+    },
+    "latlng": [
+      1,
+      38
+    ],
+    "area": 580367,
+    "coord": {
+      "north": 5.01994,
+      "south": -4.67805,
+      "west": 33.9089,
+      "east": 41.8991
+    },
+    "radius": 699
+  },
+  {
+    "name": {
+      "common": "Kyrgyzstan"
+    },
+    "cca2": "KG",
+    "region": "Asia",
+    "subregion": "Central Asia",
+    "languages": {
+      "kir": "Kyrgyz",
+      "rus": "Russian"
+    },
+    "latlng": [
+      41,
+      75
+    ],
+    "area": 199951,
+    "coord": {
+      "north": 43.2382,
+      "south": 39.1728,
+      "west": 69.2766,
+      "east": 80.2832
+    },
+    "radius": 513
+  },
+  {
+    "name": {
+      "common": "Cambodia"
+    },
+    "cca2": "KH",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "languages": {
+      "khm": "Khmer"
+    },
+    "latlng": [
+      13,
+      105
+    ],
+    "area": 181035,
+    "coord": {
+      "north": 14.6864,
+      "south": 10.4091,
+      "west": 102.34,
+      "east": 107.628
+    },
+    "radius": 373
+  },
+  {
+    "name": {
+      "common": "Kiribati"
+    },
+    "cca2": "KI",
+    "region": "Oceania",
+    "subregion": "Micronesia",
+    "languages": {
+      "eng": "English",
+      "gil": "Gilbertese"
+    },
+    "latlng": [
+      1.41666666,
+      173
+    ],
+    "area": 811,
+    "coord": {
+      "north": 4.71957,
+      "south": -11.4469,
+      "west": 169.556,
+      "east": -150.215
+    },
+    "radius": 2400
+  },
+  {
+    "name": {
+      "common": "Saint Kitts and Nevis"
+    },
+    "cca2": "KN",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      17.33333333,
+      -62.75
+    ],
+    "area": 261,
+    "coord": {
+      "north": 17.4201,
+      "south": 17.0953,
+      "west": -62.8696,
+      "east": -62.5433
+    },
+    "radius": 26
+  },
+  {
+    "name": {
+      "common": "South Korea"
+    },
+    "cca2": "KR",
+    "region": "Asia",
+    "subregion": "Eastern Asia",
+    "languages": {
+      "kor": "Korean"
+    },
+    "latlng": [
+      37,
+      127.5
+    ],
+    "area": 100210,
+    "coord": {
+      "north": 38.6124,
+      "south": 33.1909,
+      "west": 125.887,
+      "east": 129.585
+    },
+    "radius": 345
+  },
+  {
+    "name": {
+      "common": "Kosovo"
+    },
+    "cca2": "XK",
+    "region": "Europe",
+    "subregion": "Eastern Europe",
+    "languages": {
+      "sqi": "Albanian",
+      "srp": "Serbian"
+    },
+    "latlng": [
+      42.666667,
+      21.166667
+    ],
+    "area": 10908,
+    "coord": {},
+    "radius": 59
+  },
+  {
+    "name": {
+      "common": "Kuwait"
+    },
+    "cca2": "KW",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "languages": {
+      "ara": "Arabic"
+    },
+    "latlng": [
+      29.5,
+      45.75
+    ],
+    "area": 17818,
+    "coord": {
+      "north": 30.0959,
+      "south": 28.5246,
+      "west": 46.5556,
+      "east": 48.4315
+    },
+    "radius": 127
+  },
+  {
+    "name": {
+      "common": "Laos"
+    },
+    "cca2": "LA",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "languages": {
+      "lao": "Lao"
+    },
+    "latlng": [
+      18,
+      105
+    ],
+    "area": 236800,
+    "coord": {
+      "north": 22.5004,
+      "south": 13.91,
+      "west": 100.093,
+      "east": 107.697
+    },
+    "radius": 624
+  },
+  {
+    "name": {
+      "common": "Lebanon"
+    },
+    "cca2": "LB",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "languages": {
+      "ara": "Arabic",
+      "fra": "French"
+    },
+    "latlng": [
+      33.83333333,
+      35.83333333
+    ],
+    "area": 10452,
+    "coord": {
+      "north": 34.6914,
+      "south": 33.0539,
+      "west": 35.1143,
+      "east": 36.6392
+    },
+    "radius": 116
+  },
+  {
+    "name": {
+      "common": "Liberia"
+    },
+    "cca2": "LR",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      6.5,
+      -9.5
+    ],
+    "area": 111369,
+    "coord": {
+      "north": 8.55179,
+      "south": 4.35306,
+      "west": -11.4921,
+      "east": -7.36511
+    },
+    "radius": 327
+  },
+  {
+    "name": {
+      "common": "Libya"
+    },
+    "cca2": "LY",
+    "region": "Africa",
+    "subregion": "Northern Africa",
+    "languages": {
+      "ara": "Arabic"
+    },
+    "latlng": [
+      25,
+      17
+    ],
+    "area": 1759540,
+    "coord": {},
+    "radius": 749
+  },
+  {
+    "name": {
+      "common": "Saint Lucia"
+    },
+    "cca2": "LC",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      13.88333333,
+      -60.96666666
+    ],
+    "area": 616,
+    "coord": {
+      "north": 14.1032,
+      "south": 13.7048,
+      "west": -61.0742,
+      "east": -60.8742
+    },
+    "radius": 25
+  },
+  {
+    "name": {
+      "common": "Liechtenstein"
+    },
+    "cca2": "LI",
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "languages": {
+      "deu": "German"
+    },
+    "latlng": [
+      47.26666666,
+      9.53333333
+    ],
+    "area": 160,
+    "coord": {
+      "north": 47.2706,
+      "south": 47.0484,
+      "west": 9.47167,
+      "east": 9.63564
+    },
+    "radius": 14
+  },
+  {
+    "name": {
+      "common": "Sri Lanka"
+    },
+    "cca2": "LK",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "languages": {
+      "sin": "Sinhala",
+      "tam": "Tamil"
+    },
+    "latlng": [
+      7,
+      81
+    ],
+    "area": 65610,
+    "coord": {},
+    "radius": 145
+  },
+  {
+    "name": {
+      "common": "Lesotho"
+    },
+    "cca2": "LS",
+    "region": "Africa",
+    "subregion": "Southern Africa",
+    "languages": {
+      "eng": "English",
+      "sot": "Sotho"
+    },
+    "latlng": [
+      -29.5,
+      28.5
+    ],
+    "area": 30355,
+    "coord": {
+      "north": -28.5721,
+      "south": -30.669,
+      "west": 27.0291,
+      "east": 29.4658
+    },
+    "radius": 166
+  },
+  {
+    "name": {
+      "common": "Lithuania"
+    },
+    "cca2": "LT",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "languages": {
+      "lit": "Lithuanian"
+    },
+    "latlng": [
+      56,
+      24
+    ],
+    "area": 65300,
+    "coord": {
+      "north": 56.4469,
+      "south": 53.9013,
+      "west": 20.9415,
+      "east": 26.8719
+    },
+    "radius": 236
+  },
+  {
+    "name": {
+      "common": "Luxembourg"
+    },
+    "cca2": "LU",
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "languages": {
+      "deu": "German",
+      "fra": "French",
+      "ltz": "Luxembourgish"
+    },
+    "latlng": [
+      49.75,
+      6.16666666
+    ],
+    "area": 2586,
+    "coord": {
+      "north": 50.1849,
+      "south": 49.4466,
+      "west": 5.73456,
+      "east": 6.52847
+    },
+    "radius": 50
+  },
+  {
+    "name": {
+      "common": "Latvia"
+    },
+    "cca2": "LV",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "languages": {
+      "lav": "Latvian"
+    },
+    "latlng": [
+      57,
+      25
+    ],
+    "area": 64559,
+    "coord": {
+      "north": 58.0823,
+      "south": 55.6689,
+      "west": 20.9743,
+      "east": 28.2412
+    },
+    "radius": 259
+  },
+  {
+    "name": {
+      "common": "Macau"
+    },
+    "cca2": "MO",
+    "region": "Asia",
+    "subregion": "Eastern Asia",
+    "languages": {
+      "por": "Portuguese",
+      "zho": "Chinese"
+    },
+    "latlng": [
+      22.16666666,
+      113.55
+    ],
+    "area": 30,
+    "coord": {},
+    "radius": 4
+  },
+  {
+    "name": {
+      "common": "Saint Martin"
+    },
+    "cca2": "MF",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      18.08333333,
+      -63.95
+    ],
+    "area": 53,
+    "coord": {},
+    "radius": 5
+  },
+  {
+    "name": {
+      "common": "Morocco"
+    },
+    "cca2": "MA",
+    "region": "Africa",
+    "subregion": "Northern Africa",
+    "languages": {
+      "ara": "Arabic",
+      "ber": "Berber"
+    },
+    "latlng": [
+      32,
+      -5
+    ],
+    "area": 446550,
+    "coord": {
+      "north": 35.9225,
+      "south": 27.6621,
+      "west": -13.1686,
+      "east": -0.99175
+    },
+    "radius": 736
+  },
+  {
+    "name": {
+      "common": "Monaco"
+    },
+    "cca2": "MC",
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      43.73333333,
+      7.4
+    ],
+    "area": 2.02,
+    "coord": {
+      "north": 43.752,
+      "south": 43.7247,
+      "west": 7.40896,
+      "east": 7.43994
+    },
+    "radius": 2
+  },
+  {
+    "name": {
+      "common": "Moldova"
+    },
+    "cca2": "MD",
+    "region": "Europe",
+    "subregion": "Eastern Europe",
+    "languages": {
+      "ron": "Moldavian"
+    },
+    "latlng": [
+      47,
+      29
+    ],
+    "area": 33846,
+    "coord": {
+      "north": 48.4902,
+      "south": 45.4689,
+      "west": 26.6189,
+      "east": 30.1354
+    },
+    "radius": 215
+  },
+  {
+    "name": {
+      "common": "Madagascar"
+    },
+    "cca2": "MG",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "languages": {
+      "fra": "French",
+      "mlg": "Malagasy"
+    },
+    "latlng": [
+      -20,
+      47
+    ],
+    "area": 587041,
+    "coord": {
+      "north": -11.9454,
+      "south": -25.609,
+      "west": 43.2249,
+      "east": 50.4838
+    },
+    "radius": 850
+  },
+  {
+    "name": {
+      "common": "Maldives"
+    },
+    "cca2": "MV",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "languages": {
+      "div": "Maldivian"
+    },
+    "latlng": [
+      3.25,
+      73
+    ],
+    "area": 300,
+    "coord": {
+      "north": 7.09159,
+      "south": -0.692694,
+      "west": 72.6932,
+      "east": 73.6373
+    },
+    "radius": 436
+  },
+  {
+    "name": {
+      "common": "Mexico"
+    },
+    "cca2": "MX",
+    "region": "Americas",
+    "subregion": "North America",
+    "languages": {
+      "spa": "Spanish"
+    },
+    "latlng": [
+      23,
+      -102
+    ],
+    "area": 1964375,
+    "coord": {
+      "north": 32.7168,
+      "south": 14.5329,
+      "west": -118.454,
+      "east": -86.7034
+    },
+    "radius": 1896
+  },
+  {
+    "name": {
+      "common": "Marshall Islands"
+    },
+    "cca2": "MH",
+    "region": "Oceania",
+    "subregion": "Micronesia",
+    "languages": {
+      "eng": "English",
+      "mah": "Marshallese"
+    },
+    "latlng": [
+      9,
+      168
+    ],
+    "area": 181,
+    "coord": {
+      "north": 14.62,
+      "south": 5.58764,
+      "west": 165.525,
+      "east": 171.932
+    },
+    "radius": 613
+  },
+  {
+    "name": {
+      "common": "North Macedonia"
+    },
+    "cca2": "MK",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "languages": {
+      "mkd": "Macedonian"
+    },
+    "latlng": [
+      41.83333333,
+      22
+    ],
+    "area": 25713,
+    "coord": {
+      "north": 42.3618,
+      "south": 40.8602,
+      "west": 20.4647,
+      "east": 23.0381
+    },
+    "radius": 136
+  },
+  {
+    "name": {
+      "common": "Mali"
+    },
+    "cca2": "ML",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      17,
+      -4
+    ],
+    "area": 1240192,
+    "coord": {
+      "north": 25,
+      "south": 10.1595,
+      "west": -12.2426,
+      "east": 4.24497
+    },
+    "radius": 1200
+  },
+  {
+    "name": {
+      "common": "Malta"
+    },
+    "cca2": "MT",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "languages": {
+      "eng": "English",
+      "mlt": "Maltese"
+    },
+    "latlng": [
+      35.83333333,
+      14.58333333
+    ],
+    "area": 316,
+    "coord": {
+      "north": 36.0822,
+      "south": 35.8062,
+      "west": 14.1834,
+      "east": 14.5765
+    },
+    "radius": 24
+  },
+  {
+    "name": {
+      "common": "Myanmar"
+    },
+    "cca2": "MM",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "languages": {
+      "mya": "Burmese"
+    },
+    "latlng": [
+      22,
+      98
+    ],
+    "area": 676578,
+    "coord": {
+      "north": null,
+      "south": null,
+      "west": null,
+      "east": null
+    },
+    "radius": 465
+  },
+  {
+    "name": {
+      "common": "Montenegro"
+    },
+    "cca2": "ME",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "languages": {
+      "srp": "Montenegrin"
+    },
+    "latlng": [
+      42.5,
+      19.3
+    ],
+    "area": 13812,
+    "coord": {
+      "north": 42.7087,
+      "south": -42.7087,
+      "west": -19.3744,
+      "east": 19.3744
+    },
+    "radius": 5128
+  },
+  {
+    "name": {
+      "common": "Mongolia"
+    },
+    "cca2": "MN",
+    "region": "Asia",
+    "subregion": "Eastern Asia",
+    "languages": {
+      "mon": "Mongolian"
+    },
+    "latlng": [
+      46,
+      105
+    ],
+    "area": 1564110,
+    "coord": {
+      "north": 52.1543,
+      "south": 41.5676,
+      "west": 87.7497,
+      "east": 119.924
+    },
+    "radius": 1343
+  },
+  {
+    "name": {
+      "common": "Northern Mariana Islands"
+    },
+    "cca2": "MP",
+    "region": "Oceania",
+    "subregion": "Micronesia",
+    "languages": {
+      "cal": "Carolinian",
+      "cha": "Chamorro",
+      "eng": "English"
+    },
+    "latlng": [
+      15.2,
+      145.75
+    ],
+    "area": 464,
+    "coord": {
+      "north": 20.5534,
+      "south": 14.1102,
+      "west": 144.886,
+      "east": 146.065
+    },
+    "radius": 364
+  },
+  {
+    "name": {
+      "common": "Mozambique"
+    },
+    "cca2": "MZ",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "languages": {
+      "por": "Portuguese"
+    },
+    "latlng": [
+      -18.25,
+      35
+    ],
+    "area": 801590,
+    "coord": {
+      "north": -10.4719,
+      "south": -26.8687,
+      "west": 30.2173,
+      "east": 40.843
+    },
+    "radius": 1069
+  },
+  {
+    "name": {
+      "common": "Mauritania"
+    },
+    "cca2": "MR",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "languages": {
+      "ara": "Arabic"
+    },
+    "latlng": [
+      20,
+      -12
+    ],
+    "area": 1030700,
+    "coord": {
+      "north": 27.2981,
+      "south": 14.7155,
+      "west": -17.0665,
+      "east": -4.82767
+    },
+    "radius": 944
+  },
+  {
+    "name": {
+      "common": "Montserrat"
+    },
+    "cca2": "MS",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      16.75,
+      -62.2
+    ],
+    "area": 102,
+    "coord": {
+      "north": 16.8241,
+      "south": 16.6748,
+      "west": -62.2414,
+      "east": -62.1441
+    },
+    "radius": 10
+  },
+  {
+    "name": {
+      "common": "Martinique"
+    },
+    "cca2": "MQ",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      14.666667,
+      -61
+    ],
+    "area": 1128,
+    "coord": {
+      "north": 14.8788,
+      "south": 14.3923,
+      "west": -61.2301,
+      "east": -60.8155
+    },
+    "radius": 36
+  },
+  {
+    "name": {
+      "common": "Mauritius"
+    },
+    "cca2": "MU",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "languages": {
+      "eng": "English",
+      "fra": "French",
+      "mfe": "Mauritian Creole"
+    },
+    "latlng": [
+      -20.28333333,
+      57.55
+    ],
+    "area": 2040,
+    "coord": {
+      "north": -10.3193,
+      "south": -20.5257,
+      "west": 56.5127,
+      "east": 63.5002
+    },
+    "radius": 680
+  },
+  {
+    "name": {
+      "common": "Malawi"
+    },
+    "cca2": "MW",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "languages": {
+      "eng": "English",
+      "nya": "Chewa"
+    },
+    "latlng": [
+      -13.5,
+      34
+    ],
+    "area": 118484,
+    "coord": {
+      "north": -9.36754,
+      "south": -17.125,
+      "west": 32.674,
+      "east": 35.9168
+    },
+    "radius": 466
+  },
+  {
+    "name": {
+      "common": "Malaysia"
+    },
+    "cca2": "MY",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "languages": {
+      "eng": "English",
+      "msa": "Malay"
+    },
+    "latlng": [
+      2.5,
+      112.5
+    ],
+    "area": 330803,
+    "coord": {
+      "north": 7.36342,
+      "south": 0.855222,
+      "west": 99.6434,
+      "east": 119.268
+    },
+    "radius": 1147
+  },
+  {
+    "name": {
+      "common": "Mayotte"
+    },
+    "cca2": "YT",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      -12.83333333,
+      45.16666666
+    ],
+    "area": 374,
+    "coord": {
+      "north": -12.6489,
+      "south": -13.0001,
+      "west": 45.038,
+      "east": 45.2929
+    },
+    "radius": 24
+  },
+  {
+    "name": {
+      "common": "Namibia"
+    },
+    "cca2": "NA",
+    "region": "Africa",
+    "subregion": "Southern Africa",
+    "languages": {
+      "afr": "Afrikaans",
+      "deu": "German",
+      "eng": "English",
+      "her": "Herero",
+      "hgm": "Khoekhoe",
+      "kwn": "Kwangali",
+      "loz": "Lozi",
+      "ndo": "Ndonga",
+      "tsn": "Tswana"
+    },
+    "latlng": [
+      -22,
+      17
+    ],
+    "area": 825615,
+    "coord": {
+      "north": -16.9599,
+      "south": -28.9714,
+      "west": 11.7156,
+      "east": 25.2567
+    },
+    "radius": 961
+  },
+  {
+    "name": {
+      "common": "New Caledonia"
+    },
+    "cca2": "NC",
+    "region": "Oceania",
+    "subregion": "Melanesia",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      -21.5,
+      165.5
+    ],
+    "area": 18575,
+    "coord": {
+      "north": -19.5498,
+      "south": -22.698,
+      "west": 163.565,
+      "east": 168.129
+    },
+    "radius": 295
+  },
+  {
+    "name": {
+      "common": "Niger"
+    },
+    "cca2": "NE",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      16,
+      8
+    ],
+    "area": 1267000,
+    "coord": {
+      "north": 23.525,
+      "south": 11.697,
+      "west": 0.16625,
+      "east": 15.9956
+    },
+    "radius": 1065
+  },
+  {
+    "name": {
+      "common": "Norfolk Island"
+    },
+    "cca2": "NF",
+    "region": "Oceania",
+    "subregion": "Australia and New Zealand",
+    "languages": {
+      "eng": "English",
+      "pih": "Norfuk"
+    },
+    "latlng": [
+      -29.03333333,
+      167.95
+    ],
+    "area": 36,
+    "coord": {
+      "north": -28.9952,
+      "south": -29.0631,
+      "west": 167.915,
+      "east": 167.998
+    },
+    "radius": 6
+  },
+  {
+    "name": {
+      "common": "Nigeria"
+    },
+    "cca2": "NG",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      10,
+      8
+    ],
+    "area": 923768,
+    "coord": {
+      "north": 13.892,
+      "south": 4.27714,
+      "west": 2.66843,
+      "east": 14.6801
+    },
+    "radius": 849
+  },
+  {
+    "name": {
+      "common": "Nicaragua"
+    },
+    "cca2": "NI",
+    "region": "Americas",
+    "subregion": "Central America",
+    "languages": {
+      "spa": "Spanish"
+    },
+    "latlng": [
+      13,
+      -85
+    ],
+    "area": 130373,
+    "coord": {
+      "north": 15.0259,
+      "south": 10.7075,
+      "west": -87.6903,
+      "east": -82.7383
+    },
+    "radius": 361
+  },
+  {
+    "name": {
+      "common": "Niue"
+    },
+    "cca2": "NU",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "languages": {
+      "eng": "English",
+      "niu": "Niuean"
+    },
+    "latlng": [
+      -19.03333333,
+      -169.86666666
+    ],
+    "area": 260,
+    "coord": {
+      "north": -18.9511,
+      "south": -19.1522,
+      "west": -169.951,
+      "east": -169.775
+    },
+    "radius": 15
+  },
+  {
+    "name": {
+      "common": "Netherlands"
+    },
+    "cca2": "NL",
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "languages": {
+      "nld": "Dutch"
+    },
+    "latlng": [
+      52.5,
+      5.75
+    ],
+    "area": 41850,
+    "coord": {
+      "north": 53.5122,
+      "south": 50.7539,
+      "west": 3.36256,
+      "east": 7.22794
+    },
+    "radius": 203
+  },
+  {
+    "name": {
+      "common": "Norway"
+    },
+    "cca2": "NO",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "languages": {
+      "nno": "Norwegian Nynorsk",
+      "nob": "Norwegian Bokmål",
+      "smi": "Sami"
+    },
+    "latlng": [
+      62,
+      10
+    ],
+    "area": 323802,
+    "coord": {
+      "north": 71.1881,
+      "south": 57.9779,
+      "west": 4.65017,
+      "east": 31.0781
+    },
+    "radius": 953
+  },
+  {
+    "name": {
+      "common": "Nepal"
+    },
+    "cca2": "NP",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "languages": {
+      "nep": "Nepali"
+    },
+    "latlng": [
+      28,
+      84
+    ],
+    "area": 147181,
+    "coord": {
+      "north": 30.4334,
+      "south": 26.3567,
+      "west": 80.0563,
+      "east": 88.1993
+    },
+    "radius": 459
+  },
+  {
+    "name": {
+      "common": "Nauru"
+    },
+    "cca2": "NR",
+    "region": "Oceania",
+    "subregion": "Micronesia",
+    "languages": {
+      "eng": "English",
+      "nau": "Nauru"
+    },
+    "latlng": [
+      -0.53333333,
+      166.91666666
+    ],
+    "area": 21,
+    "coord": {
+      "north": -0.504306,
+      "south": -0.552333,
+      "west": 166.899,
+      "east": 166.945
+    },
+    "radius": 4
+  },
+  {
+    "name": {
+      "common": "New Zealand"
+    },
+    "cca2": "NZ",
+    "region": "Oceania",
+    "subregion": "Australia and New Zealand",
+    "languages": {
+      "eng": "English",
+      "mri": "Māori",
+      "nzs": "New Zealand Sign Language"
+    },
+    "latlng": [
+      -41,
+      174
+    ],
+    "area": 270467,
+    "coord": {
+      "north": -34.3897,
+      "south": -47.286,
+      "west": 166.715,
+      "east": -180
+    },
+    "radius": 907
+  },
+  {
+    "name": {
+      "common": "Oman"
+    },
+    "cca2": "OM",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "languages": {
+      "ara": "Arabic"
+    },
+    "latlng": [
+      21,
+      57
+    ],
+    "area": 309500,
+    "coord": {
+      "north": 26.388,
+      "south": 16.6458,
+      "west": 51.882,
+      "east": 59.8366
+    },
+    "radius": 680
+  },
+  {
+    "name": {
+      "common": "Pakistan"
+    },
+    "cca2": "PK",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "languages": {
+      "eng": "English",
+      "urd": "Urdu"
+    },
+    "latlng": [
+      30,
+      70
+    ],
+    "area": 881912,
+    "coord": {
+      "north": 37.097,
+      "south": 23.7867,
+      "west": 60.8786,
+      "east": 77.8409
+    },
+    "radius": 1097
+  },
+  {
+    "name": {
+      "common": "Panama"
+    },
+    "cca2": "PA",
+    "region": "Americas",
+    "subregion": "Central America",
+    "languages": {
+      "spa": "Spanish"
+    },
+    "latlng": [
+      9,
+      -80
+    ],
+    "area": 75417,
+    "coord": {
+      "north": 9.63751,
+      "south": 7.19791,
+      "west": -83.0514,
+      "east": -77.1741
+    },
+    "radius": 351
+  },
+  {
+    "name": {
+      "common": "Pitcairn Islands"
+    },
+    "cca2": "PN",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      -25.06666666,
+      -130.1
+    ],
+    "area": 47,
+    "coord": {},
+    "radius": 4
+  },
+  {
+    "name": {
+      "common": "Peru"
+    },
+    "cca2": "PE",
+    "region": "Americas",
+    "subregion": "South America",
+    "languages": {
+      "aym": "Aymara",
+      "que": "Quechua",
+      "spa": "Spanish"
+    },
+    "latlng": [
+      -10,
+      -76
+    ],
+    "area": 1285216,
+    "coord": {
+      "north": -0.012977,
+      "south": -18.3497,
+      "west": -81.3267,
+      "east": -68.678
+    },
+    "radius": 1232
+  },
+  {
+    "name": {
+      "common": "Philippines"
+    },
+    "cca2": "PH",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "languages": {
+      "eng": "English",
+      "fil": "Filipino"
+    },
+    "latlng": [
+      13,
+      122
+    ],
+    "area": 342353,
+    "coord": {
+      "north": 21.1206,
+      "south": 4.64331,
+      "west": 116.932,
+      "east": 126.602
+    },
+    "radius": 1055
+  },
+  {
+    "name": {
+      "common": "Palau"
+    },
+    "cca2": "PW",
+    "region": "Oceania",
+    "subregion": "Micronesia",
+    "languages": {
+      "eng": "English",
+      "pau": "Palauan"
+    },
+    "latlng": [
+      7.5,
+      134.5
+    ],
+    "area": 459,
+    "coord": {
+      "north": 8.46966,
+      "south": 2.8036,
+      "west": 131.118,
+      "east": 134.723
+    },
+    "radius": 373
+  },
+  {
+    "name": {
+      "common": "Papua New Guinea"
+    },
+    "cca2": "PG",
+    "region": "Oceania",
+    "subregion": "Melanesia",
+    "languages": {
+      "eng": "English",
+      "hmo": "Hiri Motu",
+      "tpi": "Tok Pisin"
+    },
+    "latlng": [
+      -6,
+      147
+    ],
+    "area": 462840,
+    "coord": {
+      "north": -1.31864,
+      "south": -11.6579,
+      "west": 140.843,
+      "east": 155.963
+    },
+    "radius": 1013
+  },
+  {
+    "name": {
+      "common": "Poland"
+    },
+    "cca2": "PL",
+    "region": "Europe",
+    "subregion": "Eastern Europe",
+    "languages": {
+      "pol": "Polish"
+    },
+    "latlng": [
+      52,
+      20
+    ],
+    "area": 312679,
+    "coord": {
+      "north": 54.8391,
+      "south": 49.0064,
+      "west": 14.123,
+      "east": 24.1507
+    },
+    "radius": 472
+  },
+  {
+    "name": {
+      "common": "Puerto Rico"
+    },
+    "cca2": "PR",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "eng": "English",
+      "spa": "Spanish"
+    },
+    "latlng": [
+      18.25,
+      -66.5
+    ],
+    "area": 8870,
+    "coord": {
+      "north": 18.5202,
+      "south": 17.9264,
+      "west": -67.9427,
+      "east": -65.2427
+    },
+    "radius": 147
+  },
+  {
+    "name": {
+      "common": "North Korea"
+    },
+    "cca2": "KP",
+    "region": "Asia",
+    "subregion": "Eastern Asia",
+    "languages": {
+      "kor": "Korean"
+    },
+    "latlng": [
+      40,
+      127
+    ],
+    "area": 120538,
+    "coord": {
+      "north": 43.0061,
+      "south": 37.6733,
+      "west": 124.316,
+      "east": 130.675
+    },
+    "radius": 401
+  },
+  {
+    "name": {
+      "common": "Portugal"
+    },
+    "cca2": "PT",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "languages": {
+      "por": "Portuguese"
+    },
+    "latlng": [
+      39.5,
+      -8
+    ],
+    "area": 92090,
+    "coord": {
+      "north": 42.1543,
+      "south": 36.9613,
+      "west": -9.50053,
+      "east": -6.18916
+    },
+    "radius": 322
+  },
+  {
+    "name": {
+      "common": "Paraguay"
+    },
+    "cca2": "PY",
+    "region": "Americas",
+    "subregion": "South America",
+    "languages": {
+      "grn": "Guaraní",
+      "spa": "Spanish"
+    },
+    "latlng": [
+      -23,
+      -58
+    ],
+    "area": 406752,
+    "coord": {
+      "north": -19.294,
+      "south": -27.6087,
+      "west": -62.6471,
+      "east": -54.2594
+    },
+    "radius": 630
+  },
+  {
+    "name": {
+      "common": "Palestine"
+    },
+    "cca2": "PS",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "languages": {
+      "ara": "Arabic"
+    },
+    "latlng": [
+      31.9,
+      35.2
+    ],
+    "area": 6220,
+    "coord": {
+      "north": 32.5464,
+      "south": 31.2165,
+      "west": 34.2167,
+      "east": 35.5733
+    },
+    "radius": 98
+  },
+  {
+    "name": {
+      "common": "French Polynesia"
+    },
+    "cca2": "PF",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      -15,
+      -140
+    ],
+    "area": 4167,
+    "coord": {
+      "north": -7.90357,
+      "south": -27.6536,
+      "west": -152.877,
+      "east": -134.93
+    },
+    "radius": 1448
+  },
+  {
+    "name": {
+      "common": "Qatar"
+    },
+    "cca2": "QA",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "languages": {
+      "ara": "Arabic"
+    },
+    "latlng": [
+      25.5,
+      51.25
+    ],
+    "area": 11586,
+    "coord": {
+      "north": 26.1547,
+      "south": 24.4829,
+      "west": 50.7572,
+      "east": 51.6366
+    },
+    "radius": 103
+  },
+  {
+    "name": {
+      "common": "Réunion"
+    },
+    "cca2": "RE",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      -21.15,
+      55.5
+    ],
+    "area": 2511,
+    "coord": {},
+    "radius": 29
+  },
+  {
+    "name": {
+      "common": "Romania"
+    },
+    "cca2": "RO",
+    "region": "Europe",
+    "subregion": "Eastern Europe",
+    "languages": {
+      "ron": "Romanian"
+    },
+    "latlng": [
+      46,
+      25
+    ],
+    "area": 238391,
+    "coord": {
+      "north": 48.2669,
+      "south": 43.6273,
+      "west": 20.27,
+      "east": 29.6911
+    },
+    "radius": 446
+  },
+  {
+    "name": {
+      "common": "Russia"
+    },
+    "cca2": "RU",
+    "region": "Europe",
+    "subregion": "Eastern Europe",
+    "languages": {
+      "rus": "Russian"
+    },
+    "latlng": [
+      60,
+      100
+    ],
+    "area": 17098242,
+    "coord": {},
+    "radius": 2333
+  },
+  {
+    "name": {
+      "common": "Rwanda"
+    },
+    "cca2": "RW",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "languages": {
+      "eng": "English",
+      "fra": "French",
+      "kin": "Kinyarwanda"
+    },
+    "latlng": [
+      -2,
+      30
+    ],
+    "area": 26338,
+    "coord": {
+      "north": -1.05348,
+      "south": -2.84068,
+      "west": 28.8568,
+      "east": 30.896
+    },
+    "radius": 151
+  },
+  {
+    "name": {
+      "common": "Saudi Arabia"
+    },
+    "cca2": "SA",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "languages": {
+      "ara": "Arabic"
+    },
+    "latlng": [
+      25,
+      45
+    ],
+    "area": 2149690,
+    "coord": {
+      "north": 32.1583,
+      "south": 15.6143,
+      "west": 34.4957,
+      "east": 55.6666
+    },
+    "radius": 1411
+  },
+  {
+    "name": {
+      "common": "Sudan"
+    },
+    "cca2": "SD",
+    "region": "Africa",
+    "subregion": "Northern Africa",
+    "languages": {
+      "ara": "Arabic",
+      "eng": "English"
+    },
+    "latlng": [
+      15,
+      30
+    ],
+    "area": 1886068,
+    "coord": {
+      "north": 22.2322,
+      "south": 8.68472,
+      "west": 21.8278,
+      "east": 38.6075
+    },
+    "radius": 1171
+  },
+  {
+    "name": {
+      "common": "Senegal"
+    },
+    "cca2": "SN",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      14,
+      -14
+    ],
+    "area": 196722,
+    "coord": {
+      "north": 16.6916,
+      "south": 12.3073,
+      "west": -17.5352,
+      "east": -11.3559
+    },
+    "radius": 413
+  },
+  {
+    "name": {
+      "common": "Singapore"
+    },
+    "cca2": "SG",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "languages": {
+      "zho": "Chinese",
+      "eng": "English",
+      "msa": "Malay",
+      "tam": "Tamil"
+    },
+    "latlng": [
+      1.36666666,
+      103.8
+    ],
+    "area": 710,
+    "coord": {
+      "north": 1.47128,
+      "south": 1.25856,
+      "west": 103.638,
+      "east": 104.007
+    },
+    "radius": 24
+  },
+  {
+    "name": {
+      "common": "South Georgia"
+    },
+    "cca2": "GS",
+    "region": "Antarctic",
+    "subregion": "",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      -54.5,
+      -37
+    ],
+    "area": 3903,
+    "coord": {},
+    "radius": 36
+  },
+  {
+    "name": {
+      "common": "Svalbard and Jan Mayen"
+    },
+    "cca2": "SJ",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "languages": {
+      "nor": "Norwegian"
+    },
+    "latlng": [
+      78,
+      20
+    ],
+    "area": -1,
+    "coord": {
+      "north": 80.7621,
+      "south": 79.2203,
+      "west": 17.6994,
+      "east": 33.2873
+    },
+    "radius": 173
+  },
+  {
+    "name": {
+      "common": "Solomon Islands"
+    },
+    "cca2": "SB",
+    "region": "Oceania",
+    "subregion": "Melanesia",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      -8,
+      159
+    ],
+    "area": 28896,
+    "coord": {
+      "north": -6.58961,
+      "south": -11.8506,
+      "west": 155.509,
+      "east": 166.981
+    },
+    "radius": 694
+  },
+  {
+    "name": {
+      "common": "Sierra Leone"
+    },
+    "cca2": "SL",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      8.5,
+      -11.5
+    ],
+    "area": 71740,
+    "coord": {
+      "north": 10,
+      "south": 6.92961,
+      "west": -13.3076,
+      "east": -10.2842
+    },
+    "radius": 239
+  },
+  {
+    "name": {
+      "common": "El Salvador"
+    },
+    "cca2": "SV",
+    "region": "Americas",
+    "subregion": "Central America",
+    "languages": {
+      "spa": "Spanish"
+    },
+    "latlng": [
+      13.83333333,
+      -88.91666666
+    ],
+    "area": 21041,
+    "coord": {
+      "north": 14.4451,
+      "south": 13.1487,
+      "west": -90.1287,
+      "east": -87.6922
+    },
+    "radius": 151
+  },
+  {
+    "name": {
+      "common": "San Marino"
+    },
+    "cca2": "SM",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "languages": {
+      "ita": "Italian"
+    },
+    "latlng": [
+      43.76666666,
+      12.41666666
+    ],
+    "area": 61,
+    "coord": {
+      "north": 43.9922,
+      "south": 43.8937,
+      "west": 12.4035,
+      "east": 12.5165
+    },
+    "radius": 8
+  },
+  {
+    "name": {
+      "common": "Somalia"
+    },
+    "cca2": "SO",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "languages": {
+      "ara": "Arabic",
+      "som": "Somali"
+    },
+    "latlng": [
+      10,
+      49
+    ],
+    "area": 637657,
+    "coord": {
+      "north": 11.9792,
+      "south": -1.67487,
+      "west": 40.9866,
+      "east": 51.4126
+    },
+    "radius": 953
+  },
+  {
+    "name": {
+      "common": "Saint Pierre and Miquelon"
+    },
+    "cca2": "PM",
+    "region": "Americas",
+    "subregion": "North America",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      46.83333333,
+      -56.33333333
+    ],
+    "area": 242,
+    "coord": {
+      "north": 47.1463,
+      "south": 46.786,
+      "west": -56.4207,
+      "east": -56.253
+    },
+    "radius": 22
+  },
+  {
+    "name": {
+      "common": "Serbia"
+    },
+    "cca2": "RS",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "languages": {
+      "srp": "Serbian"
+    },
+    "latlng": [
+      44,
+      21
+    ],
+    "area": 88361,
+    "coord": {},
+    "radius": 168
+  },
+  {
+    "name": {
+      "common": "South Sudan"
+    },
+    "cca2": "SS",
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      7,
+      30
+    ],
+    "area": 619745,
+    "coord": {
+      "north": 12.2191,
+      "south": 3.49339,
+      "west": 24.1403,
+      "east": 35.9406
+    },
+    "radius": 811
+  },
+  {
+    "name": {
+      "common": "São Tomé and Príncipe"
+    },
+    "cca2": "ST",
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "languages": {
+      "por": "Portuguese"
+    },
+    "latlng": [
+      1,
+      7
+    ],
+    "area": 964,
+    "coord": {},
+    "radius": 18
+  },
+  {
+    "name": {
+      "common": "Suriname"
+    },
+    "cca2": "SR",
+    "region": "Americas",
+    "subregion": "South America",
+    "languages": {
+      "nld": "Dutch"
+    },
+    "latlng": [
+      4,
+      -56
+    ],
+    "area": 163820,
+    "coord": {
+      "north": 6.00455,
+      "south": 1.83115,
+      "west": -58.0866,
+      "east": -53.9775
+    },
+    "radius": 326
+  },
+  {
+    "name": {
+      "common": "Slovakia"
+    },
+    "cca2": "SK",
+    "region": "Europe",
+    "subregion": "Central Europe",
+    "languages": {
+      "slk": "Slovak"
+    },
+    "latlng": [
+      48.66666666,
+      19.5
+    ],
+    "area": 49037,
+    "coord": {
+      "north": 49.6032,
+      "south": 47.7281,
+      "west": 16.8477,
+      "east": 22.5704
+    },
+    "radius": 235
+  },
+  {
+    "name": {
+      "common": "Slovenia"
+    },
+    "cca2": "SI",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "languages": {
+      "slv": "Slovene"
+    },
+    "latlng": [
+      46.11666666,
+      14.81666666
+    ],
+    "area": 20273,
+    "coord": {
+      "north": 46.8766,
+      "south": 45.4218,
+      "west": 13.3753,
+      "east": 16.6106
+    },
+    "radius": 149
+  },
+  {
+    "name": {
+      "common": "Sweden"
+    },
+    "cca2": "SE",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "languages": {
+      "swe": "Swedish"
+    },
+    "latlng": [
+      62,
+      15
+    ],
+    "area": 450295,
+    "coord": {
+      "north": 69.0625,
+      "south": 55.3371,
+      "west": 11.1187,
+      "east": 24.1563
+    },
+    "radius": 831
+  },
+  {
+    "name": {
+      "common": "Eswatini"
+    },
+    "cca2": "SZ",
+    "region": "Africa",
+    "subregion": "Southern Africa",
+    "languages": {
+      "eng": "English",
+      "ssw": "Swazi"
+    },
+    "latlng": [
+      -26.5,
+      31.5
+    ],
+    "area": 17364,
+    "coord": {},
+    "radius": 75
+  },
+  {
+    "name": {
+      "common": "Sint Maarten"
+    },
+    "cca2": "SX",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "eng": "English",
+      "fra": "French",
+      "nld": "Dutch"
+    },
+    "latlng": [
+      18.033333,
+      -63.05
+    ],
+    "area": 34,
+    "coord": {},
+    "radius": 4
+  },
+  {
+    "name": {
+      "common": "Seychelles"
+    },
+    "cca2": "SC",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "languages": {
+      "crs": "Seychellois Creole",
+      "eng": "English",
+      "fra": "French"
+    },
+    "latlng": [
+      -4.58333333,
+      55.66666666
+    ],
+    "area": 452,
+    "coord": {
+      "north": -4.28372,
+      "south": -9.75387,
+      "west": 46.2048,
+      "east": 56.2977
+    },
+    "radius": 635
+  },
+  {
+    "name": {
+      "common": "Syria"
+    },
+    "cca2": "SY",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "languages": {
+      "ara": "Arabic"
+    },
+    "latlng": [
+      35,
+      38
+    ],
+    "area": 185180,
+    "coord": {
+      "north": 37.3191,
+      "south": 32.3107,
+      "west": 35.7272,
+      "east": 42.385
+    },
+    "radius": 412
+  },
+  {
+    "name": {
+      "common": "Turks and Caicos Islands"
+    },
+    "cca2": "TC",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      21.75,
+      -71.58333333
+    ],
+    "area": 948,
+    "coord": {
+      "north": 21.9619,
+      "south": 21.4226,
+      "west": -72.4839,
+      "east": -71.1236
+    },
+    "radius": 77
+  },
+  {
+    "name": {
+      "common": "Chad"
+    },
+    "cca2": "TD",
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "languages": {
+      "ara": "Arabic",
+      "fra": "French"
+    },
+    "latlng": [
+      15,
+      19
+    ],
+    "area": 1284000,
+    "coord": {
+      "north": 23.4504,
+      "south": 7.44107,
+      "west": 13.4735,
+      "east": 24.0027
+    },
+    "radius": 1053
+  },
+  {
+    "name": {
+      "common": "Togo"
+    },
+    "cca2": "TG",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      8,
+      1.16666666
+    ],
+    "area": 56785,
+    "coord": {
+      "north": 11.139,
+      "south": 6.10442,
+      "west": -0.147324,
+      "east": 1.80669
+    },
+    "radius": 300
+  },
+  {
+    "name": {
+      "common": "Thailand"
+    },
+    "cca2": "TH",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "languages": {
+      "tha": "Thai"
+    },
+    "latlng": [
+      15,
+      100
+    ],
+    "area": 513120,
+    "coord": {
+      "north": 20.4632,
+      "south": 5.61,
+      "west": 97.3456,
+      "east": 105.639
+    },
+    "radius": 940
+  },
+  {
+    "name": {
+      "common": "Tajikistan"
+    },
+    "cca2": "TJ",
+    "region": "Asia",
+    "subregion": "Central Asia",
+    "languages": {
+      "rus": "Russian",
+      "tgk": "Tajik"
+    },
+    "latlng": [
+      39,
+      71
+    ],
+    "area": 143100,
+    "coord": {
+      "north": 41.0423,
+      "south": 36.6741,
+      "west": 67.3871,
+      "east": 75.1372
+    },
+    "radius": 414
+  },
+  {
+    "name": {
+      "common": "Tokelau"
+    },
+    "cca2": "TK",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "languages": {
+      "eng": "English",
+      "smo": "Samoan",
+      "tkl": "Tokelauan"
+    },
+    "latlng": [
+      -9,
+      -172
+    ],
+    "area": 12,
+    "coord": {
+      "north": -8.55361,
+      "south": -9.38111,
+      "west": -172.5,
+      "east": -171.211
+    },
+    "radius": 85
+  },
+  {
+    "name": {
+      "common": "Turkmenistan"
+    },
+    "cca2": "TM",
+    "region": "Asia",
+    "subregion": "Central Asia",
+    "languages": {
+      "rus": "Russian",
+      "tuk": "Turkmen"
+    },
+    "latlng": [
+      40,
+      60
+    ],
+    "area": 488100,
+    "coord": {
+      "north": 42.7956,
+      "south": 35.1411,
+      "west": 52.4414,
+      "east": 66.6843
+    },
+    "radius": 747
+  },
+  {
+    "name": {
+      "common": "Timor-Leste"
+    },
+    "cca2": "TL",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "languages": {
+      "por": "Portuguese",
+      "tet": "Tetum"
+    },
+    "latlng": [
+      -8.83333333,
+      125.91666666
+    ],
+    "area": 14874,
+    "coord": {},
+    "radius": 69
+  },
+  {
+    "name": {
+      "common": "Tonga"
+    },
+    "cca2": "TO",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "languages": {
+      "eng": "English",
+      "ton": "Tongan"
+    },
+    "latlng": [
+      -20,
+      -175
+    ],
+    "area": 747,
+    "coord": {
+      "north": -15.563,
+      "south": -21.4551,
+      "west": -175.682,
+      "east": -173.908
+    },
+    "radius": 341
+  },
+  {
+    "name": {
+      "common": "Trinidad and Tobago"
+    },
+    "cca2": "TT",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      11,
+      -61
+    ],
+    "area": 5130,
+    "coord": {
+      "north": 11.3383,
+      "south": 10.0361,
+      "west": -61.9238,
+      "east": -60.5179
+    },
+    "radius": 106
+  },
+  {
+    "name": {
+      "common": "Tunisia"
+    },
+    "cca2": "TN",
+    "region": "Africa",
+    "subregion": "Northern Africa",
+    "languages": {
+      "ara": "Arabic"
+    },
+    "latlng": [
+      34,
+      9
+    ],
+    "area": 163610,
+    "coord": {
+      "north": 37.5439,
+      "south": 30.2404,
+      "west": 7.52483,
+      "east": 11.5983
+    },
+    "radius": 448
+  },
+  {
+    "name": {
+      "common": "Turkey"
+    },
+    "cca2": "TR",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "languages": {
+      "tur": "Turkish"
+    },
+    "latlng": [
+      39,
+      35
+    ],
+    "area": 783562,
+    "coord": {
+      "north": 42.1076,
+      "south": 35.8154,
+      "west": 25.6685,
+      "east": 44.835
+    },
+    "radius": 897
+  },
+  {
+    "name": {
+      "common": "Tuvalu"
+    },
+    "cca2": "TV",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "languages": {
+      "eng": "English",
+      "tvl": "Tuvaluan"
+    },
+    "latlng": [
+      -8,
+      178
+    ],
+    "area": 26,
+    "coord": {
+      "north": -5.64197,
+      "south": -10.8012,
+      "west": 176.065,
+      "east": 179.863
+    },
+    "radius": 355
+  },
+  {
+    "name": {
+      "common": "Taiwan"
+    },
+    "cca2": "TW",
+    "region": "Asia",
+    "subregion": "Eastern Asia",
+    "languages": {
+      "zho": "Chinese"
+    },
+    "latlng": [
+      23.5,
+      121
+    ],
+    "area": 36193,
+    "coord": {},
+    "radius": 108
+  },
+  {
+    "name": {
+      "common": "Tanzania"
+    },
+    "cca2": "TZ",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "languages": {
+      "eng": "English",
+      "swa": "Swahili"
+    },
+    "latlng": [
+      -6,
+      35
+    ],
+    "area": 945087,
+    "coord": {
+      "north": -0.990736,
+      "south": -11.7457,
+      "west": 29.3272,
+      "east": 40.4432
+    },
+    "radius": 857
+  },
+  {
+    "name": {
+      "common": "Uganda"
+    },
+    "cca2": "UG",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "languages": {
+      "eng": "English",
+      "swa": "Swahili"
+    },
+    "latlng": [
+      1,
+      32
+    ],
+    "area": 241550,
+    "coord": {
+      "north": 4.21443,
+      "south": -1.48405,
+      "west": 29.5733,
+      "east": 35.036
+    },
+    "radius": 439
+  },
+  {
+    "name": {
+      "common": "Ukraine"
+    },
+    "cca2": "UA",
+    "region": "Europe",
+    "subregion": "Eastern Europe",
+    "languages": {
+      "ukr": "Ukrainian"
+    },
+    "latlng": [
+      49,
+      32
+    ],
+    "area": 603500,
+    "coord": {
+      "north": 52.3694,
+      "south": 44.3904,
+      "west": 22.1289,
+      "east": 40.2074
+    },
+    "radius": 799
+  },
+  {
+    "name": {
+      "common": "United States Minor Outlying Islands"
+    },
+    "cca2": "UM",
+    "region": "Americas",
+    "subregion": "North America",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      19.3,
+      166.633333
+    ],
+    "area": 34.2,
+    "coord": {
+      "north": null,
+      "south": null,
+      "west": null,
+      "east": null
+    },
+    "radius": 4
+  },
+  {
+    "name": {
+      "common": "Uruguay"
+    },
+    "cca2": "UY",
+    "region": "Americas",
+    "subregion": "South America",
+    "languages": {
+      "spa": "Spanish"
+    },
+    "latlng": [
+      -33,
+      -56
+    ],
+    "area": 181034,
+    "coord": {
+      "north": -30.0822,
+      "south": -34.9808,
+      "west": -58.4427,
+      "east": -53.0739
+    },
+    "radius": 371
+  },
+  {
+    "name": {
+      "common": "United States"
+    },
+    "cca2": "US",
+    "region": "Americas",
+    "subregion": "North America",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      38,
+      -97
+    ],
+    "area": 9372610,
+    "coord": {
+      "north": 49.3886,
+      "south": 24.5442,
+      "west": -124.733,
+      "east": -66.9548
+    },
+    "radius": 2829
+  },
+  {
+    "name": {
+      "common": "Uzbekistan"
+    },
+    "cca2": "UZ",
+    "region": "Asia",
+    "subregion": "Central Asia",
+    "languages": {
+      "rus": "Russian",
+      "uzb": "Uzbek"
+    },
+    "latlng": [
+      41,
+      64
+    ],
+    "area": 447400,
+    "coord": {
+      "north": 45.575,
+      "south": 37.1844,
+      "west": 55.9966,
+      "east": 73.1323
+    },
+    "radius": 851
+  },
+  {
+    "name": {
+      "common": "Vatican City"
+    },
+    "cca2": "VA",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "languages": {
+      "ita": "Italian",
+      "lat": "Latin"
+    },
+    "latlng": [
+      41.9,
+      12.45
+    ],
+    "area": 0.44,
+    "coord": {},
+    "radius": 1
+  },
+  {
+    "name": {
+      "common": "Saint Vincent and the Grenadines"
+    },
+    "cca2": "VC",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      13.25,
+      -61.2
+    ],
+    "area": 389,
+    "coord": {
+      "north": 13.3778,
+      "south": 12.584,
+      "west": -61.4609,
+      "east": -61.1139
+    },
+    "radius": 48
+  },
+  {
+    "name": {
+      "common": "Venezuela"
+    },
+    "cca2": "VE",
+    "region": "Americas",
+    "subregion": "South America",
+    "languages": {
+      "spa": "Spanish"
+    },
+    "latlng": [
+      8,
+      -66
+    ],
+    "area": 916445,
+    "coord": {
+      "north": 12.2019,
+      "south": 0.626311,
+      "west": -73.3541,
+      "east": -59.8038
+    },
+    "radius": 987
+  },
+  {
+    "name": {
+      "common": "British Virgin Islands"
+    },
+    "cca2": "VG",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      18.431383,
+      -64.62305
+    ],
+    "area": 151,
+    "coord": {},
+    "radius": 7
+  },
+  {
+    "name": {
+      "common": "United States Virgin Islands"
+    },
+    "cca2": "VI",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      18.35,
+      -64.933333
+    ],
+    "area": 347,
+    "coord": {},
+    "radius": 11
+  },
+  {
+    "name": {
+      "common": "Vietnam"
+    },
+    "cca2": "VN",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "languages": {
+      "vie": "Vietnamese"
+    },
+    "latlng": [
+      16.16666666,
+      107.83333333
+    ],
+    "area": 331212,
+    "coord": {
+      "north": 23.3888,
+      "south": 8.55961,
+      "west": 102.148,
+      "east": 109.465
+    },
+    "radius": 912
+  },
+  {
+    "name": {
+      "common": "Vanuatu"
+    },
+    "cca2": "VU",
+    "region": "Oceania",
+    "subregion": "Melanesia",
+    "languages": {
+      "bis": "Bislama",
+      "eng": "English",
+      "fra": "French"
+    },
+    "latlng": [
+      -16,
+      167
+    ],
+    "area": 12189,
+    "coord": {
+      "north": -13.0734,
+      "south": -20.2489,
+      "west": 166.525,
+      "east": 169.905
+    },
+    "radius": 438
+  },
+  {
+    "name": {
+      "common": "Wallis and Futuna"
+    },
+    "cca2": "WF",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "languages": {
+      "fra": "French"
+    },
+    "latlng": [
+      -13.3,
+      -176.2
+    ],
+    "area": 142,
+    "coord": {
+      "north": -13.2168,
+      "south": -14.3146,
+      "west": -178.185,
+      "east": -176.162
+    },
+    "radius": 126
+  },
+  {
+    "name": {
+      "common": "Samoa"
+    },
+    "cca2": "WS",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "languages": {
+      "eng": "English",
+      "smo": "Samoan"
+    },
+    "latlng": [
+      -13.58333333,
+      -172.33333333
+    ],
+    "area": 2842,
+    "coord": {
+      "north": -13.4322,
+      "south": -14.0409,
+      "west": -172.799,
+      "east": -171.416
+    },
+    "radius": 83
+  },
+  {
+    "name": {
+      "common": "Yemen"
+    },
+    "cca2": "YE",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "languages": {
+      "ara": "Arabic"
+    },
+    "latlng": [
+      15,
+      48
+    ],
+    "area": 527968,
+    "coord": {
+      "north": 19,
+      "south": 12.1111,
+      "west": 42.5325,
+      "east": 54.5305
+    },
+    "radius": 748
+  },
+  {
+    "name": {
+      "common": "South Africa"
+    },
+    "cca2": "ZA",
+    "region": "Africa",
+    "subregion": "Southern Africa",
+    "languages": {
+      "afr": "Afrikaans",
+      "eng": "English",
+      "nbl": "Southern Ndebele",
+      "nso": "Northern Sotho",
+      "sot": "Southern Sotho",
+      "ssw": "Swazi",
+      "tsn": "Tswana",
+      "tso": "Tsonga",
+      "ven": "Venda",
+      "xho": "Xhosa",
+      "zul": "Zulu"
+    },
+    "latlng": [
+      -29,
+      24
+    ],
+    "area": 1221037,
+    "coord": {
+      "north": -22.1266,
+      "south": -34.8398,
+      "west": 16.458,
+      "east": 32.896
+    },
+    "radius": 1068
+  },
+  {
+    "name": {
+      "common": "Zambia"
+    },
+    "cca2": "ZM",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [
+      -15,
+      30
+    ],
+    "area": 752612,
+    "coord": {
+      "north": -8.22436,
+      "south": -18.0795,
+      "west": 21.9994,
+      "east": 33.7057
+    },
+    "radius": 838
+  },
+  {
+    "name": {
+      "common": "Zimbabwe"
+    },
+    "cca2": "ZW",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "languages": {
+      "bwg": "Chibarwe",
+      "eng": "English",
+      "kck": "Kalanga",
+      "khi": "Khoisan",
+      "ndc": "Ndau",
+      "nde": "Northern Ndebele",
+      "nya": "Chewa",
+      "sna": "Shona",
+      "sot": "Sotho",
+      "toi": "Tonga",
+      "tsn": "Tswana",
+      "tso": "Tsonga",
+      "ven": "Venda",
+      "xho": "Xhosa",
+      "zib": "Zimbabwean Sign Language"
+    },
+    "latlng": [
+      -20,
+      30
+    ],
+    "area": 390757,
+    "coord": {
+      "north": -15.6088,
+      "south": -22.4177,
+      "west": 25.237,
+      "east": 33.0563
+    },
+    "radius": 559
+  }
+]

@@ -3,10 +3,34 @@
     "type": "object",
     "schemaVersion": 1,
     "properties": {
-        "searchTerms": {
+        "trendKey": {
+            "title": "Trend Key",
+            "type": "string",
+            "description": "Trend key",
+            "editor": "textfield"
+        },
+        "languageCode": {
+            "title": "Language code",
+            "type": "string",
+            "description": "Just enter the 2-char language code (i.e. en)",
+            "editor": "textfield"
+        },
+        "countryCode": {
+            "title": "Country code",
+            "type": "string",
+            "description": "Just enter the 2-char country code (i.e. nz)",
+            "editor": "textfield"
+        },
+        "ignoreCountryCode": {
+            "title": "Ignore country code",
+            "type": "boolean",
+            "description": "You can decide to not use country code when running search on twitter (a global search will occour instead)",
+            "default": false
+        },
+        "hashtag": {
             "title": "Search terms",
-            "type": "array",
-            "editor": "stringList",
+            "type": "string",
+            "editor": "textfield",
             "description": "Search for an specific terms and extract tweets for that term."
         },
         "searchMode": {
@@ -159,7 +183,7 @@
             "type": "integer",
             "editor": "number"
         },
-        "debugLog": {
+        "debug": {
             "title": "Debug log",
             "description": "Enable debug log",
             "default": false,
@@ -178,6 +202,10 @@
         }
     },
     "required": [
+        "countryCode",
+        "languageCode",
+        "trendKey",
+        "hashtag",
         "proxyConfig"
     ]
 }

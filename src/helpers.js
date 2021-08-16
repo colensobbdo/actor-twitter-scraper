@@ -4,6 +4,8 @@ const Puppeteer = require('puppeteer'); // eslint-disable-line no-unused-vars
 const moment = require('moment');
 const _ = require('lodash');
 const { LABELS } = require('./constants');
+const countries = require("../data/countries.json");
+const { SUPPORTED_LANGUAGES } = require('./constants');
 
 const { log, sleep } = Apify.utils;
 
@@ -111,27 +113,154 @@ const createAddTopic = (requestQueue) => async (topic) => {
     });
 };
 
+
+/**
+ * To start a search hashtag
+ * we can pass country or language
+ * to restrict the search results
+ *
+ * @param {String} trendKey
+ * @param {String} hashtag
+ * @param {String|null} languageCode
+ * @param {String|null} countryCode
+ * @param {Object|null} countryData
+ */
+ function getStartSearchUrl(
+    trendKey,
+    hashtag,
+    languageCode,
+    countryCode,
+    countryData
+) {
+    const url = new URL("https://twitter.com/search");
+    const params = new URLSearchParams();
+
+    params.append("src", "typed_query");
+
+    // get recent tweets
+    params.append("f", "live");
+    // omit this for popular one
+
+    // we can filter tweet by location
+    // https://developer.twitter.com/en/docs/tutorials/filtering-tweets-by-location
+    // https://advos.io/social-media-marketing/how-to-search-tweets-by-location-twittertips/
+    if (countryData) {
+        const lat = _.get(countryData, ["latlng", 0]);
+        const lon = _.get(countryData, ["latlng", 1]);
+        const radius = _.get(countryData, "radius");
+        log.debug("country data", { lat, lon, radius });
+
+        // if any of those is missing
+        // just return a normal search
+        if (lat && lon && radius) {
+            params.append("q", `geocode:${lat},${lon},${radius}km,${hashtag}`);
+
+            countryCode = _.toLower(_.get(countryData, "cca2"));
+        }
+    }
+
+    // search keyword/hashtag
+    if (!params.has("q")) {
+        params.append("q", hashtag);
+    }
+
+    // check if the language is supported by Perspective API
+    languageCode = _.toLower(languageCode);
+
+    // try to decode the 3-char encoding to 2-char one
+    if (_(SUPPORTED_LANGUAGES).values().indexOf(languageCode) === -1) {
+        languageCode = _.get(SUPPORTED_LANGUAGES, languageCode);
+    }
+
+    // defaults to en
+    if (_.isEmpty(languageCode)) {
+        languageCode = "en";
+    }
+
+    // load tweets in a particular language
+    if (!_.isEmpty(languageCode)) {
+        params.append("lang", languageCode);
+    }
+
+    // inject those query string parameters
+    url.search = params.toString();
+
+    log.info(`twitter search start URL: ${url.href}`);
+    return {
+        url: url.href,
+        userData: {
+            label: LABELS.SEARCH,
+            search: url,
+            trendKey,
+            hashtag,
+            countryCode,
+            languageCode,
+            // crawler type
+            crawler: "twitter",
+        },
+    };
+}
+
 /**
  * @param {Apify.RequestQueue} requestQueue
  */
-const createAddSearch = (requestQueue) => async (search, mode) => {
+const createAddSearch = (requestQueue, input) => async (search, mode) => {
     if (!search) {
         return;
     }
 
     const isUrl = `${search}`.includes('twitter.com');
 
-    return requestQueue.addRequest({
-        url: isUrl
-            ? search
-            : `https://twitter.com/search?q=${encodeURIComponent(search)}&src=typed_query${mode ? `&f=${mode}` : ''}`,
-        userData: {
-            label: LABELS.SEARCH,
-            search: !isUrl
-                ? search
-                : new URL(search, 'https://twitter.com').searchParams.get('q'),
-        },
-    });
+    const { trendKey, searchTerms, countryCode, languageCode, ignoreCountryCode } = input;
+
+    // if countryCode is specified
+    // lookup that countryCode in our table
+    const countryData = _.find(countries, { cca2: _.toUpper(countryCode) });
+    log.debug("country data found", { countryCode, countryData });
+
+    // if no country is found
+    // search just by hashtag and language
+    if (!countryData || ignoreCountryCode) {
+        await requestQueue.addRequest(
+            getStartSearchUrl(trendKey, searchTerms[0], languageCode, countryCode, null)
+        );
+    } else {
+        // otherwise search for that area
+        // for every language that this country has
+
+        const languages = _(_.get(countryData, "languages")).keys().value();
+        log.debug("languages loaded for country", { countryCode, languages });
+
+        // if no matching language skip this parameter
+        if (_.isEmpty(languages)) {
+            await requestQueue.addRequest(
+                getStartSearchUrl(trendKey, searchTerms[0], null, countryCode, countryData)
+            );
+        } else {
+            // add a start url for each language
+
+            const urls = _(languages)
+                .map((language) => getStartSearchUrl(
+                    trendKey,
+                    searchTerms[0],
+                    language,
+                    countryCode,
+                    countryData,
+                ))
+                .uniqBy("url")
+                .value();
+
+            log.debug("search urls by languages loaded for country", {
+                countryCode,
+                languages,
+                urls,
+            });
+
+            await Promise.each(urls, (url) => requestQueue.addRequest(
+                url
+            ));
+        }
+    }
 };
 
 /**
@@ -486,7 +615,14 @@ const extendFunction = async ({
             for (const out of (Array.isArray(result) ? result : [result])) {
                 if (output) {
                     if (out !== null) {
-                        await output(out, { ...merged, data, item });
+                        await output({
+                            ...out,
+                            trendKey: input.trendKey,
+                            countryCode: input.countryCode,
+                            languageCode: input.languageCode,
+                            crawler: 'twitter',
+                            hashtag: input.searchTerms[0],
+                        }, { ...merged, data, item });
                     }
                     // skip output
                 }

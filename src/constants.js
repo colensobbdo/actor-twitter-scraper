@@ -39,9 +39,23 @@ const USER_OMIT_FIELDS = [
     'ext',
 ];
 
+// https://support.perspectiveapi.com/s/article/languages
+// https://www.loc.gov/standards/iso639-2/php/code_list.php
+const SUPPORTED_LANGUAGES = {
+    eng: "en", // English (en)
+    spa: "es", // Spanish (es)
+    fre: "fr", // French (fr)
+    fra: "fr", // French (fr)
+    ger: "de", // German (de)
+    deu: "de", // German (de)
+    por: "pt", // Portuguese (pt)
+    ita: "it", // Italian (it)
+};
+
 module.exports = {
     LABELS,
     USER_OMIT_FIELDS,
     SEARCH_MODE,
     TWEET_MODE,
+    SUPPORTED_LANGUAGES,
 };
