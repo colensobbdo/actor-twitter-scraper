@@ -6,8 +6,22 @@
         "searchTerms": {
             "title": "Search terms",
             "type": "array",
+            "prefill": ["Apify"],
             "editor": "stringList",
             "description": "Search for an specific terms and extract tweets for that term."
+        },
+        "handle": {
+            "title": "Usernames",
+            "type": "array",
+            "description": "The twitter handles of the profiles you want to scrape. Shortcut instead of inputting https://twitter.com/username urls",
+            "editor": "stringList"
+        },
+        "startUrls": {
+            "title": "Start URLs",
+            "description": "If you have a file or a url list of twitter urls, you provide them here",
+            "default": [],
+            "type": "array",
+            "editor": "requestListSources"
         },
         "searchMode": {
             "title": "Search mode",
@@ -30,42 +44,6 @@
                 "Videos"
             ]
         },
-        "startUrls": {
-            "title": "Start URLs",
-            "description": "If you have a file or a url list of twitter urls, you provide them here",
-            "default": [],
-            "type": "array",
-            "editor": "requestListSources"
-        },
-        "toDate": {
-            "title": "Tweets newer than",
-            "description": "Will get tweets that are newer than this date. Can be used in conjunction with 'Tweets older than' to create specific date slices. Can use specific dates, such as YYYY-MM-DD or relative ones, like '1 month' or '2 days'",
-            "pattern": "(\\d{4}-\\d{2}-\\d{2}|(\\d+)\\s?\\S+)",
-            "type": "string",
-            "editor": "textfield"
-        },
-        "fromDate": {
-            "title": "Tweets older than",
-            "description": "Will start getting tweets from this date and older. Can be used in conjunction 'Tweets newer than'. Can use specific dates, such as YYYY-MM-DD or relative ones, like '1 month' or '2 days'",
-            "type": "string",
-            "pattern": "(\\d{4}-\\d{2}-\\d{2}|(\\d+)\\s?\\S+)",
-            "editor": "textfield"
-        },
-        "tweetsDesired": {
-            "title": "Maximum number of tweets",
-            "type": "integer",
-            "description": "Maximum number of tweets to retrieve. Twitter have a default limit of around 3200 tweets. Check the README for workarounds.",
-            "maximum": 3300,
-            "prefill": 100,
-            "default": 100
-        },
-        "addUserInfo": {
-            "title": "Add user information",
-            "description": "Appends an object to each tweet containing the user information. You can decrease the size of your dataset by turning this off.",
-            "default": true,
-            "type": "boolean",
-            "editor": "checkbox"
-        },
         "mode": {
             "title": "Tweet types",
             "description": "Select the tweet types to get. Only tweets or tweets and replies for the selected handle when visiting profiles.",
@@ -82,13 +60,36 @@
                 "replies"
             ]
         },
-        "handle": {
-            "title": "List of usernames to scrape",
-            "type": "array",
-            "description": "The twitter handles of the profiles you want to scrape. Shortcut instead of inputting https://twitter.com/username urls",
-            "default": [],
-            "prefill": ["elonmusk", "patrickc"],
-            "editor": "stringList"
+        "tweetsDesired": {
+            "title": "Maximum number of tweets",
+            "type": "integer",
+            "description": "Maximum number of tweets to retrieve. Twitter have a default limit of around 3200 tweets. Check the README for workarounds.",
+            "maximum": 3300,
+            "prefill": 100,
+            "default": 100
+        },
+        "addUserInfo": {
+            "title": "Add user information",
+            "description": "Appends an object to each tweet containing the user information. You can decrease the size of your dataset by turning this off.",
+            "default": true,
+            "type": "boolean",
+            "editor": "checkbox"
+        },
+        "toDate": {
+            "title": "Tweets newer than",
+            "description": "Will get tweets that are newer than this date. Can be used in conjunction with 'Tweets older than' to create specific date slices. Can use specific dates, such as YYYY-MM-DD or relative ones, like '1 month' or '2 days'",
+            "pattern": "(\\d{4}-\\d{2}-\\d{2}|(\\d+)\\s?\\S+)",
+            "type": "string",
+            "editor": "textfield",
+            "sectionCaption": "Time frame",
+            "sectionDescription": "You can choose a specific time window you want to scrape the tweets from."
+        },
+        "fromDate": {
+            "title": "Tweets older than",
+            "description": "Will start getting tweets from this date and older. Can be used in conjunction 'Tweets newer than'. Can use specific dates, such as YYYY-MM-DD or relative ones, like '1 month' or '2 days'",
+            "type": "string",
+            "pattern": "(\\d{4}-\\d{2}-\\d{2}|(\\d+)\\s?\\S+)",
+            "editor": "textfield"
         },
         "proxyConfig": {
             "title": "Proxy configuration",
@@ -100,7 +101,10 @@
             "default": {
                 "useApifyProxy": true
             },
-            "editor": "proxy"
+            "editor": "proxy",
+            "sectionCaption": "Proxy configuration",
+            "sectionDescription": "Choose what proxies you are going to use."
+
         },
         "extendOutputFunction": {
             "title": "Extend Output Function",
@@ -173,7 +177,7 @@
             "prefill": [],
             "description": "Your login cookies will be used to bypass the login wall. See <a href='https://apify.com/vdrmota/twitter-scraper'>README</a> for instructions.",
             "editor": "json",
-            "sectionCaption": "Login information",
+            "sectionCaption": "Login (optional)",
             "sectionDescription": "By providing login information you can have more access to data."
         }
     },
