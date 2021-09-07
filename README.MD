@@ -1,4 +1,4 @@
-# Twitter Scraper
+## Features
 
 Twitter Scraper crawls specified Twitter profiles and URLs, and extracts:
 
@@ -6,8 +6,6 @@ Twitter Scraper crawls specified Twitter profiles and URLs, and extracts:
 - List of tweets, retweets, and replies from profiles
 - Statistics for each tweet: favorites, replies, and retweets for each tweet
 - Search hashtags, get top, latest, people, picture, or video tweets
-
-## Features
 
 Our free Twitter Scraper enables you to extract large amounts of data from Twitter. It lets you do much more than the Twitter API, because it doesn't have rate limits and you don't even need to have a Twitter account, a registered app, or Twitter API key.
 
