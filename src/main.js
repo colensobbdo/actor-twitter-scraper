@@ -348,6 +348,10 @@ Apify.main(async () => {
                         payload = data.twitter_objects;
                     }
 
+                    if (url.includes('/TopicLandingPage') && data?.data?.topic_by_rest_id?.topic_page?.body?.timeline?.instructions?.length) {
+                        payload = getTimelineInstructions(data.data.topic_by_rest_id.topic_page.body.timeline.instructions);
+                    }
+
                     if (payload) {
                         if (!isUserSearch) {
                             await extendOutputFunction(payload, {
