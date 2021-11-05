@@ -211,7 +211,6 @@ Apify.main(async () => {
         proxyConfiguration: proxyConfig,
         maxConcurrency: 1,
         launchContext: {
-            stealth: input.stealth || false,
             launchOptions: {
                 useIncognitoPages: true,
             },
