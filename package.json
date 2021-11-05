@@ -1,6 +1,6 @@
 {
     "name": "twitter-scraper",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "description": "",
     "main": "main.js",
     "scripts": {
@@ -10,9 +10,10 @@
     "author": "",
     "license": "Apache-2.0",
     "dependencies": {
-        "apify": "^2.0.1",
+        "apify": "^2.1.0",
         "lodash": "^4.17.21",
         "moment": "^2.29.1",
+        "delayable-idle-abort-promise": "^1.0.0",
         "puppeteer": "*"
     },
     "devDependencies": {

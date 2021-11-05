@@ -219,7 +219,7 @@ Apify.main(async () => {
         browserPoolOptions: {
             maxOpenPagesPerBrowser: 1, // unfocused tabs stops responding
             postPageCloseHooks: [async (pageId, browserController) => {
-                if (!browserController?.launchContext?.session?.isUsable()) {
+                if (browserController?.launchContext?.session?.isUsable() === false) {
                     await browserController.close();
                 }
             }],
@@ -238,6 +238,9 @@ Apify.main(async () => {
         useSessionPool: true,
         maxRequestRetries,
         persistCookiesPerSession: false,
+        postNavigationHooks: [async ({ page }) => {
+            await page.bringToFront();
+        }],
         preNavigationHooks: [async ({ page }, gotoOptions) => {
             gotoOptions.waitUntil = 'domcontentloaded';
             gotoOptions.timeout = 30000;
@@ -297,6 +300,11 @@ Apify.main(async () => {
                         if (!url.includes('/friends/') && !url.includes('list.json')) {
                             signal.reject(new Error(`Status ${res.status()}`));
                         }
+                        return;
+                    }
+
+                    if (!url.includes('twitter.com')) {
+                        log.debug('Non twitter.com url', { url, contentType });
                         return;
                     }
 

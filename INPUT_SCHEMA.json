@@ -136,13 +136,6 @@
             "editor": "number",
             "type": "integer"
         },
-        "stealth": {
-            "title": "Stealth",
-            "description": "Enabling stealth allows to decrease the chance of your scrape being detected as an automated process. Recommended to enable if you're providing your login cookies.",
-            "default": false,
-            "type": "boolean",
-            "editor": "checkbox"
-        },
         "maxRequestRetries": {
             "title": "Max request retries",
             "description": "Set the max request retries",

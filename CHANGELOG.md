@@ -1,3 +1,8 @@
+## 2021-11-03
+
+Fix:
+- Search results
+
 ## 2021-08-09
 
 Features:
