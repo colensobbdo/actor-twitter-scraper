@@ -9,7 +9,7 @@ Twitter Scraper crawls specified Twitter profiles and URLs, and extracts:
 
 Our free Twitter Scraper enables you to extract large amounts of data from Twitter. It lets you do much more than the Twitter API, because it doesn't have rate limits and you don't even need to have a Twitter account, a registered app, or Twitter API key.
 
-You can crawl based on a list of Twitter handles or just by using a Twitter URL such as a search, trending topics, or hashtags. 
+You can crawl based on a list of Twitter handles or just by using a Twitter URL such as a search, trending topics, or hashtags.
 
 ## Use cases
 
@@ -138,9 +138,9 @@ This returns only tweets containing "cool" before `2020-01-01`.
 
 By default, the Twitter API will return only at most 3,200 tweets per profile or search. If you need to get more than the maximum number, you can split your start URLs with time slices, like this:
 
-* `https://twitter.com/search?q=(from%3Aelonmusk)%20until%3A2020-03-01%20since%3A2020-04-01&src=typed_query&f=live`
-* `https://twitter.com/search?q=(from%3Aelonmusk)%20until%3A2020-02-01%20since%3A2020-03-01&src=typed_query&f=live`
-* `https://twitter.com/search?q=(from%3Aelonmusk)%20until%3A2020-01-01%20since%3A2020-02-01&src=typed_query&f=live`
+* `https://twitter.com/search?q=(from%3Aelonmusk)%20since%3A2020-03-01%20until%3A2020-04-01&src=typed_query&f=live`
+* `https://twitter.com/search?q=(from%3Aelonmusk)%20since%3A2020-02-01%20until%3A2020-03-01&src=typed_query&f=live`
+* `https://twitter.com/search?q=(from%3Aelonmusk)%20since%3A2020-01-01%20until%3A2020-02-01&src=typed_query&f=live`
 
 All URLs are from the same profile (elonmusk), but they are split by month (January -> February -> March 2020). This can be created using Twitter "Advanced Search" on https://twitter.com/search
 

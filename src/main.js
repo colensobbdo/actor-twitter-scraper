@@ -211,13 +211,11 @@ Apify.main(async () => {
         proxyConfiguration: proxyConfig,
         maxConcurrency: 1,
         launchContext: {
-            launchOptions: {
-                useIncognitoPages: true,
-            },
+            useIncognitoPages: true,
         },
         browserPoolOptions: {
             maxOpenPagesPerBrowser: 1, // unfocused tabs stops responding
-            postPageCloseHooks: [async (pageId, browserController) => {
+            postPageCloseHooks: [async (_pageId, browserController) => {
                 if (browserController?.launchContext?.session?.isUsable() === false) {
                     await browserController.close();
                 }

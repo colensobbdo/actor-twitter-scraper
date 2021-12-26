@@ -262,8 +262,13 @@ const blockPatterns = [
 
 const ignoreRequest = [
     'badge_count.json',
-    'notifications/all',
-    'guide.json',
+    'notifications',
+    '/promoted_content/',
+    '/live_pipeline/',
+    '/jot/',
+    '/ext_tw_video/',
+    'client_event.json',
+    '/guide.json',
     'update_subscriptions',
 ];
 
@@ -327,7 +332,7 @@ const infiniteScroll = async ({ page, isDone, maxIdleTimeoutSecs = 20, waitForDy
         }
 
         if (maxIdleTimeoutSecs !== 0 && (Date.now() - resourcesStats.lastRequested) > maxIdleTimeoutSecs * 1000) {
-            log.warning(`Scrolling seems to have stopped and data was not received after ${maxIdleTimeoutSecs}s`);
+            log.warning(`No data was received after ${maxIdleTimeoutSecs}s`);
             finished = true;
         }
 

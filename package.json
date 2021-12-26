@@ -1,6 +1,6 @@
 {
     "name": "twitter-scraper",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "description": "",
     "main": "main.js",
     "scripts": {
@@ -10,15 +10,15 @@
     "author": "",
     "license": "Apache-2.0",
     "dependencies": {
-        "apify": "^2.1.0",
+        "apify": "^2.2.0",
         "lodash": "^4.17.21",
         "moment": "^2.29.1",
         "delayable-idle-abort-promise": "^1.0.0",
         "puppeteer": "*"
     },
     "devDependencies": {
-        "@types/lodash": "^4.14.172",
-        "@apify/eslint-config": "^0.1.4",
-        "eslint": "^7.32.0"
+        "@types/lodash": "^4.14.178",
+        "@apify/eslint-config": "^0.2.2",
+        "eslint": "^8.5.0"
     }
 }
