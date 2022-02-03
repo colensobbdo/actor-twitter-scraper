@@ -715,15 +715,17 @@ const getTimelineInstructions = (instructions) => {
                             userId: tweet?.legacy?.user_id_str ?? tweet?.core?.user?.rest_id,
                             sortIndex,
                         });
-                    } else if (content?.entryType === 'TimelineTimelineModule' && content?.items?.length) {
-                        for (const { item } of content.items) {
-                            const tweet = item?.itemContent?.tweet_results?.result;
+                    } else if (content?.entryType === 'TimelineTimelineModule') {
+                        if (content?.items?.length) {
+                            for (const { item } of content.items) {
+                                const tweet = item?.itemContent?.tweet_results?.result;
 
-                            extractInfo({
-                                tweet,
-                                sortIndex,
-                                userId: tweet?.core?.user?.rest_id,
-                            });
+                                extractInfo({
+                                    tweet,
+                                    sortIndex,
+                                    userId: tweet?.core?.user?.rest_id ?? tweet?.core?.user_results?.result?.rest_id,
+                                });
+                            }
                         }
                     }
                 }

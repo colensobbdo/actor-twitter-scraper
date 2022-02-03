@@ -214,12 +214,7 @@ Apify.main(async () => {
             useIncognitoPages: true,
         },
         browserPoolOptions: {
-            maxOpenPagesPerBrowser: 1, // unfocused tabs stops responding
-            postPageCloseHooks: [async (_pageId, browserController) => {
-                if (browserController?.launchContext?.session?.isUsable() === false) {
-                    await browserController.close();
-                }
-            }],
+            useFingerprints: true,
         },
         sessionPoolOptions: {
             createSessionFunction: async (sessionPool) => {
