@@ -156,9 +156,13 @@ Other limitations include:
 This parameter allows you to change the shape of your dataset output, split arrays into separate dataset items, or filter the output:
 
 ```js
-async ({ item, request }) => {
+async ({ data, item, request }) => {
     item.user = undefined; // removes this field from the output
     delete item.user; // this works as well
+
+    const raw = data.tweets[item['#sort_index']]; // allows you to access the raw data
+
+    item.source = raw.source; // adds "Twitter for ..." to the output
 
     if (request.userData.search) {
         item.search = request.userData.search; // add the search term to the output

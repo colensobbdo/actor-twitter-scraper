@@ -1,3 +1,9 @@
+## 2022-02-10
+
+Feature:
+- Added '#sort_index' to the output
+- Updated README
+
 ## 2022-02-03
 
 Fix:

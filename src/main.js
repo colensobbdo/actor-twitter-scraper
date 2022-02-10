@@ -79,7 +79,7 @@ Apify.main(async () => {
                 return [];
             }
 
-            return Object.values(data.tweets).reduce((/** @type {any[]} */out, tweet) => {
+            return Object.entries(data.tweets).reduce((/** @type {any[]} */out, [sortIndex, tweet]) => {
                 log.debug('Tweet data', tweet);
 
                 const user = data.users[
@@ -106,6 +106,7 @@ Apify.main(async () => {
                     ...getEntities(tweet),
                     url: tweetToUrl(user, tweet.id_str),
                     created_at: new Date(tweet.created_at).toISOString(),
+                    '#sort_index': sortIndex,
                 });
 
                 return out;

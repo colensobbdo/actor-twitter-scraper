@@ -682,11 +682,12 @@ const getTimelineInstructions = (instructions) => {
      * }} param0
      */
     const extractInfo = ({ userId, tweet, sortIndex }) => {
-        if (userId && tweet) {
+        if (userId && tweet && sortIndex) {
             globalObject.tweets[sortIndex] = tweet.legacy;
             globalObject.users[userId] = globalObject.users[userId]
                 ?? tweet?.core?.user?.legacy
                 ?? tweet?.core?.user_results?.result?.legacy;
+
             if (globalObject.users[userId]) {
                 globalObject.users[userId].id_str = userId;
             }
