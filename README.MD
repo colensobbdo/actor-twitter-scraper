@@ -112,7 +112,7 @@ Each item in the dataset will contain a separate tweet that follows this format:
 
 ## Login
 
-By providing *login cookies*, you can access more content, such as tweets with sensitive media or related to your own account.
+By providing *login cookies*, you can access more content, such as tweets with sensitive media or related to your own account. Please **be careful** with this option. Although Twitter Scraper is designed not to scrape too intensively, it is still possible that Twitter will block your account.
 
 The *login cookies* look like this:
 
