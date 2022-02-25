@@ -10,7 +10,7 @@
     "author": "",
     "license": "Apache-2.0",
     "dependencies": {
-        "apify": "^2.2.1",
+        "apify": "^2.2.2",
         "lodash": "^4.17.21",
         "moment": "^2.29.1",
         "delayable-idle-abort-promise": "^1.0.0",
@@ -19,6 +19,6 @@
     "devDependencies": {
         "@types/lodash": "^4.14.178",
         "@apify/eslint-config": "^0.2.2",
-        "eslint": "^8.5.0"
+        "eslint": "^8.9.0"
     }
 }

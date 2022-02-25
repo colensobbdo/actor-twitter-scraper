@@ -1,3 +1,8 @@
+## 2022-02-25
+
+Fix:
+- Timeline v2 object
+
 ## 2022-02-10
 
 Feature:

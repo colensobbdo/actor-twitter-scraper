@@ -330,8 +330,11 @@ Apify.main(async () => {
                         payload = data.globalObjects;
                     }
 
-                    if (url.includes('/UserTweets') && data?.data?.user?.result?.timeline?.timeline?.instructions?.length) {
-                        payload = getTimelineInstructions(data.data.user.result.timeline.timeline.instructions);
+                    const timeline = data?.data?.user?.result?.timeline_v2?.timeline
+                        ?? data?.data?.user?.result?.timeline?.timeline;
+
+                    if (url.includes('/UserTweets') && timeline?.instructions?.length) {
+                        payload = getTimelineInstructions(timeline.instructions);
                     }
 
                     if (url.includes('/TweetDetail') && data?.data?.threaded_conversation_with_injections?.instructions?.length) {
