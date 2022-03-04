@@ -26,6 +26,7 @@
             "type": "string",
             "editor": "select",
             "default": "replies",
+            "prefill": "replies",
             "enumTitles": ["Tweets only", "Tweets and replies to other users"],
             "enum": ["own", "replies"]
         },
