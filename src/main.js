@@ -25,7 +25,7 @@ const { log } = Apify.utils;
 
 Apify.main(async () => {
     /** @type {any} */
-    const input = await Apify.getValue('INPUT');
+    const input = await Apify.getInput();
 
     const proxyConfig = await proxyConfiguration({
         proxyConfig: input.proxyConfig,
