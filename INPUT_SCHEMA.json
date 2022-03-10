@@ -26,6 +26,7 @@
             "type": "string",
             "editor": "select",
             "default": "replies",
+            "prefill": "replies",
             "enumTitles": ["Tweets only", "Tweets and replies to other users"],
             "enum": ["own", "replies"]
         },
@@ -153,7 +154,7 @@
             "description": "Your login cookies will be used to bypass the login wall. Check the README for detailed instructions.",
             "editor": "json",
             "sectionCaption": "Login (optional)",
-            "sectionDescription": "You will have access to more data if you provide Twitter login information."
+            "sectionDescription": "You can use cookies to have access to more data. Twitter may block your account as a bot though, we recommend using an account you wouldn't mind getting blocked."
         }
     },
     "required": ["proxyConfig"]
