@@ -1,8 +1,8 @@
 {
     "actorSpecification": 1,
-    "name": "twitter-easy-scraper",
-    "title": "Twitter Easy Scraper",
-    "description": "Scrapes the tweets...",
+    "name": "twitter-scraper",
+    "title": "Twitter Scraper",
+    "description": "Scrapes tweets...",
     "version": "0.0.1",
     "storages": {
         "dataset": {
