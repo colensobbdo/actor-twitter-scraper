@@ -15,8 +15,6 @@
                     "description": "Selected fields from the dataset",
                     "transformation": {
                         "fields": [
-                            "user",
-                            "profile_image_url",
                             "full_text",
                             "reply_count",
                             "retweet_count",
@@ -28,16 +26,6 @@
                     "display": {
                         "component": "table",
                         "columns": [
-                            {
-                                "label": "",
-                                "format": "image",
-                                "field": "user.profile_image_url"
-                            },
-                            {
-                                "label": "User Name",
-                                "format": "text",
-                                "field": "user.name"
-                            },
                             {
                                 "label": "Tweet",
                                 "format": "text",
