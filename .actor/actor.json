@@ -1,0 +1,77 @@
+{
+    "actorSpecification": 1,
+    "name": "twitter-easy-scraper",
+    "title": "Twitter Easy Scraper",
+    "description": "Scrapes the tweets...",
+    "version": "0.0.1",
+    "storages": {
+        "dataset": {
+            "actorSpecification": 1,
+            "title": "Output",
+            "description": "Too see all scraped properties, export the whole dataset or select All fields instead of Overview",
+            "views": {
+                "overview": {
+                    "title": "Overview",
+                    "description": "Selected fields from the dataset",
+                    "transformation": {
+                        "fields": [
+                            "user",
+                            "profile_image_url",
+                            "full_text",
+                            "reply_count",
+                            "retweet_count",
+                            "favorite_count",
+                            "url",
+                            "created_at"
+                        ]
+                    },
+                    "display": {
+                        "component": "table",
+                        "columns": [
+                            {
+                                "label": "",
+                                "format": "image",
+                                "field": "user.profile_image_url"
+                            },
+                            {
+                                "label": "User Name",
+                                "format": "text",
+                                "field": "user.name"
+                            },
+                            {
+                                "label": "Tweet",
+                                "format": "text",
+                                "field": "full_text"
+                            },
+                            {
+                                "label": "Replies",
+                                "format": "number",
+                                "field": "reply_count"
+                            },
+                            {
+                                "label": "Retweets",
+                                "format": "number",
+                                "field": "retweet_count"
+                            },
+                            {
+                                "label": "Favourites",
+                                "format": "number",
+                                "field": "favorite_count"
+                            },
+                            {
+                                "label": "URL",
+                                "format": "link",
+                                "field": "url"
+                            },
+                            {
+                                "label": "Date",
+                                "format": "date",
+                                "field": "created_at"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
