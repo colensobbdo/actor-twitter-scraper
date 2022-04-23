@@ -1,28 +1,48 @@
-# Twitter Scraper
+## Features
 
-The actor crawls specified Twitter profiles, searches and events, and scrapes the following information:
+Twitter Scraper crawls specified Twitter profiles and URLs, and extracts:
 
-- User information, like name, username, location, follower/following count, profile URL/image/banner, date of creation
+- User information, such as name, Twitter handle (username), location, follower/following count, profile URL/image/banner, date of creation
 - List of tweets, retweets, and replies from profiles
-- Statistics for each tweet of: favorites, replies, and retweets for each tweet
-- Search hashtags, get top, latest, people, pictures or videos tweets
+- Statistics for each tweet: favorites, replies, and retweets for each tweet
+- Search hashtags, get top, latest, people, picture, or video tweets
 
-The actor is useful for extracting large amounts of tweet data. Unlike the Twitter API, it does not have rate limit contraints.
+Our free Twitter Scraper enables you to extract large amounts of data from Twitter. It lets you do much more than the Twitter API, because it doesn't have rate limits and you don't even need to have a Twitter account, a registered app, or Twitter API key.
+
+You can crawl based on a list of Twitter handles or just by using a Twitter URL such as a search, trending topics, or hashtags.
+
+## Use cases
+
+Scraping Twitter will give you access to the more than 500 million tweets posted every day. You can use that data in lots of different ways:
+
+- Track discussions about your brand, products, country, or city.
+- Monitor your competitors and see how popular they really are, and how you can get a competitive edge.
+- Keep an eye on new trends, attitudes, and fashions as they emerge.
+- Use the data to train AI models or for academic research.
+- Track sentiment to make sure your investments are protected.
+- Fight fake news by understanding the pattern of how misinformation spreads.
+- Explore discussions about travel destinations, services, amenities, and take advantage of local knowledge.
+- Analyze consumer habits and develop new products or target underdeveloped niches.
+
+
+If you would like more inspiration on how scraping social media can help your business or organization, check out our [industry pages](https://apify.com/industries).
+
+## Tutorial
+
+You can read our step-by-step tutorial on [how to scrape Twitter](https://blog.apify.com/how-to-scrape-tweets-and-more-on-twitter-59330e6fb522/) if you need some guidance on how to run the scraper. Or you can always email support@apify.com for help.
 
 ## Input Configuration
 
-The actor has the following input options
+The Twitter Scraper [actor](https://apify.com/actors) has the following input options
 
 - **Mode** - Scrape only own tweets from the profile page or include replies to other users
-- **List of Handles** - Specify a list of Twitter handles (usernames) you want to scrape
-  shall the crawler visit. If zero, the actor ignores the links and only crawls the Start URLs.
+- **List of Handles** - Specify a list of Twitter handles (usernames) you want to scrape. If zero, the actor ignores the links and only crawls the Start URLs.
 - **Max. Tweets** - Specify the maximum number of tweets you want to scrape.
-- **Proxy Configuration** - Select a proxy to be used by the actor.
+- **Proxy Configuration** - Select a proxy to be used.
 - **Login Cookies** - Your Twitter login cookies (no username/password is submitted). Check the [login](#login) section.
 
-## Supported Twitter URLs types
+## Supported Twitter URL types
 
-* Events: https://twitter.com/i/events/1354736314923372544
 * Searches: https://twitter.com/search?q=tesla&src=typed_query
 * Trending topics: https://twitter.com/search?q=%23FESTABBB21&src=trend_click&vertical=trends
 * Profiles: https://twitter.com/elonmusk
@@ -30,13 +50,13 @@ The actor has the following input options
 * Topics: https://twitter.com/i/topics/933033311844286464
 * Hashtag: https://twitter.com/hashtag/WandaVison
 * Retweets with quotes: https://twitter.com/elonmusk/status/1356524205374918659/retweets/with_comments (requires login)
+* Events: https://twitter.com/i/events/1354736314923372544
 
 ## Results
 
-The actor stores its results into the default dataset associated with the actor run,
-from where they can be downloaded in formats like JSON, HTML, CSV or Excel.
+The actor stores its results into the default dataset associated with the actor run. The data can be downloaded in machine-readable formats such as JSON, HTML, CSV or Excel.
 
-For each item in the dataset will contain a separate tweet, that follows this format:
+Each item in the dataset will contain a separate tweet that follows this format:
 
 ```jsonc
 {
@@ -92,7 +112,8 @@ For each item in the dataset will contain a separate tweet, that follows this fo
 
 ## Login
 
-By providing *login cookies*, you can access more content that are private, with sensitive media and/or related to your own account.
+By providing *login cookies*, you can access more content, such as tweets with sensitive media or related to your own account. Please **be careful** with this option. Although Twitter Scraper is designed not to scrape too intensively, it is still possible that Twitter will block your account.
+
 The *login cookies* look like this:
 
 ```json
@@ -105,21 +126,21 @@ The *login cookies* look like this:
 ]
 ```
 
-You can get this information using [EditThisCookie](https://chrome.google.com/webstore/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg?hl=en) extension.
+You can get this information using the [EditThisCookie](https://chrome.google.com/webstore/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg?hl=en) extension.
 
 ## Advanced search
 
-You can use a predefined search using the Advanced Search as a `startUrl`, like `https://twitter.com/search?q=cool%20until%3A2020-01-01&src=typed_query`
+You can use a predefined search using Advanced Search as a `startUrl`, e.g. `https://twitter.com/search?q=cool%20until%3A2020-01-01&src=typed_query`
 
 This returns only tweets containing "cool" before `2020-01-01`.
 
-## Workaround max tweets limit
+## Workaround for max tweets limit
 
-By default, Twitter API will return only at most 3200 tweets per profile / search. If you need to get more than the max, you can split your start URLs with time slices, like so:
+By default, the Twitter API will return only at most 3,200 tweets per profile or search. If you need to get more than the maximum number, you can split your start URLs with time slices, like this:
 
-* `https://twitter.com/search?q=(from%3Aelonmusk)%20until%3A2020-03-01%20since%3A2020-04-01&src=typed_query&f=live`
-* `https://twitter.com/search?q=(from%3Aelonmusk)%20until%3A2020-02-01%20since%3A2020-03-01&src=typed_query&f=live`
-* `https://twitter.com/search?q=(from%3Aelonmusk)%20until%3A2020-01-01%20since%3A2020-02-01&src=typed_query&f=live`
+* `https://twitter.com/search?q=(from%3Aelonmusk)%20since%3A2020-03-01%20until%3A2020-04-01&src=typed_query&f=live`
+* `https://twitter.com/search?q=(from%3Aelonmusk)%20since%3A2020-02-01%20until%3A2020-03-01&src=typed_query&f=live`
+* `https://twitter.com/search?q=(from%3Aelonmusk)%20since%3A2020-01-01%20until%3A2020-02-01&src=typed_query&f=live`
 
 All URLs are from the same profile (elonmusk), but they are split by month (January -> February -> March 2020). This can be created using Twitter "Advanced Search" on https://twitter.com/search
 
@@ -132,12 +153,16 @@ Other limitations include:
 
 ## Extend output function
 
-This parameter allows you to change the shape of your dataset output, split arrays into separate dataset items or filter the output:
+This parameter allows you to change the shape of your dataset output, split arrays into separate dataset items, or filter the output:
 
 ```js
-async ({ item, request }) => {
+async ({ data, item, request }) => {
     item.user = undefined; // removes this field from the output
     delete item.user; // this works as well
+
+    const raw = data.tweets[item['#sort_index']]; // allows you to access the raw data
+
+    item.source = raw.source; // adds "Twitter for ..." to the output
 
     if (request.userData.search) {
         item.search = request.userData.search; // add the search term to the output
@@ -174,7 +199,7 @@ async ({ item }) => {
 
 ## Extend scraper function
 
-This parameter allows to extend how the scraper works, can make it easier to extend the default functionality without having to create your own version. As an example, you can include searching the trending topics on each page visit:
+This parameter allows you to extend how the scraper works and can make it easier to extend the default functionality without having to create your own custom version. For example, you can include a search of the trending topics on each page visit:
 
 ```js
 async ({ page, request, addSearch, addProfile, addThread, customData }) => {
@@ -205,7 +230,7 @@ async ({ page, request, addSearch, addProfile, addThread, customData }) => {
 }
 ```
 
-Many variables are available inside `extendScraperFunction`, as well different phases:
+Additional variables are available inside `extendScraperFunction`:
 
 ```js
 async ({ label, response, url }) => {
@@ -223,11 +248,11 @@ async ({ label, response, url }) => {
 }
 ```
 
-## Migration
+## Personal data
+You should be aware that the data extracted can contain personal data. Personal data is protected by GDPR in the European Union and by other regulations around the world. You should not scrape personal data unless you have a legitimate reason to do so. If you're unsure whether your reason is legitimate, consult your lawyers. You can also read our blog post on the [legality of web scraping](https://blog.apify.com/is-web-scraping-legal/).
 
-Version 0.1 -> 1.0:
+## Custom Twitter scraping solution
+If you want to scrape Twitter, but don't want to run the scraper yourself, you can [request a custom solution](https://apify.com/custom-solutions).
 
-* Every item on dataset is now a separate tweet. That means that using `unwind` parameter is not necessary anymore (and doesn't work.)
-* Proxies are required when running on Apify platform
-* Login isn't required anymore, but some profiles/tweets can only be accessed using login cookies
-* Some fields were renamed, it matches Twitter property names
+## Changelog
+Twitter Scraper is under continual development. You can always find out about the latest updates by reading the [changelog](https://github.com/pocesar/actor-twitter-scraper/blob/master/CHANGELOG.md). If you find a problem or would like to suggest a new feature, you can [open a GitHub issue](https://github.com/pocesar/actor-twitter-scraper/issues).
