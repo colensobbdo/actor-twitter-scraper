@@ -18,6 +18,7 @@ const {
     blockPatterns,
     filterCookies,
     getTimelineInstructions,
+    coalescePayloadVersion,
 } = require('./helpers');
 const { LABELS, USER_OMIT_FIELDS } = require('./constants');
 
@@ -114,7 +115,7 @@ Apify.main(async () => {
                 return [];
             }
 
-            return Object.values(data.tweets).reduce((/** @type {any[]} */out, tweet) => {
+            return Object.entries(data.tweets).reduce((/** @type {any[]} */out, [sortIndex, tweet]) => {
                 log.debug('Tweet data', tweet);
 
                 const user = data.users[
@@ -145,6 +146,8 @@ Apify.main(async () => {
                     tweetId: tweet.id_str,
                     image: _.get(tweet, 'extended_entities.media[0].media_url_https'),
                     text: tweet.full_text,
+                    created_at: new Date(tweet.created_at).toISOString(),
+                    '#sort_index': sortIndex,
                 });
 
                 return out;
@@ -250,18 +253,11 @@ Apify.main(async () => {
         proxyConfiguration: proxyConfig,
         maxConcurrency: 1,
         launchContext: {
-            stealth: input.stealth || false,
-            launchOptions: {
-                useIncognitoPages: true,
-            },
+            useIncognitoPages: true,
+            useChrome: false,
         },
         browserPoolOptions: {
-            maxOpenPagesPerBrowser: 1, // unfocused tabs stops responding
-            postPageCloseHooks: [async (pageId, browserController) => {
-                if (!browserController?.launchContext?.session?.isUsable()) {
-                    await browserController.close();
-                }
-            }],
+            useFingerprints: true,
         },
         sessionPoolOptions: {
             createSessionFunction: async (sessionPool) => {
@@ -277,6 +273,9 @@ Apify.main(async () => {
         useSessionPool: true,
         maxRequestRetries,
         persistCookiesPerSession: false,
+        postNavigationHooks: [async ({ page }) => {
+            await page.bringToFront();
+        }],
         preNavigationHooks: [async ({ page }, gotoOptions) => {
             gotoOptions.waitUntil = 'domcontentloaded';
             gotoOptions.timeout = 30000;
@@ -285,12 +284,6 @@ Apify.main(async () => {
 
             await Apify.utils.puppeteer.blockRequests(page, {
                 urlPatterns: blockPatterns,
-            });
-
-            await page.setViewport({
-                height: 1080,
-                width: 1920,
-                deviceScaleFactor: 1.5,
             });
 
             if (input.extendOutputFunction || input.extendScraperFunction) {
@@ -339,6 +332,11 @@ Apify.main(async () => {
                         return;
                     }
 
+                    if (!url.includes('twitter.com')) {
+                        log.debug('Non twitter.com url', { url, contentType });
+                        return;
+                    }
+
                     if (!url) {
                         signal.reject(new Error('response url is null'));
                         return;
@@ -368,16 +366,26 @@ Apify.main(async () => {
                         payload = data.globalObjects;
                     }
 
-                    if (url.includes('/UserTweets') && data?.data?.user?.result?.timeline?.timeline?.instructions?.length) {
-                        payload = getTimelineInstructions(data.data.user.result.timeline.timeline.instructions);
+                    const timeline = coalescePayloadVersion(data?.data?.user?.result, 'timeline')?.timeline?.instructions;
+
+                    if (url.includes('/UserTweets') && timeline?.length) {
+                        payload = getTimelineInstructions(timeline);
                     }
 
-                    if (url.includes('/TweetDetail') && data?.data?.threaded_conversation_with_injections?.instructions?.length) {
-                        payload = getTimelineInstructions(data.data.threaded_conversation_with_injections.instructions);
+                    const thread = coalescePayloadVersion(data?.data, 'threaded_conversation_with_injections')?.instructions;
+
+                    if (url.includes('/TweetDetail') && thread?.length) {
+                        payload = getTimelineInstructions(thread);
                     }
 
                     if (url.includes('/live_event/') && data.twitter_objects) {
                         payload = data.twitter_objects;
+                    }
+
+                    const topic = coalescePayloadVersion(data?.data?.topic_by_rest_id?.topic_page?.body, 'timeline')?.instructions;
+
+                    if (url.includes('/TopicLandingPage') && topic?.length) {
+                        payload = getTimelineInstructions(topic);
                     }
 
                     if (payload) {

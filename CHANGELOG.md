@@ -1,3 +1,24 @@
+## 2022-02-25
+
+Fix:
+- Timeline v2 object
+
+## 2022-02-10
+
+Feature:
+- Added '#sort_index' to the output
+- Updated README
+
+## 2022-02-03
+
+Fix:
+- Thread replies
+
+## 2021-11-03
+
+Fix:
+- Search results
+
 ## 2021-08-09
 
 Features:

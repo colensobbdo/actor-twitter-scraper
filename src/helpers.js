@@ -287,25 +287,55 @@ const createAddEvent = (requestQueue) => async (event) => {
 };
 
 /**
- * @param {*} value
- * @returns
+ * Allows relative dates like `1 month` or `12 minutes`,
+ * yesterday and today.
+ * Parses unix timestamps in milliseconds and absolute dates in ISO format
+ *
+ * @param {string|number|Date} value
+ * @param {boolean} inTheFuture
  */
-const parseTimeUnit = (value) => {
+ const parseTimeUnit = (value, inTheFuture) => {
     if (!value) {
         return null;
     }
 
-    if (value === 'today' || value === 'yesterday') {
-        return (value === 'today' ? moment() : moment().subtract(1, 'day')).startOf('day');
+    if (value instanceof Date) {
+        return moment.utc(value);
     }
 
-    const [, number, unit] = `${value}`.match(/^(\d+)\s?(minute|second|day|hour|month|year|week)s?$/i) || [];
+    switch (value) {
+        case 'today':
+        case 'yesterday': {
+            const startDate = (value === 'today' ? moment.utc() : moment.utc().subtract(1, 'day'));
 
-    if (+number && unit) {
-        return moment().subtract(+number, unit);
+            return inTheFuture
+                ? startDate.endOf('day')
+                : startDate.startOf('day');
+        }
+        default: {
+            // valid integer, needs to be typecast into a number
+            // non-milliseconds needs to be converted to milliseconds
+            if (+value == value) {
+                return moment.utc(+value / 1e10 < 1 ? +value * 1000 : +value, true);
+            }
+
+            const [, number, unit] = `${value}`.match(/^(\d+)\s?(minute|second|day|hour|month|year|week)s?$/i) || [];
+
+            if (+number && unit) {
+                return inTheFuture
+                    ? moment.utc().add(+number, unit)
+                    : moment.utc().subtract(+number, unit);
+            }
+        }
     }
 
-    return moment(value);
+    const date = moment.utc(value);
+
+    if (!date.isValid()) {
+        return null;
+    }
+
+    return date;
 };
 
 /**
@@ -323,14 +353,17 @@ const parseTimeUnit = (value) => {
  * @param {MinMax} param
  */
 const minMaxDates = ({ min, max }) => {
-    const minDate = parseTimeUnit(min);
-    const maxDate = parseTimeUnit(max);
+    const minDate = parseTimeUnit(min, false);
+    const maxDate = parseTimeUnit(max, true);
 
     if (minDate && maxDate && maxDate.diff(minDate) < 0) {
         throw new Error(`Minimum date ${minDate.toString()} needs to be less than max date ${maxDate.toString()}`);
     }
 
     return {
+        get isComparable() {
+            return !!minDate || !!maxDate;
+        },
         /**
          * cloned min date, if set
          */
@@ -344,11 +377,13 @@ const minMaxDates = ({ min, max }) => {
             return maxDate?.clone();
         },
         /**
-         * compare the given date/timestamp to the time interval
+         * compare the given date/timestamp to the time interval.
+         * never fails or throws.
+         *
          * @param {string | number} time
          */
         compare(time) {
-            const base = moment(time);
+            const base = parseTimeUnit(time, false);
             return (minDate ? minDate.diff(base) <= 0 : true) && (maxDate ? maxDate.diff(base) >= 0 : true);
         },
     };
@@ -367,6 +402,17 @@ const cleanupHandle = (handle) => {
     return matches.groups.HANDLE;
 };
 
+/**
+ * @param {Partial<Record<string, any>>} payload
+ * @param {string} prop
+ * @returns {Partial<Record<string, any>>}
+ */
+const coalescePayloadVersion = (payload, prop) => {
+    return Array.from(Array(5), (_, index) => {
+        return payload?.[`${prop}${index > 0 ? `_v${index}` : ''}`];
+    }).find(Boolean);
+};
+
 const blockPatterns = [
     '.jpg',
     '.ico',
@@ -376,9 +422,11 @@ const blockPatterns = [
     '.png',
     'pbs.twimg.com/semantic_core_img',
     'pbs.twimg.com/profile_banners',
+    'pbs.twimg.com/profile_images',
     'pbs.twimg.com/media',
     'pbs.twimg.com/card_img',
     'www.google-analytics.com',
+    'accounts.google.com',
     'branch.io',
     '/guide.json',
     '/client_event.json',
@@ -391,8 +439,13 @@ const blockPatterns = [
 
 const ignoreRequest = [
     'badge_count.json',
-    'notifications/all',
-    'guide.json',
+    'notifications',
+    '/promoted_content/',
+    '/live_pipeline/',
+    '/jot/',
+    '/ext_tw_video/',
+    'client_event.json',
+    '/guide.json',
     'update_subscriptions',
 ];
 
@@ -456,7 +509,7 @@ const infiniteScroll = async ({ page, isDone, maxIdleTimeoutSecs = 20, waitForDy
         }
 
         if (maxIdleTimeoutSecs !== 0 && (Date.now() - resourcesStats.lastRequested) > maxIdleTimeoutSecs * 1000) {
-            log.warning(`Scrolling seems to have stopped and data was not received after ${maxIdleTimeoutSecs}s`);
+            log.warning(`No data was received after ${maxIdleTimeoutSecs}s`);
             finished = true;
         }
 
@@ -813,11 +866,12 @@ const getTimelineInstructions = (instructions) => {
      * }} param0
      */
     const extractInfo = ({ userId, tweet, sortIndex }) => {
-        if (userId && tweet) {
+        if (userId && tweet && sortIndex) {
             globalObject.tweets[sortIndex] = tweet.legacy;
             globalObject.users[userId] = globalObject.users[userId]
                 ?? tweet?.core?.user?.legacy
                 ?? tweet?.core?.user_results?.result?.legacy;
+
             if (globalObject.users[userId]) {
                 globalObject.users[userId].id_str = userId;
             }
@@ -846,15 +900,17 @@ const getTimelineInstructions = (instructions) => {
                             userId: tweet?.legacy?.user_id_str ?? tweet?.core?.user?.rest_id,
                             sortIndex,
                         });
-                    } else if (content?.entryType === 'TimelineTimelineModule' && content?.items?.length) {
-                        for (const { item } of content.items) {
-                            const tweet = item?.itemContent?.tweet_results?.result;
+                    } else if (content?.entryType === 'TimelineTimelineModule') {
+                        if (content?.items?.length) {
+                            for (const { item } of content.items) {
+                                const tweet = item?.itemContent?.tweet_results?.result;
 
-                            extractInfo({
-                                tweet,
-                                sortIndex,
-                                userId: tweet?.core?.user?.rest_id,
-                            });
+                                extractInfo({
+                                    tweet,
+                                    sortIndex,
+                                    userId: tweet?.core?.user?.rest_id ?? tweet?.core?.user_results?.result?.rest_id,
+                                });
+                            }
                         }
                     }
                 }
@@ -887,4 +943,5 @@ module.exports = {
     filterCookies,
     getTimelineInstructions,
     blockPatterns,
+    coalescePayloadVersion,
 };
