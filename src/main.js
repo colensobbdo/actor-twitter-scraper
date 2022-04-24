@@ -31,7 +31,7 @@ Apify.main(async () => {
     const input = !isDevelopment ? await Apify.getInput() : {
         trendKey: 'goodindex',
         ignoreCountryCode: false,
-        hashtag: "#goodindex",
+        hashtag: '#goodindex',
         searchMode: 'live',
         startUrls: [],
         // toDate: '',
@@ -61,9 +61,11 @@ Apify.main(async () => {
         // countryCode = "itaa";
     };
 
-    const proxyConfig = await proxyConfiguration({
-        proxyConfig: input.proxyConfig,
-    });
+    const proxyConfig = input.proxy.useApifyProxy
+        ? await proxyConfiguration({
+            proxyConfig: input.proxyConfig,
+        })
+        : undefined;
 
     input.searchTerms = [input.hashtag];
 
