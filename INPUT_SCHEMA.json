@@ -34,54 +34,31 @@
             "description": "Search for an specific terms and extract tweets for that term."
         },
         "searchMode": {
-            "title": "Search mode",
-            "description": "Search mode changes the way the data is received",
+            "title": "Do you want to filter by content?",
+            "description": "This setting will change how the data is received by the scraper.",
             "editor": "select",
             "type": "string",
             "prefill": "",
-            "enum": [
-                "",
-                "live",
-                "user",
-                "image",
-                "video"
-            ],
-            "enumTitles": [
-                "Top",
-                "Latest",
-                "People",
-                "Photos",
-                "Videos"
-            ]
+            "default": "",
+            "enum": ["", "live", "user", "image", "video"],
+            "enumTitles": ["Top", "Latest", "People", "Photos", "Videos"]
         },
-        "startUrls": {
-            "title": "Start URLs",
-            "description": "If you have a file or a url list of twitter urls, you provide them here",
-            "default": [],
-            "type": "array",
-            "editor": "requestListSources"
-        },
-        "toDate": {
-            "title": "Tweets newer than",
-            "description": "Will get tweets that are newer than this date. Can be used in conjunction with 'Tweets older than' to create specific date slices. Can use specific dates, such as YYYY-MM-DD or relative ones, like '1 month' or '2 days'",
-            "pattern": "(\\d{4}-\\d{2}-\\d{2}|(\\d+)\\s?\\S+)",
+        "mode": {
+            "title": "Do you want to scrape replies in addition to tweets?",
+            "description": "You can choose to only scrape a user's own tweets or you can choose to also scrape the user's own tweets and the user's replies to other users.",
             "type": "string",
-            "editor": "textfield"
-        },
-        "fromDate": {
-            "title": "Tweets older than",
-            "description": "Will start getting tweets from this date and older. Can be used in conjunction 'Tweets newer than'. Can use specific dates, such as YYYY-MM-DD or relative ones, like '1 month' or '2 days'",
-            "type": "string",
-            "pattern": "(\\d{4}-\\d{2}-\\d{2}|(\\d+)\\s?\\S+)",
-            "editor": "textfield"
+            "editor": "select",
+            "default": "replies",
+            "prefill": "replies",
+            "enumTitles": ["Tweets only", "Tweets and replies to other users"],
+            "enum": ["own", "replies"]
         },
         "tweetsDesired": {
-            "title": "Maximum number of tweets",
+            "title": "Set the maximum number of tweets",
             "type": "integer",
-            "description": "Maximum number of tweets to retrieve. Twitter have a default limit of around 3200 tweets. Check the README for workarounds.",
+            "description": "This value lets you set the maximum number of tweets to retrieve. Twitter has a default limit of around 3,200 tweets. Check the README for workarounds.",
             "maximum": 3300,
-            "prefill": 100,
-            "default": 100
+            "prefill": 50
         },
         "addUserInfo": {
             "title": "Add user information",
@@ -90,41 +67,50 @@
             "type": "boolean",
             "editor": "checkbox"
         },
-        "mode": {
-            "title": "Tweet types",
-            "description": "Select the tweet types to get. Only tweets or tweets and replies for the selected handle when visiting profiles.",
-            "type": "string",
-            "editor": "select",
-            "prefill": "replies",
-            "default": "replies",
-            "enumTitles": [
-                "Only own tweets",
-                "Own tweets and replies to other users"
-            ],
-            "enum": [
-                "own",
-                "replies"
-            ]
-        },
         "handle": {
-            "title": "List of usernames to scrape",
+            "title": "Do you want to scrape by Twitter handle?",
             "type": "array",
-            "description": "The twitter handles of the profiles you want to scrape. Shortcut instead of inputting https://twitter.com/username urls",
+            "description": "You can add the twitter handles of specific profiles you want to scrape. This is a shortcut so that you don't have to add full username URLs like https://twitter.com/username.",
+            "editor": "stringList",
+            "sectionCaption": "Scrape by Twitter handle or Twitter URL",
+            "sectionDescription": "The default option is to scrape using search terms, but you can also scrape by Twitter handles or Twitter URLs."
+        },
+        "startUrls": {
+            "title": "Do you want to scrape by Twitter URL?",
+            "description": "This lets you tell the scraper where to start. You can enter Twitter URLs one by one. You can also link to or upload a text file with a list of URLs.",
             "default": [],
-            "prefill": ["elonmusk", "patrickc"],
-            "editor": "stringList"
+            "type": "array",
+            "editor": "requestListSources"
+        },
+        "toDate": {
+            "title": "Tweets newer than",
+            "description": "Scrape tweets newer than this date. You can use this in conjunction with 'Tweets older than' to create a limited time slice. ",
+            "pattern": "(\\d{4}-\\d{2}-\\d{2}|(\\d+)\\s?\\S+)",
+            "type": "string",
+            "editor": "textfield",
+            "sectionCaption": "Do you want to set specific dates?",
+            "sectionDescription": "You can choose to scrape only tweets older or newer than a specific date. You can use YYYY-MM-DD format or just relative dates like '1 month' or '2 days'."
+        },
+        "fromDate": {
+            "title": "Tweets older than",
+            "description": "Scrape tweets from this date and before. You can use this in conjunction with 'Tweets newer than'to create a limited time slice.",
+            "type": "string",
+            "pattern": "(\\d{4}-\\d{2}-\\d{2}|(\\d+)\\s?\\S+)",
+            "editor": "textfield"
         },
         "proxyConfig": {
             "title": "Proxy configuration",
             "type": "object",
-            "description": "It's required to use proxies when running on the platform.",
+            "description": "This is required if you want to use Apify Proxy.",
             "prefill": {
                 "useApifyProxy": true
             },
             "default": {
                 "useApifyProxy": true
             },
-            "editor": "proxy"
+            "editor": "proxy",
+            "sectionCaption": "Proxy configuration",
+            "sectionDescription": "Choose which proxies to use."
         },
         "extendOutputFunction": {
             "title": "Extend Output Function",
@@ -134,7 +120,7 @@
             "prefill": "async ({ data, item, page, request, customData, Apify }) => {\n  return item;\n}",
             "editor": "javascript",
             "sectionCaption": "Extend scraper functionality",
-            "sectionDescription": "You can change the output of the items for your dataset here, or add additional behavior on the scraper."
+            "sectionDescription": "You can change the output of the items for your dataset here, or add additional behavior to the scraper."
         },
         "extendScraperFunction": {
             "title": "Extend Scraper Function",
@@ -160,13 +146,6 @@
             "editor": "number",
             "type": "integer"
         },
-        "stealth": {
-            "title": "Stealth",
-            "description": "Enabling stealth allows to decrease the chance of your scrape being detected as an automated process. Recommended to enable if you're providing your login cookies.",
-            "default": false,
-            "type": "boolean",
-            "editor": "checkbox"
-        },
         "maxRequestRetries": {
             "title": "Max request retries",
             "description": "Set the max request retries",
@@ -177,7 +156,7 @@
         },
         "maxIdleTimeoutSecs": {
             "title": "Scrolling idle seconds",
-            "description": "Configures how many seconds of no data received to consider it done",
+            "description": "Configures how many seconds of no data received will be considered done",
             "default": 30,
             "prefill": 30,
             "type": "integer",
@@ -195,10 +174,10 @@
             "type": "array",
             "default": [],
             "prefill": [],
-            "description": "Your login cookies will be used to bypass the login wall. See <a href='https://apify.com/vdrmota/twitter-scraper'>README</a> for instructions.",
+            "description": "Your login cookies will be used to bypass the login wall. Check the README for detailed instructions.",
             "editor": "json",
-            "sectionCaption": "Login information",
-            "sectionDescription": "By providing login information you can have more access to data."
+            "sectionCaption": "Login (optional)",
+            "sectionDescription": "You can use cookies to have access to more data. Twitter may block your account as a bot though, we recommend using an account you wouldn't mind getting blocked."
         }
     },
     "required": [
