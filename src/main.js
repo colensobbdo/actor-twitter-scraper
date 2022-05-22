@@ -40,7 +40,7 @@ Apify.main(async () => {
         addUserInfo: false,
         mode: 'replies',
         handle: [],
-        proxy: {
+        proxyConfig: {
             useApifyProxy: false,
             // useApifyProxy: true,
             // apifyProxyGroups: [
@@ -61,7 +61,7 @@ Apify.main(async () => {
         // countryCode = "itaa";
     };
 
-    const proxyConfig = input.proxy.useApifyProxy
+    const proxyConfig = input.proxyConfig.useApifyProxy
         ? await proxyConfiguration({
             proxyConfig: input.proxyConfig,
         })
